@@ -1,0 +1,33 @@
+/* MARGIN */
+.mb10{margin-bottom:10px;}
+.mb20{margin-bottom:20px;}
+.mb30{margin-bottom:30px;}
+.mb40{margin-bottom:40px;}
+.mb50{margin-bottom:50px;}
+
+/* TABLE */
+table th.c, table td.c{ text-align: center; }
+table.init-table td{ border: 0; }
+table.eewee-table tr th {
+	background: #7c7c7c;
+	color: #fff;
+	font-size: 1.2em;
+	padding: 5px 10px;
+}
+
+table.eewee-table tr:hover,table.eewee-table tr:nth-child(2n):hover { background: #7c7c7c; color: #fff; }
+table.eewee-table tr:hover a,table.eewee-table tr:hover a:hover { color: #fff; }
+table.eewee-table tr td { padding: 5px; }
+table.eewee-table tr:nth-child(2n) { background-color: #DFDFDF; 	padding: 5px; }
+table.table1 tr{ vertical-align: top; }
+table.table1 th{ text-align: right; }
+table.table1 th.c{ text-align: center; text-transform: uppercase; /*color: #fff; background: #777777;*/ }
+table.table1 td{ padding-right: 10px; }
+table.table1 textarea{ width: 200px; height: 270px; }
+
+/* DIVERS */
+.f_r{ float: right; }
+.f_l{ float: left; }
+.hndle{	padding: 10px; }
+.eewee-success{ border:1px solid green; }
+.eewee-error{ border:1px solid red; }
