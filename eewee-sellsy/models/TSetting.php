@@ -42,12 +42,12 @@ if( !class_exists('TSetting')){
             $r = $wpdb->insert(
                 $this->_table,
                 array(
-                    'setting_dt_create' => current_time('mysql'),
-                    'setting_dt_update' => current_time('mysql'),
-                    'setting_consumer_token' => $p['form_consumer_token'],
-                    'setting_consumer_secret' => $p['form_consumer_secret'],
+                    'setting_dt_create'         => current_time('mysql'),
+                    'setting_dt_update'         => current_time('mysql'),
+                    'setting_consumer_token'    => $p['form_consumer_token'],
+                    'setting_consumer_secret'   => $p['form_consumer_secret'],
                     'setting_utilisateur_token' => $p['form_utilisateur_token'],
-                    'setting_utilisateur_secret' => $p['form_utilisateur_secret'],
+                    'setting_utilisateur_secret'=> $p['form_utilisateur_secret'],
                 ),
                 array(
                     '%s',
@@ -73,11 +73,11 @@ if( !class_exists('TSetting')){
                 $this->_table,
                 // SET (valeur)
                 array(
-                    'setting_dt_update' => current_time('mysql'),
-                    'setting_consumer_token' => $p['form_consumer_token'],
-                    'setting_consumer_secret' => $p['form_consumer_secret'],
+                    'setting_dt_update'         => current_time('mysql'),
+                    'setting_consumer_token'    => $p['form_consumer_token'],
+                    'setting_consumer_secret'   => $p['form_consumer_secret'],
                     'setting_utilisateur_token' => $p['form_utilisateur_token'],
-                    'setting_utilisateur_secret' => $p['form_utilisateur_secret'],
+                    'setting_utilisateur_secret'=> $p['form_utilisateur_secret'],
                 ),
                 // WHERE (valeur)
                 array(

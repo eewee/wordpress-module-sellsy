@@ -7,7 +7,7 @@
 
 <?php
 // UPDATE : status
-if( isset($_GET['type']) && $_GET['type'] == "status" ){
+if( isset($_GET['type']) && $_GET['type'] == "status" ) {
 	$t_ticket_form = new TTicketForm();
     $r = $t_ticket_form->updateStatus($_GET);
 

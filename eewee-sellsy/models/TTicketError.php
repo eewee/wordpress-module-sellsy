@@ -12,6 +12,7 @@ if( !class_exists('TTicketError')){
         /**
          * retourn rows
          */
+        /*
         public function getTicketErrors( $req="", $params="" )
         {
             global $wpdb;
@@ -19,11 +20,13 @@ if( !class_exists('TTicketError')){
             $r      = $wpdb->get_results($sql);
             return $r;
         }
+        */
 
         /**
          * retourn row
          * @param int $id
          */
+        /*
         public function getTicketError( $id )
         {
             global $wpdb;
@@ -31,6 +34,7 @@ if( !class_exists('TTicketError')){
             $r      = $wpdb->get_results($sql);
             return $r;
         }
+        */
 
         /**
          * insert
@@ -42,14 +46,15 @@ if( !class_exists('TTicketError')){
             $r = $wpdb->insert(
                 $this->_table,
                 array(
-                    'ticket_error_dt_create' => current_time('mysql'),
-                    'ticket_error_status' => $p['form_ticket_error_status'],
-                    'ticket_error_code' => $p['form_ticket_error_code'],
-                    'ticket_error_message' => $p['form_ticket_error_message'],
-                    'ticket_error_more' => $p['form_ticket_error_more'],
-                    'ticket_error_inerro' => $p['form_ticket_error_inerro']
+                    'ticket_error_dt_create'    => current_time('mysql'),
+                    'ticket_error_status'       => $p['form_ticket_error_status'],
+                    'ticket_error_code'         => $p['form_ticket_error_code'],
+                    'ticket_error_message'      => $p['form_ticket_error_message'],
+                    'ticket_error_more'         => $p['form_ticket_error_more'],
+                    'ticket_error_inerro'       => $p['form_ticket_error_inerro']
                 ),
                 array(
+                    '%s',
                     '%s',
                     '%s',
                     '%s',

@@ -4,14 +4,16 @@ if( !class_exists('TTicketForm')){
 
         private $_table;
 
-        function __construct(){
+        function __construct()
+        {
             $this->_table = EEWEE_SELLSY_PREFIXE_BDD."ticket_form";
         }
 
         /**
          * retourn rows
          */
-        public function getTicketsForm( $req="", $params="" ){
+        public function getTicketsForm( $req="", $params="" )
+        {
             global $wpdb;
             $sql	= $wpdb->prepare("SELECT * FROM ".$this->_table." ".$req, $params);
             $r	    = $wpdb->get_results($sql);
@@ -22,7 +24,8 @@ if( !class_exists('TTicketForm')){
          * retourn row
          * @param int $id
          */
-        public function getTicketForm( $id ){
+        public function getTicketForm( $id )
+        {
             global $wpdb;
             $sql	= $wpdb->prepare("SELECT * FROM ".$this->_table." WHERE ticket_form_id=%d", $id);
             $r		= $wpdb->get_results($sql);
@@ -33,17 +36,18 @@ if( !class_exists('TTicketForm')){
          * insert
          * @param $_POST $p
          */
-        public function add( $p ){
+        public function add( $p )
+        {
             global $wpdb;
             $r = $wpdb->insert(
                 $this->_table,
                 array(
-                    'ticket_form_dt_create' => current_time('mysql'),
-                    'ticket_form_dt_update' => current_time('mysql'),
-                    'ticket_form_name' => $p['ticket_form_name'],
-                    'ticket_form_subject_prefix' => $p['ticket_form_subject_prefix'],
-                    'ticket_form_linkedid' => $p['ticket_form_linkedid'],
-                    'ticket_form_status' => $p['form_status']
+                    'ticket_form_dt_create'         => current_time('mysql'),
+                    'ticket_form_dt_update'         => current_time('mysql'),
+                    'ticket_form_name'              => $p['ticket_form_name'],
+                    'ticket_form_subject_prefix'    => $p['ticket_form_subject_prefix'],
+                    'ticket_form_linkedid'          => $p['ticket_form_linkedid'],
+                    'ticket_form_status'            => $p['form_status']
                 ),
                 array(
                     '%s',
@@ -61,7 +65,8 @@ if( !class_exists('TTicketForm')){
          * update status
          * @param $_POST $p
          */
-        public function updateStatus( $p ){
+        public function updateStatus( $p )
+        {
             global $wpdb;
             $r = $wpdb->update(
                 $this->_table,
@@ -89,18 +94,19 @@ if( !class_exists('TTicketForm')){
          * update
          * @param $_POST $p
          */
-        public function update( $p ){
+        public function update( $p )
+        {
             global $wpdb;
 
             $r = $wpdb->update(
                 $this->_table,
                 // SET (valeur)
                 array(
-                    'ticket_form_dt_update' => current_time('mysql'),
-                    'ticket_form_name' => $p['ticket_form_name'],
-                    'ticket_form_subject_prefix' => $p['ticket_form_subject_prefix'],
-                    'ticket_form_linkedid' => $p['ticket_form_linkedid'],
-                    'ticket_form_status' => $p['form_status']
+                    'ticket_form_dt_update'         => current_time('mysql'),
+                    'ticket_form_name'              => $p['ticket_form_name'],
+                    'ticket_form_subject_prefix'    => $p['ticket_form_subject_prefix'],
+                    'ticket_form_linkedid'          => $p['ticket_form_linkedid'],
+                    'ticket_form_status'            => $p['form_status']
                 ),
                 // WHERE (valeur)
                 array(

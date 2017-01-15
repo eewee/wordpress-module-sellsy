@@ -2,7 +2,7 @@
 global $wpdb;
 
 // UPDATE
-if (isset($_POST['update']) && $_POST['update']){
+if (isset($_POST['update']) && $_POST['update']) {
     $t_setting = new TSetting();
     $r = $t_setting->update( $_POST );
 

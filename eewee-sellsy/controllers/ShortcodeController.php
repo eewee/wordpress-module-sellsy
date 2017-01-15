@@ -51,17 +51,25 @@
                 // OK
                 if (empty($error)) {
 
-                    // @todo : INSERT TO WORDPRESS TABLE
-                    // ...
+                    // INSERT TO WORDPRESS : table
+                    $t_ticket = new TTicket();
+                    $t_ticket->add(array(
+                        'form_ticket_subject'   => $ticket[0]->ticket_form_subject_prefix.' '.$form_ticket_support_subject,
+                        'form_ticket_email'     => $form_ticket_support_email,
+                        'form_ticket_name'      => $form_ticket_support_lastname,
+                        'form_ticket_message'   => "<h2>".__('Consumer', PLUGIN_NOM_LANG)." :</h2>".$form_ticket_support_lastname."<h2>".__('Message', PLUGIN_NOM_LANG)." :</h2>".$form_ticket_support_message,
+                        'form_ticket_linkedid'  => $ticket[0]->ticket_form_linkedid
+                    ));
 
                     // INSERT TO SELLSY : support
                     $tbl_ticket = array();
-                    $tbl_ticket['subject'] = $ticket[0]->ticket_form_subject_prefix.' '.$form_ticket_support_subject;
-                    $tbl_ticket['message'] = "<h2>".__('Consumer', PLUGIN_NOM_LANG)." :</h2>".$form_ticket_support_lastname."<h2>".__('Message', PLUGIN_NOM_LANG)." :</h2>".$form_ticket_support_message;
-                    $tbl_ticket['sender'] = get_option( 'admin_email' );
-                    $tbl_ticket['requesterEmail'] = $form_ticket_support_email;
+                    $tbl_ticket['subject']          = $ticket[0]->ticket_form_subject_prefix.' '.$form_ticket_support_subject;
+                    $tbl_ticket['message']          = "<h2>".__('Consumer', PLUGIN_NOM_LANG)." :</h2>".$form_ticket_support_lastname."<h2>".__('Message', PLUGIN_NOM_LANG)." :</h2>".$form_ticket_support_message;
+                    $tbl_ticket['source']           = 'email';
+                    $tbl_ticket['sender']           = get_option( 'admin_email' );
+                    $tbl_ticket['requesterEmail']   = $form_ticket_support_email;
                     if ($ticket[0]->ticket_form_linkedid != 0) {
-                        $tbl_ticket['staffid'] = $ticket[0]->ticket_form_linkedid;
+                        $tbl_ticket['staffid']      = $ticket[0]->ticket_form_linkedid;
                     }
 
                     $request = array(
@@ -78,24 +86,28 @@
                         unset($_POST['form_ticket_support_email']);
                         unset($_POST['form_ticket_support_lastname']);
                         unset($_POST['form_ticket_support_message']);
+                        unset($form_ticket_support_subject);
+                        unset($form_ticket_support_email);
+                        unset($form_ticket_support_lastname);
+                        unset($form_ticket_support_message);
                         echo __('Successful registration.', PLUGIN_NOM_LANG);
 
                     // API : error
                     } elseif($response->status == 'error') {
 
                         $tbl_errors = array(
-                            'form_ticket_error_status' => $response->status,
-                            'form_ticket_error_code' => $response->error->code,
-                            'ticket_error_message' => $response->error->message,
-                            'ticket_error_more' => $response->error->more,
-                            'ticket_error_inerro' => $response->error->inerror,
+                            'form_ticket_error_status'  => $response->status,
+                            'form_ticket_error_code'    => $response->error->code,
+                            'form_ticket_error_message' => $response->error->message,
+                            'form_ticket_error_more'    => $response->error->more,
+                            'form_ticket_error_inerro'  => $response->error->inerror,
                         );
-                        $m_eeweeSellsyError	= new TTicketError();
-                        $m_eeweeSellsyError->add($tbl_errors);
+                        $t_ticketError	= new TTicketError();
+                        $t_ticketError->add($tbl_errors);
                         echo __('Error registration.', PLUGIN_NOM_LANG);
                     }
 
-                // ERROR
+                // ERROR : required field(s)
                 } else {
                     $render .= '
                     <div class="ticket_support ticket_support_'.$ticket[0]->ticket_form_id.'">

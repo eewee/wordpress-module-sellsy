@@ -5,7 +5,8 @@ if( !class_exists('Form_TicketFormAdd')){
 		private $_action;
 		private $_returnUrl;
 		
-		function __construct(){
+		function __construct()
+        {
 			$this->_action      = $_SERVER["REQUEST_URI"];
             $this->_returnUrl   = EEWEE_SELLSY_URL_BACK_SOUS_MENU_1;
 		}
@@ -14,7 +15,8 @@ if( !class_exists('Form_TicketFormAdd')){
 		 * retourn form
  		 * @param $_POST $p
  		 */ 
-		public function ticketFormAdd( $p="" ){
+		public function ticketFormAdd( $p="" )
+        {
             // INIT
             $status_on = '';
             $status_off = '';
@@ -60,7 +62,7 @@ if( !class_exists('Form_TicketFormAdd')){
                             </tr>
                             <tr>
                                 <th>
-                                    <?php _e('Linked staff', PLUGIN_NOM_LANG); ?> :
+                                    <?php _e('Assigned to', PLUGIN_NOM_LANG); ?> :
                                 </th>
                                 <td>
                                     <?php

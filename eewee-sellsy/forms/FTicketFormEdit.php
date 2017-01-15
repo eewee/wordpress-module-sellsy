@@ -5,7 +5,8 @@ if( !class_exists('Form_TicketFormEdit')){
         private $_action;
         private $_returnUrl;
 
-        function __construct(){
+        function __construct()
+        {
             $this->_action      = $_SERVER["REQUEST_URI"];
             $this->_returnUrl   = EEWEE_SELLSY_URL_BACK_SOUS_MENU_1;
         }
@@ -14,8 +15,8 @@ if( !class_exists('Form_TicketFormEdit')){
          * retourn form
          * @param array $r
          */
-        public function ticketFormEdit( $r ){ ?>
-
+        public function ticketFormEdit( $r )
+        { ?>
             <form method="post" action="<?php echo $this->_action; ?>">
                 <input type='hidden' name='form_id' value='<?php echo $r[0]->ticket_form_id; ?>' />
 
@@ -60,7 +61,7 @@ if( !class_exists('Form_TicketFormEdit')){
                             </tr>
                             <tr>
                                 <th>
-                                    <?php _e('Linked staff', PLUGIN_NOM_LANG); ?> :
+                                    <?php _e('Assigned to', PLUGIN_NOM_LANG); ?> :
                                 </th>
                                 <td>
                                     <?php

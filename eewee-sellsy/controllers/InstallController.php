@@ -15,6 +15,7 @@
 			// - https://codex.wordpress.org/Function_Reference/current_time
 			// - echo current_time( 'mysql', 1 ).'<br>'; // 0: GMT+1, 1: GMT+0
 
+            // BO - SETTING
 			$sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."setting` (
               `setting_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,6 +29,21 @@
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
+            // FO - TICKET : stock data form ticket
+            $sql[] = "
+            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket` (
+              `ticket_id` int(11) NOT NULL AUTO_INCREMENT,
+              `ticket_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+              `ticket_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_message` text NOT NULL,
+			  `ticket_form_linkedid` int(11) NOT NULL,
+              PRIMARY KEY (`ticket_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ";
+
+            // BO - TICKET : form
 			$sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form` (
               `ticket_form_id` int(11) NOT NULL AUTO_INCREMENT,
@@ -41,41 +57,26 @@
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
+            // FO - TICKET : error form
 			$sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket_error` (
-              `ticket_log_id` int(11) NOT NULL AUTO_INCREMENT,
-              `ticket_log_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-              `ticket_log_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_log_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_log_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_log_more` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_log_inerro` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              PRIMARY KEY (`ticket_log_id`)
+              `ticket_error_id` int(11) NOT NULL AUTO_INCREMENT,
+              `ticket_error_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+              `ticket_error_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_error_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_error_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_error_more` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `ticket_error_inerro` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              PRIMARY KEY (`ticket_error_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-			/*
-			// INSERT WORDPRESS (backup ticket wordpress)
-			$sql[] = "
-            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket` (
-              `ticket_id` int(11) NOT NULL AUTO_INCREMENT,
-              `ticket_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-              `ticket_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_subject` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_message` text NOT NULL,
-			  `ticket_form_linkedid` int(11) NOT NULL,
-              PRIMARY KEY (`ticket_id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-            ";
-			*/
-			
 			$sql[] = "
 			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."setting` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', '', '', '', '');
 			";
 
 			$sql[] = "
-			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Ticket support', '[TICKET SUPPORT]', '0');
+			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Ticket support', '[TICKET SUPPORT]', '0', '0');
 			";
 
             foreach( $sql as $v ){ $wpdb->query($v); }

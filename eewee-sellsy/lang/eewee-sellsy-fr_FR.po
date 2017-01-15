@@ -1,338 +1,298 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: eewee-restaurant-menu\n"
+"Project-Id-Version: eewee-sellsy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-16 11:11+0100\n"
-"PO-Revision-Date: 2013-02-16 11:14+0100\n"
-"Last-Translator: Michael <contact@eewee.fr>\n"
+"POT-Creation-Date: 2017-01-15 14:29+0100\n"
+"PO-Revision-Date: 2017-01-15 14:35+0100\n"
+"Last-Translator: NEXI <trad@nexi.fr>\n"
 "Language-Team: Michael <contact@eewee.fr>\n"
 "Language: fr_FR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-KeywordsList: _;gettext;gettext_noop;_e;_c;_x;__\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ../../../../../../../../Desktop/eewee-sellsy\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 1.5.5\n"
-"X-Poedit-SearchPath-0: /Users/michael/Desktop/eewee-restaurant-menu/v1.2\n"
+"X-Generator: Poedit 1.8.11\n"
+"X-Poedit-SearchPath-0: .\n"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/controllers/ToolsController.php:19
-msgid "Options recorded."
-msgstr "Options enregistrées."
+#: controllers/ShortcodeController.php:39
+msgid "email"
+msgstr "email"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/controllers/ToolsController.php:22
-msgid "ERROR"
-msgstr "ERREUR"
+#: controllers/ShortcodeController.php:43
+msgid "name"
+msgstr "nom"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/controllers/ToolsController.php:22
-msgid "Update unrealized"
-msgstr "Mise à jour non réalisée"
+#: controllers/ShortcodeController.php:47
+msgid "message"
+msgstr "message"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:56
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:59
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:100
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:56
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:106
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:56
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:22
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:56
-msgid "Save"
-msgstr "Enregistrer"
+#: controllers/ShortcodeController.php:60
+msgid "Consumer"
+msgstr "Consumer"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:58
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:60
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:101
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:102
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:61
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:58
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:107
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:58
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:108
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:58
-msgid "Back"
-msgstr "Retour"
+#: controllers/ShortcodeController.php:60
+#: controllers/ShortcodeController.php:128
+msgid "Message"
+msgstr "Message"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:28
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:66
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:96
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:69
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:102
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:74
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:99
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:66
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:96
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:80
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:119
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:66
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:96
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:66
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:96
-msgid "Edit"
-msgstr "Editer"
+#: controllers/ShortcodeController.php:82
+msgid "Successful registration."
+msgstr "Enregistrement fait."
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:31
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:32
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseSearch.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:31
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:32
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuSearch.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:31
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:32
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeSearch.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:55
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:31
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:32
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieSearch.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:55
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatSearch.php:26
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:31
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:32
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeSearch.php:24
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:60
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:60
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:60
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:68
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:60
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:60
+#: controllers/ShortcodeController.php:96
+msgid "Error registration."
+msgstr "Erreur d'enregistrement."
+
+#: controllers/ShortcodeController.php:105
+msgid "Required field"
+msgstr "Champ requis"
+
+#: controllers/ShortcodeController.php:107
+msgid "Required fields"
+msgstr "Champs requis"
+
+#: controllers/ShortcodeController.php:119
+msgid "Subject"
+msgstr "Sujet"
+
+#: controllers/ShortcodeController.php:122
+msgid "Email"
+msgstr "Email"
+
+#: controllers/ShortcodeController.php:125 forms/FTicketFormAdd.php:45
+#: forms/FTicketFormEdit.php:45 forms/FTicketFormSearch.php:26
+#: view/ticketForm.php:35 view/ticketFormAdd.php:10 view/ticketFormEdit.php:10
 msgid "Name"
 msgstr "Nom"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseAdd.php:40
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:41
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:43
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:44
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeAdd.php:40
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:41
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:80
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieAdd.php:40
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:41
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:81
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeAdd.php:40
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:41
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:63
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:66
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:63
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:77
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:63
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:63
-msgid "State"
-msgstr "Etat"
+#: controllers/ToolsController.php:41
+msgid "Options recorded."
+msgstr "Options enregistrées."
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseEdit.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:101
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:60
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeEdit.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieEdit.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:107
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:23
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeEdit.php:57
+#: controllers/ToolsController.php:44
+msgid "ERROR"
+msgstr "ERREUR"
+
+#: controllers/ToolsController.php:44
+msgid "Update unrealized"
+msgstr "Mise à jour non réalisée"
+
+#: forms/FSettingEdit.php:23 forms/FSettingEdit.php:101
+#: forms/FTicketFormEdit.php:23 forms/FTicketFormEdit.php:112
 msgid "Update"
 msgstr "Mise à jour"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseSearch.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionSearch.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuSearch.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeSearch.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieSearch.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatSearch.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeSearch.php:20
-msgid "Search"
-msgstr "Recherche"
+#: forms/FSettingEdit.php:24 forms/FSettingEdit.php:102
+#: forms/FTicketFormAdd.php:32 forms/FTicketFormAdd.php:109
+#: forms/FTicketFormEdit.php:24 forms/FTicketFormEdit.php:113
+msgid "Back"
+msgstr "Retour"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FDeviseSearch.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionSearch.php:94
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuSearch.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuTypeSearch.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatCategorieSearch.php:27
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatSearch.php:68
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FTaxeSearch.php:27
-msgid "Validate the research"
-msgstr "Valider la recherche"
+#: forms/FSettingEdit.php:28 forms/FTicketFormEdit.php:29
+#: view/ticketForm.php:44 view/ticketForm.php:77
+msgid "Edit"
+msgstr "Editer"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuAdd.php:34
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuEdit.php:35
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:72
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:72
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:63
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:74
-msgid "Price"
-msgstr "Prix"
+#: forms/FSettingEdit.php:61
+msgid "Consumer token"
+msgstr "Consumer token"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:33
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:34
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionSearch.php:26
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:19
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:26
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:65
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuEdit.php:19
-msgid "Menu"
-msgstr "Menu"
+#: forms/FSettingEdit.php:65 forms/FSettingEdit.php:74
+#: forms/FSettingEdit.php:83 forms/FSettingEdit.php:92
+msgid "Get this information on Sellsy"
+msgstr "Obtenir cette information sur Sellsy"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:54
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:55
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionSearch.php:48
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:68
-msgid "Type"
-msgstr "Type"
+#: forms/FSettingEdit.php:70
+msgid "Consumer secret"
+msgstr "Consumer secret"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionAdd.php:75
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionEdit.php:76
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FMenuCompositionSearch.php:70
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:71
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platEdit.php:19
-msgid "Plate"
-msgstr "Plat"
+#: forms/FSettingEdit.php:79 forms/FSettingEdit.php:88
+msgid "Utilisateur token"
+msgstr "Utilisateur token"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:34
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:34
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatSearch.php:42
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:65
-msgid "Category"
-msgstr "Categorie"
+#: forms/FTicketFormAdd.php:31 forms/FTicketFormAdd.php:108
+msgid "Save"
+msgstr "Enregistrer"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:63
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:63
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatSearch.php:34
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:71
-msgid "Ingredient"
-msgstr "Ingredient"
-
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatAdd.php:67
-msgid "1 ingredient line"
-msgstr "1 ingrédient par ligne"
-
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:67
-msgid "ex: xxx, yyy, zzz"
-msgstr "ex: xxx, yyy, zzz"
-
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/forms/FPlatEdit.php:76
-msgid "ex: 10.50"
-msgstr "ex: 10.50"
-
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/deviseAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/deviseEdit.php:19
-msgid "Currency"
-msgstr "Devise"
-
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/plat.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:5
+#: forms/FTicketFormAdd.php:37 view/ticketForm.php:5
 msgid "Add"
 msgstr "Ajouter"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/devise.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menu.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:57
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:57
-msgid "Id"
-msgstr "Id"
+#: forms/FTicketFormAdd.php:38 forms/FTicketFormEdit.php:30
+msgid "Help"
+msgstr "Aide"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:6
+#: forms/FTicketFormAdd.php:49 forms/FTicketFormEdit.php:49
+msgid "Name for your back-office"
+msgstr "Nom pour votre back-office"
+
+#: forms/FTicketFormAdd.php:54 forms/FTicketFormEdit.php:54
+#: view/ticketFormAdd.php:13 view/ticketFormEdit.php:13
+msgid "Subject prefix"
+msgstr "Sujet (préfixe)"
+
+#: forms/FTicketFormAdd.php:58 forms/FTicketFormEdit.php:58
+msgid "Ex : [TICKET SUPPORT]"
+msgstr "Ex : [TICKET SUPPORT]"
+
+#: forms/FTicketFormAdd.php:63 forms/FTicketFormEdit.php:63
+msgid "Assigned to"
+msgstr "Assigné à"
+
+#: forms/FTicketFormAdd.php:83 forms/FTicketFormEdit.php:86
+msgid "Status"
+msgstr "Etat"
+
+#: forms/FTicketFormEdit.php:37
+msgid "ID"
+msgstr "ID"
+
+#: forms/FTicketFormEdit.php:72
+msgid "Nobody"
+msgstr "Personne"
+
+#: forms/FTicketFormSearch.php:20
+msgid "Search"
+msgstr "Recherche"
+
+#: forms/FTicketFormSearch.php:34
+msgid "Ingredient"
+msgstr "Ingredient"
+
+#: forms/FTicketFormSearch.php:42
+msgid "Category"
+msgstr "Categorie"
+
+#: forms/FTicketFormSearch.php:67
+msgid "Validate the research"
+msgstr "Valider la recherche"
+
+#: view/contactForm.php:5 view/manuel.php:20 view/manuel.php:48
+msgid "Contact"
+msgstr "Contact"
+
+#: view/contactForm.php:8
+msgid "Coming soon"
+msgstr "Arrive bientôt"
+
+#: view/manuel.php:6
 msgid "Manual"
 msgstr "Manuel"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:9
+#: view/manuel.php:9
 msgid "Version"
 msgstr "Version"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:20
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:43
-msgid "Dish"
-msgstr "Plat"
+#: view/manuel.php:19 view/manuel.php:26
+msgid "Ticket"
+msgstr "Ticket"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:33
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:47
+#: view/manuel.php:29
+msgid "Add support ticket form on Wordpress, for create a support ticket to Sellsy."
+msgstr "Ajouter un formulaire de \"ticket de support\" sur WordPress, qui va créer un \"ticket de support\" sur Sellsy."
+
+#: view/manuel.php:33
+msgid "Email sent with"
+msgstr "Email envoyé avec"
+
+#: view/manuel.php:33
+msgid "(Settings > General)"
+msgstr "(Réglages > Général)"
+
+#: view/manuel.php:36
 msgid "Examples"
 msgstr "Exemples"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:35
-msgid "Display menu"
-msgstr "Afficher le menu"
+#: view/manuel.php:38
+msgid "Display the form"
+msgstr "Afficher le formulaire"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/manuel.php:49
-msgid "Display the dish"
-msgstr "Afficher le plat"
+#: view/manuel.php:50
+msgid "Coming soon."
+msgstr "Arrive bientôt"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuComposition.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuCompositionAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuCompositionEdit.php:19
-msgid "Composition of the menu"
-msgstr "Composition du menu"
+#: view/settingEdit.php:20
+msgid "Setting"
+msgstr "Configuration"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuType.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuTypeAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/menuTypeEdit.php:19
-msgid "Menu : type"
-msgstr "Menu : type"
+#: view/ticketForm.php:5
+msgid "Ticket support"
+msgstr "Ticket support"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorie.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorieAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/platCategorieEdit.php:19
-msgid "Category of flat"
-msgstr "Catégorie de plat"
+#: view/ticketForm.php:32
+msgid "id"
+msgstr "id"
 
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxe.php:5
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxeAdd.php:16
-#: /Users/michael/Desktop/eewee-restaurant-menu/v1.2/eewee-restaurant-menu/view/taxeEdit.php:19
-msgid "Tax"
-msgstr "Taxe"
+#: view/ticketForm.php:38
+msgid "Shortcode"
+msgstr "Shortcode"
 
-#~ msgid "Setting"
-#~ msgstr "Configuration"
+#: view/ticketForm.php:41
+msgid "State"
+msgstr "Etat"
+
+#: view/ticketFormAdd.php:29 view/ticketFormEdit.php:29
+msgid "Required field : "
+msgstr "Champ requis : "
+
+#: view/ticketFormAdd.php:31 view/ticketFormEdit.php:31
+msgid "Required fields : "
+msgstr "Champs requis : "
+
+#: view/ticketFormAdd.php:41 view/ticketFormEdit.php:46
+msgid "Support ticket"
+msgstr "Ticket support"
+
+#~ msgid "Price"
+#~ msgstr "Prix"
+
+#~ msgid "Menu"
+#~ msgstr "Menu"
+
+#~ msgid "Type"
+#~ msgstr "Type"
+
+#~ msgid "Plate"
+#~ msgstr "Plat"
+
+#~ msgid "1 ingredient line"
+#~ msgstr "1 ingrédient par ligne"
+
+#~ msgid "ex: xxx, yyy, zzz"
+#~ msgstr "ex: xxx, yyy, zzz"
+
+#~ msgid "ex: 10.50"
+#~ msgstr "ex: 10.50"
+
+#~ msgid "Currency"
+#~ msgstr "Devise"
+
+#~ msgid "Id"
+#~ msgstr "Id"
+
+#~ msgid "Dish"
+#~ msgstr "Plat"
+
+#~ msgid "Display menu"
+#~ msgstr "Afficher le menu"
+
+#~ msgid "Display the dish"
+#~ msgstr "Afficher le plat"
+
+#~ msgid "Composition of the menu"
+#~ msgstr "Composition du menu"
+
+#~ msgid "Menu : type"
+#~ msgstr "Menu : type"
+
+#~ msgid "Category of flat"
+#~ msgstr "Catégorie de plat"
+
+#~ msgid "Tax"
+#~ msgstr "Taxe"
 
 #~ msgid "Enabled"
 #~ msgstr "Etat"
@@ -374,15 +334,13 @@ msgstr "Taxe"
 #~ msgstr "Indique si la popup doit toujours être affiché ou non."
 
 #~ msgid "URL link, which will be used when click on the image and / or text."
-#~ msgstr ""
-#~ "Lien URL, qui sera utilisé quand on clique sur l'image et / ou le texte."
+#~ msgstr "Lien URL, qui sera utilisé quand on clique sur l'image et / ou le texte."
 
 #~ msgid "Width of popup advertising."
 #~ msgstr "Largeur du popup publicitaire"
 
 #~ msgid "URL of the image you want to add popup advertising."
-#~ msgstr ""
-#~ "URL de l'image que vous voulez ajouter à votre du popup publicitaire."
+#~ msgstr "URL de l'image que vous voulez ajouter à votre du popup publicitaire."
 
 #~ msgid "Text you want to add popup advertising."
 #~ msgstr "Texte que vous voulez ajouter à votre du popup publicitaire."
@@ -408,52 +366,14 @@ msgstr "Taxe"
 #~ msgid "API Version"
 #~ msgstr "Version API"
 
-#~ msgid ""
-#~ "By default a Hovercard displays a user's name, Twitter username, and "
-#~ "location. When the user clicks the ''more'' button in a Hovercard, it "
-#~ "will expand to reveal additional information such as the user's bio and "
-#~ "their latest Tweet. To render Hovercards in this expanded state by "
-#~ "default, pass an object literal as an argument when calling the "
-#~ "hovercards method and set the expanded property to true."
-#~ msgstr ""
-#~ "Par défaut, un Hovercard affiche un nom d'utilisateur, nom d'utilisateur "
-#~ "Twitter, et l'emplacement. Lorsque l'utilisateur clique sur le bouton'' "
-#~ "plus'' dans un Hovercard, il sera étendu à révéler des informations "
-#~ "supplémentaires comme la bio de l'utilisateur et son dernier tweet. Pour "
-#~ "rendre Hovercards dans cet état élargi par défaut, passez un objet "
-#~ "littéral comme argument lors de l'appel de la méthode hovercards et "
-#~ "définissez la propriété élargi à true."
+#~ msgid "By default a Hovercard displays a user's name, Twitter username, and location. When the user clicks the ''more'' button in a Hovercard, it will expand to reveal additional information such as the user's bio and their latest Tweet. To render Hovercards in this expanded state by default, pass an object literal as an argument when calling the hovercards method and set the expanded property to true."
+#~ msgstr "Par défaut, un Hovercard affiche un nom d'utilisateur, nom d'utilisateur Twitter, et l'emplacement. Lorsque l'utilisateur clique sur le bouton'' plus'' dans un Hovercard, il sera étendu à révéler des informations supplémentaires comme la bio de l'utilisateur et son dernier tweet. Pour rendre Hovercards dans cet état élargi par défaut, passez un objet littéral comme argument lors de l'appel de la méthode hovercards et définissez la propriété élargi à true."
 
-#~ msgid ""
-#~ "As mentioned above, the hovercards method will implicitly call the "
-#~ "linkifyUsers method against the body of the document. If Twitter "
-#~ "usernames have already been linkified server-side according to the same "
-#~ "pattern used by the linkifyUsers method, then it is possible to prevent "
-#~ "the hovercards method from linkifying users by passing an object literal "
-#~ "as an argument to when calling hovercards and setting the linkify "
-#~ "property to false."
-#~ msgstr ""
-#~ "Comme mentionné ci-dessus, la méthode hovercards implicitement appeler la "
-#~ "méthode linkifyUsers contre le corps du document. Si les noms "
-#~ "d'utilisateurs de Twitter ont déjà été linkified côté serveur selon le "
-#~ "même schéma utilisé par la méthode linkifyUsers, il est possible de "
-#~ "prévenir la méthode hovercards des utilisateurs linkifying en passant un "
-#~ "littéral d'objet comme argument lors de l'appel à hovercards et "
-#~ "définissant la propriété Linkify à false."
+#~ msgid "As mentioned above, the hovercards method will implicitly call the linkifyUsers method against the body of the document. If Twitter usernames have already been linkified server-side according to the same pattern used by the linkifyUsers method, then it is possible to prevent the hovercards method from linkifying users by passing an object literal as an argument to when calling hovercards and setting the linkify property to false."
+#~ msgstr "Comme mentionné ci-dessus, la méthode hovercards implicitement appeler la méthode linkifyUsers contre le corps du document. Si les noms d'utilisateurs de Twitter ont déjà été linkified côté serveur selon le même schéma utilisé par la méthode linkifyUsers, il est possible de prévenir la méthode hovercards des utilisateurs linkifying en passant un littéral d'objet comme argument lors de l'appel à hovercards et définissant la propriété Linkify à false."
 
-#~ msgid ""
-#~ "Use the infer option to trigger Hovercards on elements whose text "
-#~ "contains a Twitter username. When the infer option is used, the "
-#~ "hovercards method will not call the linkifyUsers method. This is useful "
-#~ "when Twitter usernames have already been linkified by some other means. "
-#~ "For example: < a ...>Follow @biz on Twitter!</a>"
-#~ msgstr ""
-#~ "Utilisez l'option déduire pour déclencher Hovercards sur les éléments "
-#~ "dont le texte contient un nom d'utilisateur Twitter. Lorsque l'option "
-#~ "déduire est utilisé, la méthode hovercards va pas appeler la méthode "
-#~ "linkifyUsers. Ceci est utile lorsque les noms d'utilisateurs de Twitter "
-#~ "ont déjà été linkified par d'autres moyens. Par exemple: <a ...> Follow @ "
-#~ "biz sur Twitter </ a>"
+#~ msgid "Use the infer option to trigger Hovercards on elements whose text contains a Twitter username. When the infer option is used, the hovercards method will not call the linkifyUsers method. This is useful when Twitter usernames have already been linkified by some other means. For example: < a ...>Follow @biz on Twitter!</a>"
+#~ msgstr "Utilisez l'option déduire pour déclencher Hovercards sur les éléments dont le texte contient un nom d'utilisateur Twitter. Lorsque l'option déduire est utilisé, la méthode hovercards va pas appeler la méthode linkifyUsers. Ceci est utile lorsque les noms d'utilisateurs de Twitter ont déjà été linkified par d'autres moyens. Par exemple: <a ...> Follow @ biz sur Twitter </ a>"
 
 #~ msgid "checked"
 #~ msgstr "Coché"
