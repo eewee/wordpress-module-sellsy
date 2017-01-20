@@ -26,9 +26,11 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 
 == Screenshots ==
 
-1. xxx (front-office)
-2. xxx (front-office)
-3. xxx (back-office)
+1. Back-office : setting
+2. Back-office : ticket support listing
+3. Back-office : ticket support edit
+4. Back-office : ticket support shortcode
+5. Front-office : ticket support form
 
 == Frequently Asked Questions ==
 * More informations : [eewee.fr](http://www.eewee.fr).
@@ -40,3 +42,4 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 
 = 1.0 = 
 * Plugin 1st version
+* Form ticket support
