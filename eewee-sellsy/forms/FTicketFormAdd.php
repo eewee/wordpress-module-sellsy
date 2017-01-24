@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\forms;
-use \fr\eewee\eewee_sellsy\models;
+use fr\eewee\eewee_sellsy\models;
+
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 if( !class_exists('Form_TicketFormAdd')){
 	class Form_TicketFormAdd extends \WP_Query {

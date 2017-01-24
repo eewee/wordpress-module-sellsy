@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\controllers;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('ToolsControllers')){
 	class ToolsControllers {
 

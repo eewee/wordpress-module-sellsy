@@ -1,7 +1,9 @@
 <?php
-use \fr\eewee\eewee_sellsy\controllers;
-use \fr\eewee\eewee_sellsy\models;
-use \fr\eewee\eewee_sellsy\forms;
+use fr\eewee\eewee_sellsy\controllers;
+use fr\eewee\eewee_sellsy\models;
+use fr\eewee\eewee_sellsy\forms;
+
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 global $wpdb;
 

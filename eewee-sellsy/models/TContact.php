@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\models;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('TContact')){
     class TContact extends \WP_Query {
 

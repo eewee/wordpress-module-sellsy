@@ -1,6 +1,8 @@
 <?
 namespace fr\eewee\eewee_sellsy\libs;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 /**
  * @desc offered dev tools
  */

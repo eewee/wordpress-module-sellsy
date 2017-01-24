@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\models;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('TTicket')){
     class TTicket extends \WP_Query {
 

@@ -2,6 +2,8 @@
 namespace fr\eewee\eewee_sellsy\forms;
 use fr\eewee\eewee_sellsy\models;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('Form_TicketFormEdit')){
     class Form_TicketFormEdit extends \WP_Query {
 

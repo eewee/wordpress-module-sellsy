@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\forms;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 //if( !class_exists('Form_SettingEdit')){
     class Form_SettingEdit extends \WP_Query {
 

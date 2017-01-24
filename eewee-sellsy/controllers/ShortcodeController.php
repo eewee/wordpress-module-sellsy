@@ -3,6 +3,8 @@ namespace fr\eewee\eewee_sellsy\controllers;
 use fr\eewee\eewee_sellsy\models;
 use fr\eewee\eewee_sellsy\libs;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('ShortcodeController')){
 	class ShortcodeController{
 

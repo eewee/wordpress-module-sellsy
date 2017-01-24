@@ -2,6 +2,8 @@
 namespace fr\eewee\eewee_sellsy\forms;
 use fr\eewee\eewee_sellsy\helpers;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('Form_ContactFormEdit')){
     class Form_ContactFormEdit extends \WP_Query{
 

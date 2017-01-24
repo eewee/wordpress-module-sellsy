@@ -1,4 +1,6 @@
 <?php
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if (isset($_GET['type'])) {
     if ($_GET['type'] == "edit") {
         include(EEWEE_SELLSY_PLUGIN_DIR . '/view/contactFormEdit.php');

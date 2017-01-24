@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\forms;
 
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+
 if( !class_exists('Form_ContactFormAdd')){
     class Form_ContactFormAdd extends \WP_Query {
 

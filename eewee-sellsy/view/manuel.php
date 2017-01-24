@@ -1,4 +1,7 @@
-<?php if (!defined('EEWEE_VERSION')) exit('No direct script access allowed'); ?>
+<?php
+if (!defined('EEWEE_VERSION')) exit('No direct script access allowed');
+if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+?>
 
 <div id="framework_wrap" class="wrap">
 
