@@ -1,4 +1,6 @@
 <?php
+namespace fr\eewee\eewee_sellsy\libs;
+use fr\eewee\eewee_sellsy\models;
 
 class sellsyConnect_curl {
 
@@ -14,7 +16,7 @@ class sellsyConnect_curl {
     private function __construct() {
 
         // START : update sellsyConnect_curl
-        $t_setting = new TSetting();
+        $t_setting = new models\TSetting();
         $setting_api = $t_setting->getSetting(1);
         self::$oauth_access_token           = $setting_api[0]->setting_utilisateur_token;
         self::$oauth_access_token_secret    = $setting_api[0]->setting_utilisateur_secret;

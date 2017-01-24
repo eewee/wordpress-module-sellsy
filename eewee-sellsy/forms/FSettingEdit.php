@@ -1,6 +1,8 @@
 <?php
-if( !class_exists('Form_SettingEdit')){
-    class Form_SettingEdit extends WP_Query{
+namespace fr\eewee\eewee_sellsy\forms;
+
+//if( !class_exists('Form_SettingEdit')){
+    class Form_SettingEdit extends \WP_Query {
 
         private $_action;
         private $_returnUrl;
@@ -82,4 +84,4 @@ if( !class_exists('Form_SettingEdit')){
         }
 
     }//class
-}//if
+//}//if

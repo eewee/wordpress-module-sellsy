@@ -1,6 +1,9 @@
 <?php
+namespace fr\eewee\eewee_sellsy\forms;
+use fr\eewee\eewee_sellsy\models;
+
 if( !class_exists('Form_TicketFormEdit')){
-    class Form_TicketFormEdit extends WP_Query{
+    class Form_TicketFormEdit extends \WP_Query {
 
         private $_action;
         private $_returnUrl;
@@ -65,7 +68,7 @@ if( !class_exists('Form_TicketFormEdit')){
                                 </th>
                                 <td>
                                     <?php
-                                    $t_sellsyStaffs = new TSellsyStaffs();
+                                    $t_sellsyStaffs = new models\TSellsyStaffs();
                                     $staffsList = $t_sellsyStaffs->getStaffsList();
                                     if ($staffsList) {
                                         echo '

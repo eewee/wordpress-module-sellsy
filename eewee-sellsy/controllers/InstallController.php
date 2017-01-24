@@ -1,5 +1,6 @@
 <?php
-//namespace FrEeweePluginSellsyInstall;
+namespace fr\eewee\eewee_sellsy\controllers;
+
 //if( !class_exists('InstallController')){
 	class InstallController{
 		
@@ -71,6 +72,48 @@
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
+			// FO - CONTACT : stock data form contact
+			$sql[] = "
+            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."contact` (
+              `contact_id` int(11) NOT NULL AUTO_INCREMENT,
+              `contact_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+              `contact_log` text NOT NULL,
+              PRIMARY KEY (`contact_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ";
+
+			// BO - CONTACT : form
+			$sql[] = "
+            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."contact_form` (
+              `contact_form_id` int(11) NOT NULL AUTO_INCREMENT,
+              `contact_form_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+              `contact_form_dt_update` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+              
+              `contact_form_setting_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `contact_form_setting_add_what` int(11) NOT NULL,
+              `contact_form_setting_opportunity_source` int(11) NOT NULL,
+              `contact_form_setting_notification_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+
+              `contact_form_company_name` int(11) NOT NULL,
+              `contact_form_company_siren` int(11) NOT NULL,
+              `contact_form_company_siret` int(11) NOT NULL,
+              `contact_form_company_rcs` int(11) NOT NULL,
+              
+              `contact_form_contact_lastname` int(11) NOT NULL,
+              `contact_form_contact_firstname` int(11) NOT NULL,
+              `contact_form_contact_email` int(11) NOT NULL,
+              `contact_form_contact_phone_1` int(11) NOT NULL,
+              `contact_form_contact_phone_2` int(11) NOT NULL,
+              `contact_form_contact_function` int(11) NOT NULL,
+              
+              `contact_form_website` int(11) NOT NULL,
+              `contact_form_note` int(11) NOT NULL,
+              
+              `contact_form_status` tinyint(1) NOT NULL,
+              PRIMARY KEY (`contact_form_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ";
+
 			$sql[] = "
 			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."setting` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', '', '', '', '');
 			";
@@ -79,7 +122,11 @@
 			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Ticket support', '[TICKET SUPPORT]', '0', '0');
 			";
 
-            foreach( $sql as $v ){ $wpdb->query($v); }
+			$sql[] = "
+			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."contact_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Contact', 0, 0, '".get_bloginfo('admin_email')."', 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0);
+			";
+
+			foreach( $sql as $v ){ $wpdb->query($v); }
 		}
 
         /**

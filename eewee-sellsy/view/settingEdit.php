@@ -1,9 +1,12 @@
 <?php
+use \fr\eewee\eewee_sellsy\models;
+use \fr\eewee\eewee_sellsy\forms;
+
 global $wpdb;
 
 // UPDATE
 if (isset($_POST['update']) && $_POST['update']) {
-    $t_setting = new TSetting();
+    $t_setting = new models\TSetting();
     $r = $t_setting->update( $_POST );
 
     $tools = new ToolsControllers();
@@ -11,7 +14,7 @@ if (isset($_POST['update']) && $_POST['update']) {
     echo $display;
 }//if
 
-$t_setting = new TSetting();
+$t_setting = new models\TSetting();
 $r = $t_setting->getSetting(1);
 ?>
 
@@ -21,7 +24,7 @@ $r = $t_setting->getSetting(1);
 
     <?php
     // FORM
-    $f_settingEdit = new Form_SettingEdit();
+    $f_settingEdit = new forms\Form_SettingEdit();
     $f_settingEdit->settingEdit( $r );
     ?>
 </div><!-- .wrap -->

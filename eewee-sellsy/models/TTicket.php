@@ -1,6 +1,8 @@
 <?php
+namespace fr\eewee\eewee_sellsy\models;
+
 if( !class_exists('TTicket')){
-    class TTicket extends WP_Query{
+    class TTicket extends \WP_Query {
 
         private $_table;
 

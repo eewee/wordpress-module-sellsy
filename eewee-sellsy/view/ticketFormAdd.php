@@ -1,4 +1,8 @@
 <?php
+use \fr\eewee\eewee_sellsy\controllers;
+use \fr\eewee\eewee_sellsy\models;
+use \fr\eewee\eewee_sellsy\forms;
+
 global $wpdb;
 
 // INSERT
@@ -15,10 +19,10 @@ if (isset($_POST['add']) && $_POST['add']) {
 
     // INSERT
     if (empty($errors)) {
-        $t_ticket_form = new TTicketForm();
+        $t_ticket_form = new models\TTicketForm();
         $r = $t_ticket_form->add($_POST);
 
-        $tools = new ToolsControllers();
+        $tools = new controllers\ToolsControllers();
         $display = $tools->verifMaj($r);
         echo $display;
 
@@ -31,7 +35,7 @@ if (isset($_POST['add']) && $_POST['add']) {
             $mess .= __('Required fields : ', PLUGIN_NOM_LANG);
         }
         $mess .= '</strong>'.implode(', ', $errors).'.';
-        echo ToolsControllers::error($mess);
+        echo controllers\ToolsControllers::error($mess);
     }
 }//if
 ?>
@@ -41,7 +45,7 @@ if (isset($_POST['add']) && $_POST['add']) {
     <h2><?php _e('Support ticket', PLUGIN_NOM_LANG); ?></h2>
 
     <?php
-    $f_ticketFormAdd = new Form_TicketFormAdd();
+    $f_ticketFormAdd = new forms\Form_TicketFormAdd();
     $f_ticketFormAdd->ticketFormAdd( $_POST );
     ?>
 </div><!-- .wrap -->

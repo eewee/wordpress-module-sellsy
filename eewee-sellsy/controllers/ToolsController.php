@@ -1,7 +1,8 @@
 <?php
-//namespace FrEeweePluginSellsyTools;
+namespace fr\eewee\eewee_sellsy\controllers;
+
 if( !class_exists('ToolsControllers')){
-	class ToolsControllers{
+	class ToolsControllers {
 
 		function __construct(){}
 
@@ -9,7 +10,8 @@ if( !class_exists('ToolsControllers')){
          * Display : success
          * @param bool $r
          */
-        public static function success( $message ){
+        public static function success( $message )
+		{
             return '
             <div id="setting-error-settings_updated" class="updated settings-error"> 
                 <p><strong>'.$message.'</strong></p>
@@ -20,7 +22,8 @@ if( !class_exists('ToolsControllers')){
          * Display : error
          * @param bool $r
          */
-        public static function error( $message ){
+        public static function error( $message )
+		{
             return '
             <div class="error">
                 <p><strong>'.$message.'</strong></p>
@@ -31,7 +34,8 @@ if( !class_exists('ToolsControllers')){
 		 * Verif des majs
 		 * @param bool $r
 		 */
-		public function verifMaj( $r ){
+		public function verifMaj( $r )
+		{
 			$display = '';
 			if( $r > 0 || $r === 0 ){
 				$display = '

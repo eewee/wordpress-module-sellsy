@@ -1,6 +1,8 @@
 <?php
-if( !class_exists('TSetting')){
-    class TSetting extends WP_Query{
+namespace fr\eewee\eewee_sellsy\models;
+
+//if( !class_exists('TSetting')){
+    class TSetting extends \WP_Query {
 
         private $_table;
 
@@ -101,4 +103,4 @@ if( !class_exists('TSetting')){
         }
 
     }
-}
+//}

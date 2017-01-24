@@ -40,6 +40,10 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 
 == Changelog ==
 
-= 1.0 = 
+= 1.0.1 =
+* Add namespace
+* Add form contact (prospect)
+
+= 1.0.0 =
 * Plugin 1st version
 * Form ticket support

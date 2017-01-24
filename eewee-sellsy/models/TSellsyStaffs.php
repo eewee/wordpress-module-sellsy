@@ -1,7 +1,10 @@
 <?php
+namespace fr\eewee\eewee_sellsy\models;
+
+use fr\eewee\eewee_sellsy\libs;
+
 if( !class_exists('TSellsyStaffs')){
-    class TSellsyStaffs extends WP_Query
-    {
+    class TSellsyStaffs extends \WP_Query {
         function __construct() {}
     
         /**
@@ -18,7 +21,7 @@ if( !class_exists('TSellsyStaffs')){
                 'method' => 'Staffs.getList',
                 'params' => array()
             );
-            $response = sellsyConnect_curl::load()->requestApi($request);
+            $response = libs\sellsyConnect_curl::load()->requestApi($request);
             foreach ($response->response->result as $resultStaff) {
                 $d[$resultStaff->linkedid] = ucfirst(strtolower($resultStaff->forename)) . ' ' . strtoupper($resultStaff->name);
             }

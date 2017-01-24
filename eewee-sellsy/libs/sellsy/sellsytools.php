@@ -1,4 +1,5 @@
 <?
+namespace fr\eewee\eewee_sellsy\libs;
 
 /**
  * @desc offered dev tools

@@ -1,17 +1,12 @@
 <?php
-//namespace FrEeweePluginSellsyAdmin;
+namespace fr\eewee\eewee_sellsy\controllers;
+
 if( !class_exists('AdminController')){
 	class AdminController{
 		
-		function __construct()
-		{
+		function __construct() {}
 
-		}
-
-		function init()
-		{
-			//$this->getOptionsAdmin();
-		}
+		function init() {}
 		
 		/**
 		 * execute lors de l'activation du plugin
@@ -25,7 +20,7 @@ if( !class_exists('AdminController')){
 		/**
 		 * execute lors de la désactivation du plugin
 		 */
-		function eewee_deactivate(){}
+		function eewee_deactivate() {}
                 
         /**
 		 * execute lors de la désinstallation du plugin

@@ -1,9 +1,12 @@
+/* BORDER */
+.title1{ border-bottom:1px solid #333; text-align:left; text-transform:uppercase; padding-bottom:10px; margin:20px 0 10px 0; }
+
 /* MARGIN */
-.mb10{margin-bottom:10px;}
-.mb20{margin-bottom:20px;}
-.mb30{margin-bottom:30px;}
-.mb40{margin-bottom:40px;}
-.mb50{margin-bottom:50px;}
+.mb10{ margin-bottom:10px; }
+.mb20{ margin-bottom:20px; }
+.mb30{ margin-bottom:30px; }
+.mb40{ margin-bottom:40px; }
+.mb50{ margin-bottom:50px; }
 
 /* TABLE */
 table th.c, table td.c{ text-align: center; }
@@ -31,3 +34,4 @@ table.table1 textarea{ width: 200px; height: 270px; }
 .hndle{	padding: 10px; }
 .eewee-success{ border:1px solid green; }
 .eewee-error{ border:1px solid red; }
+.eewee-required{ color:red; }

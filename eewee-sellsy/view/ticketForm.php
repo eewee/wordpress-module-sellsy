@@ -1,4 +1,10 @@
-<?php global $wpdb; ?>
+<?php
+use \fr\eewee\eewee_sellsy\controllers;
+use \fr\eewee\eewee_sellsy\models;
+use \fr\eewee\eewee_sellsy\forms;
+
+global $wpdb;
+?>
 
 <div class="wrap" >
     <div id="icon-options-general" class="icon32"><br></div>
@@ -8,20 +14,21 @@
 <?php
 // UPDATE : status
 if( isset($_GET['type']) && $_GET['type'] == "status" ) {
-	$t_ticket_form = new TTicketForm();
+	$t_ticket_form = new models\TTicketForm();
     $r = $t_ticket_form->updateStatus($_GET);
 
-    $tools = new ToolsControllers();
+    $tools = new controllers\ToolsControllers();
     $display = $tools->verifMaj( $r );
     echo $display;
 }//if
 
 // REQ
-$reqSuite   = " ORDER BY ticket_form_id DESC";
-$tbl_params = array();
+$reqSuite   = " WHERE ticket_form_id > %d ";    // just for notice wordpress wpdb::prepare
+$reqSuite   .=" ORDER BY ticket_form_id DESC";
+$tbl_params = array('0');                       // just for notice wordpress wpdb::prepare
 
 // req
-$t_ticket   = new TTicketForm();
+$t_ticket   = new models\TTicketForm();
 $r          = $t_ticket->getTicketsForm( $reqSuite, $tbl_params );
 
 // display

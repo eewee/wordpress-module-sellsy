@@ -1,35 +1,46 @@
 <?php
-//namespace FrEeweePluginSellsyShortcode;
-//if( !class_exists('ShortcodeController')){
+namespace fr\eewee\eewee_sellsy\controllers;
+use fr\eewee\eewee_sellsy\models;
+use fr\eewee\eewee_sellsy\libs;
+
+if( !class_exists('ShortcodeController')){
 	class ShortcodeController{
-		
+
 		function __construct(){
-			// SHORTCODE : 
-			add_shortcode( 'ticketSellsy', array($this, 'ticketSellsy') );
-		}//fin constructeur
-		
+			// SHORTCODE :
+            add_shortcode( 'ticketSellsy', array($this, 'ticketSellsy') );
+            add_shortcode( 'contactSellsy', array($this, 'contactSellsy') );
+		}
+
 		/**
 		 * Ticket Sellsy
 		 * @param array $atts
 		 */
-		public function ticketSellsy( $atts='' ){
+		public function ticketSellsy( $atts='' )
+        {
             // INIT
             $id         = '';
             $render     = '';
             $error      = array();
             $styleError = 'style="border:1px solid red;"'; // :(
+            $form_ticket_support_subject    = '';
+            $form_ticket_support_email      = '';
+            $form_ticket_support_lastname   = '';
+            $form_ticket_support_message    = '';
             $class_ticket_support_email     = '';
             $class_ticket_support_name      = '';
             $class_ticket_support_message   = '';
             extract( shortcode_atts(array('id'=>''), $atts ));
 
             // MODEL
-            $t_ticketForm = new TTicketForm();
+            $t_ticketForm = new models\TTicketForm();
             $ticket = $t_ticketForm->getTicketForm($id);
 
             // VALIDATE FORM
             if (isset($_POST) && !empty($_POST)) {
-                $form_ticket_support_subject    = sanitize_text_field($_POST['form_ticket_support_subject']);
+                //if (isset($_POST['form_ticket_support_subject'])) {
+                    $form_ticket_support_subject    = sanitize_text_field($_POST['form_ticket_support_subject']);
+                //}
                 $form_ticket_support_email      = sanitize_email($_POST['form_ticket_support_email']);
                 $form_ticket_support_lastname   = sanitize_text_field($_POST['form_ticket_support_lastname']);
                 $form_ticket_support_message    = sanitize_text_field($_POST['form_ticket_support_message']);
@@ -52,7 +63,7 @@
                 if (empty($error)) {
 
                     // INSERT TO WORDPRESS : table
-                    $t_ticket = new TTicket();
+                    $t_ticket = new models\TTicket();
                     $t_ticket->add(array(
                         'form_ticket_subject'   => $ticket[0]->ticket_form_subject_prefix.' '.$form_ticket_support_subject,
                         'form_ticket_email'     => $form_ticket_support_email,
@@ -78,18 +89,18 @@
                             'ticket' => $tbl_ticket
                         )
                     );
-                    $response = sellsyConnect_curl::load()->requestApi($request);
-                    
+                    $response = libs\sellsyConnect_curl::load()->requestApi($request);
+
                     // API : success
                     if ($response->status == 'success') {
                         unset($_POST['form_ticket_support_subject']);
                         unset($_POST['form_ticket_support_email']);
                         unset($_POST['form_ticket_support_lastname']);
                         unset($_POST['form_ticket_support_message']);
-                        unset($form_ticket_support_subject);
-                        unset($form_ticket_support_email);
-                        unset($form_ticket_support_lastname);
-                        unset($form_ticket_support_message);
+                        $form_ticket_support_subject    = '';
+                        $form_ticket_support_email      = '';
+                        $form_ticket_support_lastname   = '';
+                        $form_ticket_support_message    = '';
                         echo __('Successful registration.', PLUGIN_NOM_LANG);
 
                     // API : error
@@ -102,7 +113,7 @@
                             'form_ticket_error_more'    => $response->error->more,
                             'form_ticket_error_inerro'  => $response->error->inerror,
                         );
-                        $t_ticketError	= new TTicketError();
+                        $t_ticketError	= new models\TTicketError();
                         $t_ticketError->add($tbl_errors);
                         echo __('Error registration.', PLUGIN_NOM_LANG);
                     }
@@ -145,5 +156,275 @@
             return $render;
 		}
 
-	}//class
-//}//if
+
+
+
+        /**
+         * Contact Sellsy
+         * @param array $atts
+         */
+        public function contactSellsy( $atts='' )
+        {
+            // INIT
+            $id         = '';
+            $render     = '';
+            $error      = array();
+            $styleError = 'style="border:1px solid red;"'; // :(
+            // form
+            $api_third = array(
+                'name'      => '',
+                'siren'     => '',
+                'siret'     => '',
+                'rcs'       => '',
+                'web'       => '',
+                'stickyNote'=> ''
+            );
+            $api_contact = array(
+                'name'      => '',
+                'forename'  => '',
+                'email'     => '',
+                'tel'       => '',
+                'mobile'    => '',
+                'position'  => ''
+            );
+            // class
+            $tbl_class = '';
+            $tbl_class['class_contact_form_contact_name']      = '';
+            $tbl_class['class_contact_form_contact_siren']     = '';
+            $tbl_class['class_contact_form_contact_siret']     = '';
+            $tbl_class['class_contact_form_contact_rcs']       = '';
+            $tbl_class['class_contact_form_contact_lastname']  = '';
+            $tbl_class['class_contact_form_contact_firstname'] = '';
+            $tbl_class['class_contact_form_contact_email']     = '';
+            $tbl_class['class_contact_form_contact_phone_1']   = '';
+            $tbl_class['class_contact_form_contact_phone_2']   = '';
+            $tbl_class['class_contact_form_contact_function']  = '';
+            $tbl_class['class_contact_form_website']           = '';
+            $tbl_class['class_contact_form_note']              = '';
+            extract( shortcode_atts(array('id'=>''), $atts ));
+
+            // MODEL
+            $t_contactForm  = new models\TContactForm();
+            $contact        = $t_contactForm->getContactForm($id);
+
+            // VALIDATE FORM
+            if (isset($_POST) && !empty($_POST) && isset($_POST['btn_contact'])) {
+
+                // third
+                if (isset($_POST['contact_form_company_name'])) {
+                    $api_third['type'] = 'corporation'; // corporation/person
+                    $api_third['name'] = sanitize_text_field($_POST['contact_form_company_name']);
+
+                    if (isset($_POST['contact_form_company_siren'])) {
+                        $api_third['siren'] = sanitize_text_field($_POST['contact_form_company_siren']);
+                    }
+                    if (isset($_POST['contact_form_company_siret'])) {
+                        $api_third['siret'] = sanitize_text_field($_POST['contact_form_company_siret']);
+                    }
+                    if (isset($_POST['contact_form_company_rcs'])) {
+                        $api_third['rcs'] = sanitize_text_field($_POST['contact_form_company_rcs']);
+                    }
+                    if (isset($_POST['contact_form_website'])) {
+                        $api_third['web'] = esc_url($_POST['contact_form_website']);
+                    }
+
+                } else {
+                    $api_third['type'] = 'person'; // corporation/person
+
+                    if (isset($_POST['contact_form_contact_lastname'])) {
+                        $api_third['name'] = sanitize_text_field($_POST['contact_form_contact_lastname']);
+                    }
+                }
+                if (isset($_POST['contact_form_note'])) {
+                    $api_third['stickyNote'] = esc_textarea($_POST['contact_form_note']);
+                }
+                $api_third['tags'] = 'wordpress';
+
+                // contact
+                if (isset($_POST['contact_form_contact_lastname'])) {
+                    $api_contact['name'] = sanitize_text_field($_POST['contact_form_contact_lastname']);
+                }
+                if (isset($_POST['contact_form_contact_firstname'])) {
+                    $api_contact['forename'] = sanitize_text_field($_POST['contact_form_contact_firstname']);
+                }
+                if (isset($_POST['contact_form_contact_email'])) {
+                    $api_contact['email'] = sanitize_email($_POST['contact_form_contact_email']);
+                }
+                if (isset($_POST['contact_form_contact_phone_1'])) {
+                    $api_contact['tel'] = sanitize_text_field($_POST['contact_form_contact_phone_1']);
+                }
+                if (isset($_POST['contact_form_contact_phone_2'])) {
+                    $api_contact['mobile'] = sanitize_text_field($_POST['contact_form_contact_phone_2']);
+                }
+                if (isset($_POST['contact_form_contact_function'])) {
+                    $api_contact['position'] = sanitize_text_field($_POST['contact_form_contact_function']);
+                }
+
+
+
+
+                // REQUIRED
+                if (empty($api_contact['name'])) {
+                    $error[] = __('lastname', PLUGIN_NOM_LANG);
+                    $tbl_class['class_contact_form_contact_lastname'] = $styleError.' required';
+                }
+                if (empty($api_contact['email'])) {
+                    $error[] = __('email', PLUGIN_NOM_LANG);
+                    $tbl_class['class_contact_form_contact_email'] = $styleError.' required';
+                }
+
+
+
+
+                // OK
+                if (empty($error)) {
+
+                    // INSERT TO WORDPRESS : table
+                    $t_contact = new models\TContact();
+                    $t_contact->add(array(
+                        'contact_dt_create' => current_time('mysql'),
+                        'contact_log'       => json_encode($_POST),
+                    ));
+
+                    // INSERT TO SELLSY : prospect
+                    $request = array(
+                        'method' => 'Prospects.create',
+                        'params' => array(
+                            'third'     => $api_third,
+                            'contact'   => $api_contact
+                        )
+                    );
+                    $response = libs\sellsyConnect_curl::load()->requestApi($request);
+
+                    // API : success
+                    if ($response->status == 'success') {
+                        unset($_POST);
+                        $api_third = array(
+                            'name'      => '',
+                            'siren'     => '',
+                            'siret'     => '',
+                            'rcs'       => '',
+                            'web'       => '',
+                            'stickyNote'=> ''
+                        );
+                        $api_contact = array(
+                            'name'      => '',
+                            'forename'  => '',
+                            'email'     => '',
+                            'tel'       => '',
+                            'mobile'    => '',
+                            'position'  => ''
+                        );
+                        echo __('Successful registration.', PLUGIN_NOM_LANG);
+
+                    // API : error
+                    } elseif($response->status == 'error') {
+//                        $tbl_errors = array(
+//                            'form_contact_error_status'  => $response->status,
+//                            'form_contact_error_code'    => $response->error->code,
+//                            'form_contact_error_message' => $response->error->message,
+//                            'form_contact_error_more'    => $response->error->more,
+//                            'form_contact_error_inerro'  => $response->error->inerror,
+//                        );
+//                        $t_contactError	= new models\TContactError();
+//                        $t_contactError->add($tbl_errors);
+                        echo __('Error registration.', PLUGIN_NOM_LANG);
+                    }
+
+                // ERROR : required field(s)
+                } else {
+                    $render .= '
+                    <div class="eewee-contact eewee-contact-'.$contact[0]->contact_form_id.'">
+                        <strong>';
+                    if (sizeof($error) == 1) {
+                        $render .= __('Required field', PLUGIN_NOM_LANG);
+                    } else {
+                        $render .= __('Required fields', PLUGIN_NOM_LANG);
+                    }
+                    $render .= '
+                         : </strong>'.implode(', ', $error).'.<hr>
+                     </div>';
+                }
+            }
+
+            // FORM (setting = online)
+            if( $contact[0]->contact_form_status == 0 && !empty($id) ) {
+                $render .= '
+                <form method="post" action="" id="form_contact">';
+
+                    // COMPANY
+                    if ($contact[0]->contact_form_company_name == 0) {
+                        $render .= '
+                        <label>'.__('Company name', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_company_name" value="'.$api_third['name'].'" id="contact_form_company_name">';
+                    }
+                    if ($contact[0]->contact_form_company_siren == 0) {
+                        $render .= '
+                        <label>'.__('Siren', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_company_siren" value="'.$api_third['siren'].'" id="contact_form_company_siren">';
+                    }
+                    if ($contact[0]->contact_form_company_siret == 0) {
+                        $render .= '
+                        <label>'.__('Siret', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_company_siret" value="'.$api_third['siret'].'" id="contact_form_company_siret">';
+                    }
+                    if ($contact[0]->contact_form_company_rcs == 0) {
+                        $render .= '
+                        <label>'.__('RCS', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_company_rcs" value="'.$api_third['rcs'].'" id="contact_form_company_rcs">';
+                    }
+
+                    // CONTACT
+                    if ($contact[0]->contact_form_contact_lastname == 0) {
+                        $render .= '
+                        <label>'.__('Lastname', PLUGIN_NOM_LANG).' *</label>
+                        <input type="text" name="contact_form_contact_lastname" value="'.$api_contact['name'].'" id="contact_form_contact_lastname" '.$tbl_class['class_contact_form_contact_lastname'].'>';
+                    }
+                    if ($contact[0]->contact_form_contact_firstname == 0) {
+                        $render .= '
+                        <label>'.__('Firstname', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_contact_firstname" value="'.$api_contact['forename'].'" id="contact_form_contact_firstname">';
+                    }
+                    if ($contact[0]->contact_form_contact_email == 0) {
+                        $render .= '
+                        <label>'.__('Email', PLUGIN_NOM_LANG).' *</label>
+                        <input type="email" name="contact_form_contact_email" value="'.$api_contact['email'].'" id="contact_form_contact_email" '.$tbl_class['class_contact_form_contact_email'].'>';
+                    }
+                    if ($contact[0]->contact_form_contact_phone_1 == 0) {
+                        $render .= '
+                        <label>'.__('Phone', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_contact_phone_1" value="'.$api_contact['tel'].'" id="contact_form_contact_phone_1">';
+                    }
+                    if ($contact[0]->contact_form_contact_phone_2 == 0) {
+                        $render .= '
+                        <label>'.__('Mobile', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_contact_phone_2" value="'.$api_contact['mobile'].'" id="contact_form_contact_phone_2">';
+                    }
+                    if ($contact[0]->contact_form_contact_function == 0) {
+                        $render .= '
+                        <label>'.__('Function', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_contact_function" value="'.$api_contact['position'].'" id="contact_form_contact_function">';
+                    }
+
+                    // OTHER
+                    if ($contact[0]->contact_form_website == 0) {
+                        $render .= '
+                        <label>'.__('website', PLUGIN_NOM_LANG).'</label>
+                        <input type="text" name="contact_form_website" value="'.$api_third['web'].'" id="contact_form_website">';
+                    }
+                    if ($contact[0]->contact_form_note == 0) {
+                        $render .= '
+                        <label>'.__('Message', PLUGIN_NOM_LANG).'</label>
+                        <textarea name="contact_form_note" id="contact_form_note">'.$api_third['stickyNote'].'</textarea>';
+                    }
+
+                    $render .= '           
+                    <input type="submit" name="btn_contact">
+                </form>';
+            }
+            return $render;
+        }
+
+
+    }//class
+}//if

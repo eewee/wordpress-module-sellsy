@@ -1,6 +1,8 @@
 <?php
+namespace fr\eewee\eewee_sellsy\models;
+
 if( !class_exists('TTicketForm')){
-    class TTicketForm extends WP_Query{
+    class TTicketForm extends \WP_Query {
 
         private $_table;
 

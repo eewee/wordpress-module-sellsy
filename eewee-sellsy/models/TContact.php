@@ -1,21 +1,21 @@
 <?php
 namespace fr\eewee\eewee_sellsy\models;
 
-if( !class_exists('TTicketError')){
-    class TTicketError extends \WP_Query {
+if( !class_exists('TContact')){
+    class TContact extends \WP_Query {
 
         private $_table;
 
         function __construct()
         {
-            $this->_table = EEWEE_SELLSY_PREFIXE_BDD."ticket_error";
+            $this->_table = EEWEE_SELLSY_PREFIXE_BDD."contact";
         }
 
         /**
          * retourn rows
          */
         /*
-        public function getTicketErrors( $req="", $params="" )
+        public function getContacts( $req="", $params="" )
         {
             global $wpdb;
             $sql    = $wpdb->prepare("SELECT * FROM ".$this->_table." ".$req, $params);
@@ -29,10 +29,10 @@ if( !class_exists('TTicketError')){
          * @param int $id
          */
         /*
-        public function getTicketError( $id )
+        public function getContact( $id )
         {
             global $wpdb;
-            $sql    = $wpdb->prepare("SELECT * FROM ".$this->_table." WHERE ticket_error_id=%d", $id);
+            $sql    = $wpdb->prepare("SELECT * FROM ".$this->_table." WHERE contact_id=%d", $id);
             $r      = $wpdb->get_results($sql);
             return $r;
         }
@@ -48,20 +48,12 @@ if( !class_exists('TTicketError')){
             $r = $wpdb->insert(
                 $this->_table,
                 array(
-                    'ticket_error_dt_create'    => current_time('mysql'),
-                    'ticket_error_status'       => $p['form_ticket_error_status'],
-                    'ticket_error_code'         => $p['form_ticket_error_code'],
-                    'ticket_error_message'      => $p['form_ticket_error_message'],
-                    'ticket_error_more'         => $p['form_ticket_error_more'],
-                    'ticket_error_inerro'       => $p['form_ticket_error_inerro']
+                    'contact_dt_create'     => current_time('mysql'),
+                    'contact_log'           => $p['contact_log'],
                 ),
                 array(
                     '%s',
                     '%s',
-                    '%s',
-                    '%s',
-                    '%s',
-                    '%s'
                 )
             );
             return $r;
