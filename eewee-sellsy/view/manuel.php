@@ -36,9 +36,9 @@
           <h3><?php _e('Examples', PLUGIN_NOM_LANG); ?> :</h3>
           <p>
             <strong><?php _e('Display the form', PLUGIN_NOM_LANG); ?></strong>
-            <br>[contactSellsy id=1]
-            <br>[contactSellsy id=2]
-            <br>[contactSellsy id=3]
+            <br>[ticketSellsy id=1]
+            <br>[ticketSellsy id=2]
+            <br>[ticketSellsy id=3]
           </p>
         </section><!-- general1 -->
          
@@ -47,9 +47,22 @@
         <section id="general2">
           <h2><?php _e('Contact', PLUGIN_NOM_LANG); ?></h2>
           <p>
-            <?php _e('Coming soon.', PLUGIN_NOM_LANG); ?>
+          <pre><code><strong>[ticketSellsy id=1]</strong></code></pre>
+          <?php _e('Add contact form on Wordpress, for create a prospect to Sellsy.', PLUGIN_NOM_LANG); ?>
           </p>
-        </section><!-- general1 -->
+          <p>
+            <?php
+            echo __('Email sent with', PLUGIN_NOM_LANG).' '.get_option( 'admin_email' ).' '.__('(Settings > General)', PLUGIN_NOM_LANG);
+            ?>
+          </p>
+          <h3><?php _e('Examples', PLUGIN_NOM_LANG); ?> :</h3>
+          <p>
+            <strong><?php _e('Display the form', PLUGIN_NOM_LANG); ?></strong>
+            <br>[contactSellsy id=1]
+            <br>[contactSellsy id=2]
+            <br>[contactSellsy id=3]
+          </p>
+        </section><!-- general2 -->
 
         <br class="clear" />
       </div><!-- options_tabs -->
