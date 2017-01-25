@@ -308,6 +308,17 @@ if( !class_exists('ShortcodeController')){
 
                     // API : success
                     if ($response->status == 'success') {
+
+                        // NOTIFICATION EMAIL
+                        wp_mail(
+                            $contact[0]->contact_form_setting_notification_email,
+                            __('[PROSPECT] - sellsy', PLUGIN_NOM_LANG),
+                            __('Request for a new prospect :', PLUGIN_NOM_LANG).'
+https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospect
+'.__('Email', PLUGIN_NOM_LANG).' : '.$api_contact['email'].'
+'.__('Name', PLUGIN_NOM_LANG).' : '.$api_contact['name']
+                        );
+
                         unset($_POST);
                         $api_third = array(
                             'name'      => '',

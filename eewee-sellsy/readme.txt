@@ -43,6 +43,7 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 = 1.0.2 =
 * Add nonce
 * Add table error
+* Add notification (prospect)
 
 = 1.0.1 =
 * Add namespace
