@@ -40,6 +40,9 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 
 == Changelog ==
 
+= 1.0.2 =
+* Add nonce
+
 = 1.0.1 =
 * Add namespace
 * Add form contact (prospect)

@@ -1,4 +1,5 @@
 <?php
+use fr\eewee\eewee_sellsy\controllers;
 use fr\eewee\eewee_sellsy\models;
 use fr\eewee\eewee_sellsy\forms;
 
@@ -8,10 +9,13 @@ global $wpdb;
 
 // UPDATE
 if (isset($_POST['update']) && $_POST['update']) {
+
+    check_admin_referer('form_nonce_setting_edit');
+
     $t_setting = new models\TSetting();
     $r = $t_setting->update( $_POST );
 
-    $tools = new ToolsControllers();
+    $tools = new controllers\ToolsControllers();
     $display = $tools->verifMaj( $r );
     echo $display;
 }//if

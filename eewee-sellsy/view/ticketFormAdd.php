@@ -10,6 +10,8 @@ global $wpdb;
 // INSERT
 if (isset($_POST['add']) && $_POST['add']) {
 
+    check_admin_referer('form_nonce_ticket_add');
+
     // ERROR
     $errors = array();
     if (empty($_POST['ticket_form_name'])) {
@@ -27,6 +29,11 @@ if (isset($_POST['add']) && $_POST['add']) {
         $tools = new controllers\ToolsControllers();
         $display = $tools->verifMaj($r);
         echo $display;
+
+        unset($_POST['ticket_form_name']);
+        unset($_POST['ticket_form_subject_prefix']);
+        unset($_POST['ticket_form_linkedid']);
+        unset($_POST['form_status']);
 
     // DISPLAY ERROR
     } else {

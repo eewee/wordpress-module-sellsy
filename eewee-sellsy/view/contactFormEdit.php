@@ -10,6 +10,8 @@ global $wpdb;
 // UPDATE
 if (isset($_POST['update']) && $_POST['update']) {
 
+    check_admin_referer('form_nonce_contact_edit');
+
     // ERROR
     $errors         = array();
     $errors_mess    = array();

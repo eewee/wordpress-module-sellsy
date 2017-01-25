@@ -39,7 +39,10 @@ if( !class_exists('ShortcodeController')){
             $ticket = $t_ticketForm->getTicketForm($id);
 
             // VALIDATE FORM
-            if (isset($_POST) && !empty($_POST)) {
+            if (isset($_POST) && !empty($_POST) && isset($_POST['btn_ticket_support'])) {
+
+                check_admin_referer('form_nonce_shortcode_ticket_add');
+
                 //if (isset($_POST['form_ticket_support_subject'])) {
                     $form_ticket_support_subject    = sanitize_text_field($_POST['form_ticket_support_subject']);
                 //}
@@ -140,6 +143,8 @@ if( !class_exists('ShortcodeController')){
             if( $ticket[0]->ticket_form_status == 0 && !empty($id) ) {
                 $render .= '
                 <form method="post" action="" id="form_ticket_support">
+                    '.wp_nonce_field("form_nonce_shortcode_ticket_add").'
+
                     <label>'.__('Subject', PLUGIN_NOM_LANG).'</label>
                     <input type="text" name="form_ticket_support_subject" value="'.$form_ticket_support_subject.'" id="form_ticket_support_subject">  
                     
@@ -211,6 +216,8 @@ if( !class_exists('ShortcodeController')){
 
             // VALIDATE FORM
             if (isset($_POST) && !empty($_POST) && isset($_POST['btn_contact'])) {
+
+                check_admin_referer('form_nonce_shortcode_contact_add');
 
                 // third
                 if (isset($_POST['contact_form_company_name'])) {
@@ -352,7 +359,8 @@ if( !class_exists('ShortcodeController')){
             // FORM (setting = online)
             if( $contact[0]->contact_form_status == 0 && !empty($id) ) {
                 $render .= '
-                <form method="post" action="" id="form_contact">';
+                <form method="post" action="" id="form_contact">
+                    '.wp_nonce_field("form_nonce_shortcode_contact_add");
 
                     // COMPANY
                     if ($contact[0]->contact_form_company_name == 0) {

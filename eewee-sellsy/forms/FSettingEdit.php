@@ -22,6 +22,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         public function settingEdit( $r )
         { ?>
             <form method="post" action="<?php echo $this->_action; ?>">
+                <?php wp_nonce_field('form_nonce_setting_edit'); ?>
                 <input type='hidden' name='form_id' value='<?php echo $r[0]->setting_id; ?>' />
 
                 <div class="submit">

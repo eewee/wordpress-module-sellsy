@@ -23,6 +23,7 @@ if( !class_exists('Form_TicketFormEdit')){
         public function ticketFormEdit( $r )
         { ?>
             <form method="post" action="<?php echo $this->_action; ?>">
+                <?php wp_nonce_field('form_nonce_ticket_edit'); ?>
                 <input type='hidden' name='form_id' value='<?php echo $r[0]->ticket_form_id; ?>' />
 
                 <div class="submit">

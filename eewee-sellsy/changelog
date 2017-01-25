@@ -1,3 +1,6 @@
+= 1.0.2 =
+* Add nonce
+
 v1.0.1 :
 * Add namespace
 * Add form contact (prospect)

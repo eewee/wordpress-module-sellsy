@@ -34,7 +34,9 @@ if( !class_exists('Form_TicketFormAdd')){
             ?>
 
 			<form method="post" action="<?php echo $this->_action; ?>">
-				<div class="submit">
+                <?php wp_nonce_field('form_nonce_ticket_add'); ?>
+
+                <div class="submit">
 		            <input type="submit" name="add" value="<?php _e('Save', PLUGIN_NOM_LANG); ?>" class="button button-primary" /> 
 		            <a href='<?php echo $this->_returnUrl; ?>' class='button'><?php _e('Back', PLUGIN_NOM_LANG); ?></a>
 		        </div>
