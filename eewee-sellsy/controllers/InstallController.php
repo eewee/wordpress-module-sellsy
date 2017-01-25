@@ -60,20 +60,6 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-            // FO - TICKET : error form
-			$sql[] = "
-            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket_error` (
-              `ticket_error_id` int(11) NOT NULL AUTO_INCREMENT,
-              `ticket_error_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-              `ticket_error_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_error_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_error_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_error_more` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              `ticket_error_inerro` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-              PRIMARY KEY (`ticket_error_id`)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
-            ";
-
 			// FO - CONTACT : stock data form contact
 			$sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."contact` (
@@ -113,6 +99,21 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
               
               `contact_form_status` tinyint(1) NOT NULL,
               PRIMARY KEY (`contact_form_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ";
+
+            // FO - TICKET : error form
+            $sql[] = "
+            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."error` (
+              `error_id` int(11) NOT NULL AUTO_INCREMENT,
+              `error_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+              `error_categ` enum('ticket','contact') NOT NULL,
+              `error_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `error_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `error_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `error_more` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `error_inerro` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              PRIMARY KEY (`error_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 

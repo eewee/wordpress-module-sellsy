@@ -54,12 +54,12 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/libs/sellsy/sellsyconnect_curl.php' )
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSetting.php' );
 
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TTicket.php' );
-require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TTicketError.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TTicketForm.php' );
 
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContact.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContactForm.php' );
 
+require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TError.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyStaffs.php' );
 
 // HELPERS

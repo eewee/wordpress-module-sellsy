@@ -112,15 +112,17 @@ if( !class_exists('ShortcodeController')){
                     } elseif($response->status == 'error') {
 
                         $tbl_errors = array(
-                            'form_ticket_error_status'  => $response->status,
-                            'form_ticket_error_code'    => $response->error->code,
-                            'form_ticket_error_message' => $response->error->message,
-                            'form_ticket_error_more'    => $response->error->more,
-                            'form_ticket_error_inerro'  => $response->error->inerror,
+                            'form_error_categ'   => 'ticket',
+                            'form_error_status'  => $response->status,
+                            'form_error_code'    => $response->error->code,
+                            'form_error_message' => $response->error->message,
+                            'form_error_more'    => $response->error->more,
+                            'form_error_inerro'  => $response->error->inerror,
                         );
-                        $t_ticketError	= new models\TTicketError();
-                        $t_ticketError->add($tbl_errors);
+                        $t_error	= new models\TError();
+                        $t_error->add($tbl_errors);
                         echo __('Error registration.', PLUGIN_NOM_LANG);
+
                     }
 
                 // ERROR : required field(s)
@@ -170,8 +172,7 @@ if( !class_exists('ShortcodeController')){
          * Contact Sellsy
          * @param array $atts
          */
-        public function contactSellsy( $atts='' )
-        {
+        public function contactSellsy( $atts='' )  {
             // INIT
             $id         = '';
             $render     = '';
@@ -328,16 +329,19 @@ if( !class_exists('ShortcodeController')){
 
                     // API : error
                     } elseif($response->status == 'error') {
-//                        $tbl_errors = array(
-//                            'form_contact_error_status'  => $response->status,
-//                            'form_contact_error_code'    => $response->error->code,
-//                            'form_contact_error_message' => $response->error->message,
-//                            'form_contact_error_more'    => $response->error->more,
-//                            'form_contact_error_inerro'  => $response->error->inerror,
-//                        );
-//                        $t_contactError	= new models\TContactError();
-//                        $t_contactError->add($tbl_errors);
+
+                        $tbl_errors = array(
+                            'form_error_categ'   => 'contact',
+                            'form_error_status'  => $response->status,
+                            'form_error_code'    => $response->error->code,
+                            'form_error_message' => $response->error->message,
+                            'form_error_more'    => $response->error->more,
+                            'form_error_inerro'  => $response->error->inerror,
+                        );
+                        $t_error	= new models\TError();
+                        $t_error->add($tbl_errors);
                         echo __('Error registration.', PLUGIN_NOM_LANG);
+
                     }
 
                 // ERROR : required field(s)

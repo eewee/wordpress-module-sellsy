@@ -31,11 +31,6 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <pre><code><strong>[ticketSellsy id=1]</strong></code></pre>
             <?php _e('Add support ticket form on Wordpress, for create a support ticket to Sellsy.', PLUGIN_NOM_LANG); ?>
           </p>
-          <p>
-            <?php
-              echo __('Email sent with', PLUGIN_NOM_LANG).' '.get_option( 'admin_email' ).' '.__('(Settings > General)', PLUGIN_NOM_LANG);
-            ?>
-          </p>
           <h3><?php _e('Examples', PLUGIN_NOM_LANG); ?> :</h3>
           <p>
             <strong><?php _e('Display the form', PLUGIN_NOM_LANG); ?></strong>
@@ -50,7 +45,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         <section id="general2">
           <h2><?php _e('Contact', PLUGIN_NOM_LANG); ?></h2>
           <p>
-          <pre><code><strong>[ticketSellsy id=1]</strong></code></pre>
+          <pre><code><strong>[contactSellsy id=1]</strong></code></pre>
           <?php _e('Add contact form on Wordpress, for create a prospect to Sellsy.', PLUGIN_NOM_LANG); ?>
           </p>
           <p>
