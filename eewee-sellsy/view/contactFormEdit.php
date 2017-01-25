@@ -16,8 +16,8 @@ if (isset($_POST['update']) && $_POST['update']) {
     $errors         = array();
     $errors_mess    = array();
     // setting
-    if (empty($_POST['contact_form_setting_name'])) { $errors['setting'][] = __('Name', PLUGIN_NOM_LANG); }
-    if (empty($_POST['contact_form_setting_notification_email'])) { $errors['setting'][] = __('Notification', PLUGIN_NOM_LANG); }
+    if ($_POST['contact_form_contact_lastname'] != 0) { $errors['setting'][] = __('Lastname', PLUGIN_NOM_LANG); }
+    if ($_POST['contact_form_contact_email'] != 0) {    $errors['setting'][] = __('Email', PLUGIN_NOM_LANG);    }
     // company information
 //    if (empty($_POST['contact_form_company_name'])) { $errors['company'][] = __('Name', PLUGIN_NOM_LANG); }
 //    if (empty($_POST['contact_form_company_siren'])) { $errors['company'][] = __('Siren', PLUGIN_NOM_LANG); }

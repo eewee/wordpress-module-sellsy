@@ -44,6 +44,7 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 * Add nonce
 * Add table error
 * Add notification (prospect)
+* Option : notification contact
 
 = 1.0.1 =
 * Add namespace

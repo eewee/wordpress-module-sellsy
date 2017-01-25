@@ -52,13 +52,10 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/libs/sellsy/sellsyconnect_curl.php' )
 
 // MODELS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSetting.php' );
-
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TTicket.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TTicketForm.php' );
-
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContact.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContactForm.php' );
-
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TError.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyStaffs.php' );
 
@@ -67,12 +64,9 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/FormHelper.php' );
 
 // FORMS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FSettingEdit.php' );
-
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FTicketFormEdit.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FTicketFormAdd.php' );
-
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FContactFormEdit.php' );
-require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FContactFormAdd.php' );
 
 // CONTROLLERS
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/InstallController.php' );

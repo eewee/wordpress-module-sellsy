@@ -87,7 +87,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                     echo '
                                     <select name="contact_form_setting_add_what">
                                         <option value="0" '.$contact_form_setting_add_what_selected_0.'>'.__('Prospect', PLUGIN_NOM_LANG).'</option>
-                                        <option value="1" '.$contact_form_setting_add_what_selected_1.'>'.__('Prospect and opportunity', PLUGIN_NOM_LANG).'</option>
+                                        <option value="1" '.$contact_form_setting_add_what_selected_1.' disabled>'.__('Prospect and opportunity', PLUGIN_NOM_LANG).'</option>
                                     </select>';
                                     ?>
                                 </td>
@@ -98,11 +98,11 @@ if( !class_exists('Form_ContactFormEdit')){
                                 </th>
                                 <td>
                                     <?php
-                                    //$r[0]->contact_form_setting_opportunity_source
                                     echo '
                                     <select name="contact_form_setting_opportunity_source">
-                                        <option value="0">xxx</option>
-                                        <option value="1">yyy</option>
+                                        <option value="0">'.__('---- selection ----', PLUGIN_NOM_LANG).'</option>
+                                        <option value="1" disabled>xxx</option>
+                                        <option value="2" disabled>yyy</option>
                                     </select>
                                     <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
                                     ?>
@@ -123,7 +123,11 @@ if( !class_exists('Form_ContactFormEdit')){
                                 </th>
                                 <td>
                                     <input type="text" name="contact_form_setting_notification_email" value="<?php echo $r[0]->contact_form_setting_notification_email; ?>" placeholder="<?php _e('your email', PLUGIN_NOM_LANG); ?>" />
-                                    <p class="description"><?php _e('Receive an email with the form information submitted on your website', PLUGIN_NOM_LANG); ?></p>
+                                    <p class="description"><?php
+                                        _e('Receive an email with the form information submitted on your website', PLUGIN_NOM_LANG);
+                                        echo '<br>';
+                                        _e('(Empty = no notification)', PLUGIN_NOM_LANG);
+                                    ?></p>
                                 </td>
                             </tr>
                             <tr>
