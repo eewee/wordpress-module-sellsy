@@ -3,7 +3,7 @@
 Plugin Name: Eewee Sellsy
 Plugin URI: http://www.eewee.fr
 Description: Simple form for : add support ticket to Sellsy, add prospect to Sellsy.
-Version: 1.0.2
+Version: 1.0.4
 Author: Michael DUMONTET
 Author URI: http://www.eewee.fr/wordpress/
 License: GPLv2 or later
@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @since 1.0.0
  */
 global $wpdb;
-define( 'EEWEE_VERSION', '1.0.2' );
+define( 'EEWEE_VERSION', '1.0.4' );
 define( 'EEWEE_SELLSY_PLUGIN_DIR', 		WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'EEWEE_SELLSY_PLUGIN_URL', 		WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'EEWEE_SELLSY_PREFIXE_BDD',		$wpdb->prefix.'eewee_sellsy_');
@@ -32,12 +32,27 @@ for( $i=1 ; $i<=3 ; $i++ ) {
 load_plugin_textdomain(PLUGIN_NOM_LANG, false, dirname( plugin_basename( __FILE__ ) ) . '/lang');
 
 /**
- * Required CSS
+ * Required CSS / JS
  *
  * @since 1.0.0
  */
 function ajouterScriptsEeweeSellsy(){
-	wp_enqueue_style( PLUGIN_NOM_LANG.'-style', '/wp-content/plugins/eewee-sellsy/css/style.css' );
+	// CSS
+    wp_enqueue_style( PLUGIN_NOM_LANG.'-style', '/wp-content/plugins/eewee-sellsy/css/style.css' );
+
+    // ONLY PAGE : contact edit
+    if (isset($_GET['contact_form_id'])) {
+        $contact_form_id = (int)$_GET['contact_form_id'];
+        if (isset($contact_form_id) && $contact_form_id) {
+            $tbl_data['ajax_url']           =  admin_url( 'admin-ajax.php' );
+            $tbl_data['contact_form_id']    =  $contact_form_id;
+
+            // JS
+            wp_enqueue_script( PLUGIN_NOM_LANG.'-ajax-script-js', plugins_url('eewee-sellsy/js/main.js'), array('jquery'));
+            // in JavaScript, object properties are accessed as ajax_object.ajax_url, ajax_object.we_value
+            wp_localize_script( PLUGIN_NOM_LANG.'-ajax-script-js', 'ajax_object', $tbl_data );
+        }
+    }
 }
 add_action( 'init', 'ajouterScriptsEeweeSellsy' );
 
@@ -58,6 +73,7 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContact.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContactForm.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TError.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyStaffs.php' );
+require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyOpportunities.php' );
 
 // HELPERS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/FormHelper.php' );
@@ -69,6 +85,7 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FTicketFormAdd.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FContactFormEdit.php' );
 
 // CONTROLLERS
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AjaxController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/InstallController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ToolsController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ShortcodeController.php' );
@@ -76,6 +93,7 @@ require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AdminController.php' );
 
 use fr\eewee\eewee_sellsy\controllers;
 $s = new controllers\ShortcodeController();
+$a = new controllers\AjaxController();
 
 /**
  * Instantiate Classe

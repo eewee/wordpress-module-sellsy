@@ -1,6 +1,8 @@
 <?php
 namespace fr\eewee\eewee_sellsy\forms;
 use fr\eewee\eewee_sellsy\helpers;
+use fr\eewee\eewee_sellsy\libs;
+use fr\eewee\eewee_sellsy\models;
 
 if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
@@ -25,6 +27,9 @@ if( !class_exists('Form_ContactFormEdit')){
             // INIT
             $contact_form_status = '';
             if (isset($r[0]->contact_form_status)) { $contact_form_status = $r[0]->contact_form_status; }
+            // DATA
+            $t_contactForm = new models\TContactForm();
+            $contactForm = $t_contactForm->getContactForm($r[0]->contact_form_id);
             ?>
 
             <form method="post" action="<?php echo $this->_action; ?>">
@@ -87,7 +92,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                     echo '
                                     <select name="contact_form_setting_add_what">
                                         <option value="0" '.$contact_form_setting_add_what_selected_0.'>'.__('Prospect', PLUGIN_NOM_LANG).'</option>
-                                        <option value="1" '.$contact_form_setting_add_what_selected_1.' disabled>'.__('Prospect and opportunity', PLUGIN_NOM_LANG).'</option>
+                                        <option value="1" '.$contact_form_setting_add_what_selected_1.'>'.__('Prospect and opportunity', PLUGIN_NOM_LANG).'</option>
                                     </select>';
                                     ?>
                                 </td>
@@ -98,12 +103,81 @@ if( !class_exists('Form_ContactFormEdit')){
                                 </th>
                                 <td>
                                     <?php
+                                    // SOURCE
+                                    $optionOppSources   = '';
+                                    $t_opportunities    = new models\TSellsyOpportunities();
+                                    $responseOppSource  = $t_opportunities->getSources();
+                                    foreach ($responseOppSource->response as $vOppSources) {
+                                        if (isset($vOppSources->status) && $vOppSources->status == 'ok') {
+                                            $selected = '';
+                                            if ($vOppSources->id == $contactForm[0]->contact_form_setting_opportunity_source) {
+                                                $selected = 'selected';
+                                            }
+                                            $optionOppSources .= '<option value="'.$vOppSources->id.'" '.$selected.'>'.$vOppSources->label.'</option>';
+                                        }
+                                    }
+
+                                    // DISPLAY
                                     echo '
-                                    <select name="contact_form_setting_opportunity_source">
+                                    <select name="contact_form_setting_opportunity_source" id="contact_form_setting_opportunity_source">
                                         <option value="0">'.__('---- selection ----', PLUGIN_NOM_LANG).'</option>
-                                        <option value="1" disabled>xxx</option>
-                                        <option value="2" disabled>yyy</option>
+                                        '.$optionOppSources.'
+                                    </select>';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php _e('Pipeline', PLUGIN_NOM_LANG); ?> :
+                                </th>
+                                <td>
+                                    <?php
+                                    // FUNNELS
+                                    $optionOppFun       = '';
+                                    $t_opportunities    = new models\TSellsyOpportunities();
+                                    $responseOppFun     = $t_opportunities->getFunnels();
+                                    foreach ($responseOppFun->response as $vOppFun) {
+                                        if (isset($vOppFun->status) && $vOppFun->status == 'ok') {
+                                            $selected = '';
+                                            if ($vOppFun->id == $contactForm[0]->contact_form_setting_opportunity_pipeline) {
+                                                $selected = 'selected';
+                                            }
+                                            $optionOppFun .= '<option value="'.$vOppFun->id.'" '.$selected.'>'.$vOppFun->name.'</option>';
+                                        }
+                                    }
+
+                                    // STEPS
+                                    $optionOppStep       = '';
+                                    if (isset($contactForm[0]->contact_form_setting_opportunity_pipeline) && !empty($contactForm[0]->contact_form_setting_opportunity_pipeline)) {
+                                        $t_opportunities    = new models\TSellsyOpportunities();
+                                        $responseOppStep     = $t_opportunities->getStepsForFunnel(array(
+                                            'idPipeline' => $contactForm[0]->contact_form_setting_opportunity_pipeline
+                                        ));
+                                        foreach ($responseOppStep->response as $vOppStep) {
+                                            if (isset($vOppStep->status) && $vOppStep->status == 'ok') {
+                                                $selected = '';
+                                                if ($vOppStep->id == $contactForm[0]->contact_form_setting_opportunity_step) {
+                                                    $selected = 'selected';
+                                                }
+                                                $optionOppStep .= '<option value="'.$vOppStep->id.'" '.$selected.'>'.$vOppStep->label.'</option>';
+                                            }
+                                        }
+                                    }
+
+                                    // FUNNELS
+                                    echo '
+                                    <select name="contact_form_setting_opportunity_pipeline" id="contact_form_setting_opportunity_pipeline">
+                                        <option value="0">'.__('---- selection ----', PLUGIN_NOM_LANG).'</option>
+                                        '.$optionOppFun.'
+                                    </select>';
+
+                                    // STEPS
+                                    echo '
+                                    <select name="contact_form_setting_opportunity_step" id="contact_form_setting_opportunity_step">
+                                        <option value="0">'.__('---- selection ----', PLUGIN_NOM_LANG).'</option>
+                                        '.$optionOppStep.'
                                     </select>
+                                    
                                     <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
                                     ?>
                                 </td>

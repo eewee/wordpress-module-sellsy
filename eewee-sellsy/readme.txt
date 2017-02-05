@@ -11,12 +11,16 @@ Generate ticket support form et simple form
 
 == Description ==
 
-Generate ticket support form (add ticket support in Sellsy)
-Generate simple form (add prospect in Sellsy)
+= Generate ticket support form (add ticket support in Sellsy) =
+Create a multitude of forms for managing your support tickets. The form contains the following fields: Subject, E-mail, Name and Message.
 
-PS: question, [eewee.fr](http://www.eewee.fr).
+= Generate simple form (add prospect in Sellsy) =
+Create a multitude of forms to manage your prospecting. The validation of the form will create a prospect on Sellsy and optionally an opportunity.
 
+* Question : [eewee.fr](http://www.eewee.fr).
 * See the [Changelog](http://wordpress.org/extend/plugins/eewee-sellsy/changelog/) for what's new.
+* Other [WordPress Plugins](https://www.eewee.fr/developpement-cms/wordpress/plugins/).
+* Follow Eewee on [Facebook](https://www.facebook.com/eeweefr) & [Twitter](https://www.twitter.com/michaeldumontet).
 
 == Installation ==
 
@@ -31,6 +35,8 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 3. Back-office : ticket support edit
 4. Back-office : ticket support shortcode
 5. Front-office : ticket support form
+6. Back-office : contact (prospect / opportunity) shortcode
+7. Front-office : contact form
 
 == Frequently Asked Questions ==
 * More informations : [eewee.fr](http://www.eewee.fr).
@@ -39,6 +45,14 @@ PS: question, [eewee.fr](http://www.eewee.fr).
 * ...
 
 == Changelog ==
+
+= 1.0.4 =
+* Change prospect and opportunity
+* Change bdd (contact)
+
+= 1.0.3 =
+* Add contact edit, prospect and opportunity (source, pipeline and step)
+* Change bdd (contact and error)
 
 = 1.0.2 =
 * Add nonce

@@ -66,6 +66,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
               `contact_id` int(11) NOT NULL AUTO_INCREMENT,
               `contact_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
               `contact_log` text NOT NULL,
+              `contact_linkedid` int(11) NOT NULL,
               PRIMARY KEY (`contact_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
@@ -79,7 +80,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
               
               `contact_form_setting_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `contact_form_setting_add_what` int(11) NOT NULL,
-              `contact_form_setting_opportunity_source` int(11) NOT NULL,
+              `contact_form_setting_opportunity_pipeline` int(11) NOT NULL,
+              `contact_form_setting_opportunity_step` int(11) NOT NULL,
               `contact_form_setting_notification_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
 
               `contact_form_company_name` int(11) NOT NULL,
@@ -107,7 +109,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."error` (
               `error_id` int(11) NOT NULL AUTO_INCREMENT,
               `error_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
-              `error_categ` enum('ticket','contact') NOT NULL,
+              `error_categ` enum('ticket','contact','opportunities') NOT NULL,
               `error_status` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `error_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `error_message` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,

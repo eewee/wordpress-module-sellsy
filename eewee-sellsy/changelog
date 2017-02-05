@@ -1,3 +1,11 @@
+= 1.0.4 =
+* Change prospect and opportunity
+* Change bdd (contact)
+
+= 1.0.3 =
+* Add contact edit, prospect and opportunity (source, pipeline and step)
+* Change bdd (contact and error)
+
 = 1.0.2 =
 * Add nonce
 * Add table error

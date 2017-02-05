@@ -50,12 +50,12 @@ if( !class_exists('TError')){
                 $this->_table,
                 array(
                     'error_dt_create'    => current_time('mysql'),
-                    'error_categ'        => $p['form_error_categ'],
-                    'error_status'       => $p['form_error_status'],
-                    'error_code'         => $p['form_error_code'],
-                    'error_message'      => $p['form_error_message'],
-                    'error_more'         => $p['form_error_more'],
-                    'error_inerro'       => $p['form_error_inerro']
+                    'error_categ'        => $p['categ'],
+                    'error_status'       => $p['response']->status,
+                    'error_code'         => $p['response']->error->code,
+                    'error_message'      => $p['response']->error->message,
+                    'error_more'         => $p['response']->error->more,
+                    'error_inerro'       => $p['response']->error->inerror
                 ),
                 array(
                     '%s',

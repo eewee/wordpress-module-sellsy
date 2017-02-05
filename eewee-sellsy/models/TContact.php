@@ -50,12 +50,14 @@ if( !class_exists('TContact')){
             $r = $wpdb->insert(
                 $this->_table,
                 array(
-                    'contact_dt_create'     => current_time('mysql'),
-                    'contact_log'           => $p['contact_log'],
+                    'contact_dt_create' => current_time('mysql'),
+                    'contact_log'       => $p['contact_log'],
+                    'contact_linkedid'  => $p['linkedid'],
                 ),
                 array(
                     '%s',
                     '%s',
+                    '%d',
                 )
             );
             return $r;

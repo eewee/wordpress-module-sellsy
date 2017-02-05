@@ -45,12 +45,19 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         <section id="general2">
           <h2><?php _e('Contact', PLUGIN_NOM_LANG); ?></h2>
           <p>
-          <pre><code><strong>[contactSellsy id=1]</strong></code></pre>
-          <?php _e('Add contact form on Wordpress, for create a prospect to Sellsy.', PLUGIN_NOM_LANG); ?>
+            <pre><code><strong>[contactSellsy id=1]</strong></code></pre>
+            <?php _e('Add contact form on Wordpress, for create a prospect to Sellsy.', PLUGIN_NOM_LANG); ?><br>
+            <?php echo __('Email sent with', PLUGIN_NOM_LANG).' '.get_option( 'admin_email' ).' '.__('(Settings > General)', PLUGIN_NOM_LANG); ?>
           </p>
           <p>
             <?php
-            echo __('Email sent with', PLUGIN_NOM_LANG).' '.get_option( 'admin_email' ).' '.__('(Settings > General)', PLUGIN_NOM_LANG);
+            echo '<u>'.__('Default setting', PLUGIN_NOM_LANG).' : </u><br>
+            - '.__('Prospect', PLUGIN_NOM_LANG).'<br>
+            - '.__('Deadline: +1 month', PLUGIN_NOM_LANG).'<br>
+            - '.__('Name: website', PLUGIN_NOM_LANG).'<br>
+            - '.__('Probability: 10%', PLUGIN_NOM_LANG).'<br>
+            - '.__('Tag: wordpress', PLUGIN_NOM_LANG).'<br>
+            ';
             ?>
           </p>
           <h3><?php _e('Examples', PLUGIN_NOM_LANG); ?> :</h3>

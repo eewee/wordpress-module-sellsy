@@ -34,11 +34,20 @@ if (isset($_POST['update']) && $_POST['update']) {
 //    if (empty($_POST['contact_form_website'])) { $errors['other'][] = __('Website', PLUGIN_NOM_LANG); }
 //    if (empty($_POST['contact_form_note'])) { $errors['other'][] = __('Note', PLUGIN_NOM_LANG); }
 
-    // INSERT
+    // UPDATE
     if (empty($errors)) {
+
+        // CLEAN
+        $contact_form_setting_opportunity_pipeline  = (int)$_POST['contact_form_setting_opportunity_pipeline'];
+        $contact_form_setting_opportunity_step      = (int)$_POST['contact_form_setting_opportunity_step'];
+        if (empty($contact_form_setting_opportunity_pipeline)) { unset($_POST['contact_form_setting_opportunity_pipeline']); }
+        if (empty($contact_form_setting_opportunity_step)) { unset($_POST['contact_form_setting_opportunity_step']); }
+
+        // UPDATE
         $t_contact_form = new models\TContactForm();
         $r = $t_contact_form->update($_POST);
 
+        // DISPLAY
         $tools = new controllers\ToolsControllers();
         $display = $tools->verifMaj($r);
         echo $display;

@@ -111,16 +111,11 @@ if( !class_exists('ShortcodeController')){
                     // API : error
                     } elseif($response->status == 'error') {
 
-                        $tbl_errors = array(
-                            'form_error_categ'   => 'ticket',
-                            'form_error_status'  => $response->status,
-                            'form_error_code'    => $response->error->code,
-                            'form_error_message' => $response->error->message,
-                            'form_error_more'    => $response->error->more,
-                            'form_error_inerro'  => $response->error->inerror,
-                        );
                         $t_error	= new models\TError();
-                        $t_error->add($tbl_errors);
+                        $t_error->add(array(
+                            'categ'     => 'ticket',
+                            'response'  => $response,
+                        ));
                         echo __('Error registration.', PLUGIN_NOM_LANG);
 
                     }
@@ -216,12 +211,17 @@ if( !class_exists('ShortcodeController')){
             $contact        = $t_contactForm->getContactForm($id);
 
             // VALIDATE FORM
-            if (isset($_POST) && !empty($_POST) && isset($_POST['btn_contact'])) {
-
+            if (
+                isset($_POST) &&
+                !empty($_POST) &&
+                isset($_POST['btn_contact']) &&
+                ($contact[0]->contact_form_status == 0 || $contact[0]->contact_form_status == 1) &&
+                !empty($id)
+            ) {
                 check_admin_referer('form_nonce_shortcode_contact_add');
 
                 // third
-                if (isset($_POST['contact_form_company_name'])) {
+                if (isset($_POST['contact_form_company_name']) && !empty($_POST['contact_form_company_name'])) {
                     $api_third['type'] = 'corporation'; // corporation/person
                     $api_third['name'] = sanitize_text_field($_POST['contact_form_company_name']);
 
@@ -240,7 +240,7 @@ if( !class_exists('ShortcodeController')){
 
                 } else {
                     $api_third['type'] = 'person'; // corporation/person
-
+                    
                     if (isset($_POST['contact_form_contact_lastname'])) {
                         $api_third['name'] = sanitize_text_field($_POST['contact_form_contact_lastname']);
                     }
@@ -289,13 +289,9 @@ if( !class_exists('ShortcodeController')){
                 // OK
                 if (empty($error)) {
 
-                    // INSERT TO WORDPRESS : table
-                    $t_contact = new models\TContact();
-                    $t_contact->add(array(
-                        'contact_dt_create' => current_time('mysql'),
-                        'contact_log'       => json_encode($_POST),
-                    ));
-
+                    // INIT
+                    $tbl_contact = array();
+                    
                     // INSERT TO SELLSY : prospect
                     $request = array(
                         'method' => 'Prospects.create',
@@ -305,6 +301,14 @@ if( !class_exists('ShortcodeController')){
                         )
                     );
                     $response = libs\sellsyConnect_curl::load()->requestApi($request);
+                    $linkedid = $response->response;
+                    if (isset($linkedid) && !empty($linkedid)) { $tbl_contact['linkedid'] = $linkedid; }
+                    
+                    // INSERT TO WORDPRESS : table
+                    $t_contact = new models\TContact();
+                    $tbl_contact['contact_dt_create']   = current_time('mysql');
+                    $tbl_contact['contact_log']         = json_encode($_POST);
+                    $t_contact->add($tbl_contact);
 
                     // API : success
                     if ($response->status == 'success') {
@@ -320,6 +324,41 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
 '.__('Name', PLUGIN_NOM_LANG).' : '.$api_contact['name']
                             );
                         }
+
+
+
+
+                        // OPTION SELECTED : prospect and opportunity
+                        if ($contact[0]->contact_form_setting_add_what == 1 && isset($tbl_contact['linkedid'])) {
+                            // CREATE OPPORTUNITY
+                            $t_sellsyOpportunities = new models\TSellsyOpportunities();
+                            $responseOpp = $t_sellsyOpportunities->create(array(
+                                'linkedid'  => $tbl_contact['linkedid'],
+                                'sourceid'  => $contact[0]->contact_form_setting_opportunity_source,
+                                'name'      => 'website',
+                                'funnelid'  => $contact[0]->contact_form_setting_opportunity_pipeline,
+                                'stepid'    => $contact[0]->contact_form_setting_opportunity_step,
+                            ));
+                            // API : success
+                            if ($responseOpp->status == 'success') {
+
+                                // ...
+
+                            // API : error
+                            } elseif($responseOpp->status == 'error') {
+
+                                $t_error	= new models\TError();
+                                $t_error->add(array(
+                                    'categ'     => 'opportunities',
+                                    'response'  => $responseOpp,
+                                ));
+                                echo __('Error registration.', PLUGIN_NOM_LANG);
+
+                            }
+                        }
+
+
+                        
 
                         unset($_POST);
                         $api_third = array(
@@ -343,16 +382,11 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     // API : error
                     } elseif($response->status == 'error') {
 
-                        $tbl_errors = array(
-                            'form_error_categ'   => 'contact',
-                            'form_error_status'  => $response->status,
-                            'form_error_code'    => $response->error->code,
-                            'form_error_message' => $response->error->message,
-                            'form_error_more'    => $response->error->more,
-                            'form_error_inerro'  => $response->error->inerror,
-                        );
                         $t_error	= new models\TError();
-                        $t_error->add($tbl_errors);
+                        $t_error->add(array(
+                            'categ'     => 'contact',
+                            'response'  => $response,
+                        ));
                         echo __('Error registration.', PLUGIN_NOM_LANG);
 
                     }
