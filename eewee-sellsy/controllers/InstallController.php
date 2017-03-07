@@ -141,11 +141,14 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 		 * delete
 		 */
 		public function delete(){
-            echo "DELETE PLUGIN<br>";
+            //echo "DELETE PLUGIN<br>";
             global $wpdb;
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."api`";
-			$sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form`";
-			$sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket`";
+            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."setting`";
+            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket`";
+            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form`";
+            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact`";
+            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact_form`";
+            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."error`";
             foreach( $sql as $v ){ $wpdb->query($v); }
 		}
 
