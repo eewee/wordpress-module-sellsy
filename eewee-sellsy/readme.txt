@@ -37,6 +37,7 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 5. Front-office : ticket support form
 6. Back-office : contact (prospect / opportunity) shortcode
 7. Front-office : contact form
+8. Back-office : reCaptcha
 
 == Frequently Asked Questions ==
 * More informations : [eewee.fr](http://www.eewee.fr).
@@ -45,6 +46,10 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 * ...
 
 == Changelog ==
+
+= 1.0.5 =
+* Add reCaptcha form ticket support
+* Add reCaptcha form contact
 
 = 1.0.4 =
 * Change prospect and opportunity

@@ -28,6 +28,9 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
               `setting_consumer_secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `setting_utilisateur_token` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `setting_utilisateur_secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `setting_recaptcha_key_status` tinyint(1) NOT NULL,
+              `setting_recaptcha_key_website` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `setting_recaptcha_key_secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               PRIMARY KEY (`setting_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";

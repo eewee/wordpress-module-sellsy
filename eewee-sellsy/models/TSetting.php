@@ -77,11 +77,14 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 $this->_table,
                 // SET (valeur)
                 array(
-                    'setting_dt_update'         => current_time('mysql'),
-                    'setting_consumer_token'    => $p['form_consumer_token'],
-                    'setting_consumer_secret'   => $p['form_consumer_secret'],
-                    'setting_utilisateur_token' => $p['form_utilisateur_token'],
-                    'setting_utilisateur_secret'=> $p['form_utilisateur_secret'],
+                    'setting_dt_update'             => current_time('mysql'),
+                    'setting_consumer_token'        => $p['form_consumer_token'],
+                    'setting_consumer_secret'       => $p['form_consumer_secret'],
+                    'setting_utilisateur_token'     => $p['form_utilisateur_token'],
+                    'setting_utilisateur_secret'    => $p['form_utilisateur_secret'],
+                    'setting_recaptcha_key_status'  => $p['form_status'],
+                    'setting_recaptcha_key_website' => $p['form_recaptcha_key_website'],
+                    'setting_recaptcha_key_secret'  => $p['form_recaptcha_key_secret'],
                 ),
                 // WHERE (valeur)
                 array(
@@ -89,6 +92,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                 ),
                 // SET (type)
                 array(
+                    '%s',
+                    '%s',
                     '%s',
                     '%s',
                     '%s',

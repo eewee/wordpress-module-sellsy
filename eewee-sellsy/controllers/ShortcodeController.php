@@ -35,8 +35,26 @@ if( !class_exists('ShortcodeController')){
             extract( shortcode_atts(array('id'=>''), $atts ));
 
             // MODEL
-            $t_ticketForm = new models\TTicketForm();
-            $ticket = $t_ticketForm->getTicketForm($id);
+            $t_ticketForm   = new models\TTicketForm();
+            $ticket         = $t_ticketForm->getTicketForm($id);
+            $t_setting      = new models\TSetting();
+            $setting        = $t_setting->getSetting(1);
+
+            // reCaptcha
+            $reCaptchaOkOrNot       = false;
+            $reCaptcha['secret']    = $setting[0]->setting_recaptcha_key_secret;
+            $reCaptcha['response']  = $_POST['g-recaptcha-response'];
+            $reCaptcha['remoteip']  = $_SERVER['REMOTE_ADDR'];
+        	$api_url                = "<a href='https://www.google.com/recaptcha/api/siteverify?secret='>https://www.google.com/recaptcha/api/siteverify?secret=".$reCaptcha['secret']."&response=".$reCaptcha['response']."&remoteip=".$reCaptcha['remoteip']."</a>";
+            $decode                 = json_decode(file_get_contents($api_url, true));
+            // ok
+            if ($decode['success'] == true) {
+                $reCaptchaOkOrNot = true;
+
+            // nok (robot or incorrect code) - https://developers.google.com/recaptcha/docs/verify
+            } else {
+                $reCaptchaOkOrNot = false;
+            }
 
             // VALIDATE FORM
             if (isset($_POST) && !empty($_POST) && isset($_POST['btn_ticket_support'])) {
@@ -62,6 +80,10 @@ if( !class_exists('ShortcodeController')){
                 if (empty($form_ticket_support_message)) {
                     $error[] = __('message', PLUGIN_NOM_LANG);
                     $class_ticket_support_message = $styleError;
+                }
+                if ($reCaptchaOkOrNot === false) {
+                    $error[] = __('reCAPTCHA', PLUGIN_NOM_LANG);
+                    $class_ticket_support_recaptcha = $styleError;
                 }
 
                 // OK
@@ -152,8 +174,19 @@ if( !class_exists('ShortcodeController')){
                     <input type="text" name="form_ticket_support_lastname" value="'.$form_ticket_support_lastname.'" id="form_ticket_support_lastname" '.$class_ticket_support_name.'>  
                     
                     <label>'.__('Message', PLUGIN_NOM_LANG).' *</label>
-                    <textarea name="form_ticket_support_message" id="form_ticket_support_message" '.$class_ticket_support_message.'>'.$form_ticket_support_message.'</textarea>  
-                           
+                    <textarea name="form_ticket_support_message" id="form_ticket_support_message" '.$class_ticket_support_message.'>'.$form_ticket_support_message.'</textarea>';
+
+                    // reCaptcha : cle du site
+                    if (
+                        $setting[0]->setting_recaptcha_key_status == 0      &&
+                        !empty($setting[0]->setting_recaptcha_key_website)  &&
+                        !empty($setting[0]->setting_recaptcha_key_secret)
+                    ) {
+                        $render .= '
+                        <div class="g-recaptcha" data-sitekey="'.$setting[0]->setting_recaptcha_key_website.'" '.$class_ticket_support_recaptcha.'></div>';
+                    }
+
+                    $render .= '
                     <input type="submit" name="btn_ticket_support">
                 </form>';
             }
@@ -209,6 +242,24 @@ if( !class_exists('ShortcodeController')){
             // MODEL
             $t_contactForm  = new models\TContactForm();
             $contact        = $t_contactForm->getContactForm($id);
+            $t_setting      = new models\TSetting();
+            $setting        = $t_setting->getSetting(1);
+
+            // reCaptcha
+            $reCaptchaOkOrNot       = false;
+            $reCaptcha['secret']    = $setting[0]->setting_recaptcha_key_secret;
+            $reCaptcha['response']  = $_POST['g-recaptcha-response'];
+            $reCaptcha['remoteip']  = $_SERVER['REMOTE_ADDR'];
+            $api_url                = "<a href='https://www.google.com/recaptcha/api/siteverify?secret='>https://www.google.com/recaptcha/api/siteverify?secret=".$reCaptcha['secret']."&response=".$reCaptcha['response']."&remoteip=".$reCaptcha['remoteip']."</a>";
+            $decode                 = json_decode(file_get_contents($api_url, true));
+            // ok
+            if ($decode['success'] == true) {
+                $reCaptchaOkOrNot = true;
+
+                // nok (robot or incorrect code) - https://developers.google.com/recaptcha/docs/verify
+            } else {
+                $reCaptchaOkOrNot = false;
+            }
 
             // VALIDATE FORM
             if (
@@ -282,6 +333,11 @@ if( !class_exists('ShortcodeController')){
                     $error[] = __('email', PLUGIN_NOM_LANG);
                     $tbl_class['class_contact_form_contact_email'] = $styleError.' required';
                 }
+                if ($reCaptchaOkOrNot === false) {
+                    $error[] = __('reCAPTCHA', PLUGIN_NOM_LANG);
+                    $class_ticket_support_recaptcha = $styleError;
+                }
+
 
 
 
@@ -477,6 +533,16 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                         $render .= '
                         <label>'.__('Message', PLUGIN_NOM_LANG).'</label>
                         <textarea name="contact_form_note" id="contact_form_note">'.$api_third['stickyNote'].'</textarea>';
+                    }
+
+                    // reCaptcha : cle du site
+                    if (
+                        $setting[0]->setting_recaptcha_key_status == 0      &&
+                        !empty($setting[0]->setting_recaptcha_key_website)  &&
+                        !empty($setting[0]->setting_recaptcha_key_secret)
+                    ) {
+                        $render .= '
+                            <div class="g-recaptcha" data-sitekey="'.$setting[0]->setting_recaptcha_key_website.'" '.$class_ticket_support_recaptcha.'></div>';
                     }
 
                     $render .= '           

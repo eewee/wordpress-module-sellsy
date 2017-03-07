@@ -3,7 +3,7 @@
 Plugin Name: Eewee Sellsy
 Plugin URI: http://www.eewee.fr
 Description: Simple form for : add support ticket to Sellsy, add prospect to Sellsy.
-Version: 1.0.4
+Version: 1.0.5
 Author: Michael DUMONTET
 Author URI: http://www.eewee.fr/wordpress/
 License: GPLv2 or later
@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @since 1.0.0
  */
 global $wpdb;
-define( 'EEWEE_VERSION', '1.0.4' );
+define( 'EEWEE_VERSION', '1.0.5' );
 define( 'EEWEE_SELLSY_PLUGIN_DIR', 		WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'EEWEE_SELLSY_PLUGIN_URL', 		WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'EEWEE_SELLSY_PREFIXE_BDD',		$wpdb->prefix.'eewee_sellsy_');
@@ -39,6 +39,9 @@ load_plugin_textdomain(PLUGIN_NOM_LANG, false, dirname( plugin_basename( __FILE_
 function ajouterScriptsEeweeSellsy(){
 	// CSS
     wp_enqueue_style( PLUGIN_NOM_LANG.'-style', '/wp-content/plugins/eewee-sellsy/css/style.css' );
+
+    // JS
+    wp_enqueue_script( PLUGIN_NOM_LANG.'-recaptcha-js', 'https://www.google.com/recaptcha/api.js');
 
     // ONLY PAGE : contact edit
     if (isset($_GET['contact_form_id'])) {

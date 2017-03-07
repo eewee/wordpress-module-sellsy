@@ -21,6 +21,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
         <ul class="options_tabs">
           <li><a href="#general1"><?php _e('Ticket', PLUGIN_NOM_LANG); ?></a></li>
           <li><a href="#general2"><?php _e('Contact', PLUGIN_NOM_LANG); ?></a></li>
+          <li><a href="#general3"><?php _e('reCaptcha', PLUGIN_NOM_LANG); ?></a></li>
         </ul>
         
         <hr>
@@ -68,6 +69,20 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <br>[contactSellsy id=3]
           </p>
         </section><!-- general2 -->
+
+        <hr>
+
+        <section id="general3">
+          <h2><?php _e('reCaptcha', PLUGIN_NOM_LANG); ?></h2>
+          <p>
+            <?php _e('Create access', PLUGIN_NOM_LANG); ?> :
+            <a href="https://www.google.com/recaptcha/admin" target="_blank">https://www.google.com/recaptcha/admin</a>
+            <br>
+
+            <?php _e('Information about captcha', PLUGIN_NOM_LANG); ?> :
+            <a href="https://fr.wikipedia.org/wiki/ReCAPTCHA" target="_blank">https://fr.wikipedia.org/wiki/ReCAPTCHA</a>
+          </p>
+        </section><!-- general3 -->
 
         <br class="clear" />
       </div><!-- options_tabs -->
