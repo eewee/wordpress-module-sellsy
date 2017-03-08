@@ -131,7 +131,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 			";
 
 			$sql[] = "
-			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."contact_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Contact', 0, 0, '".get_bloginfo('admin_email')."', 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0);
+			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."contact_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Contact', 0, 0, '".get_bloginfo('admin_email')."', 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0);
 			";
 
 			foreach( $sql as $v ){ $wpdb->query($v); }
