@@ -123,7 +123,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ";
 
 			$sql[] = "
-			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."setting` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', '', '', '', '');
+			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."setting` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', '', '', '', '', '', '', '');
 			";
 
 			$sql[] = "
