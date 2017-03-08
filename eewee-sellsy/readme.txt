@@ -47,6 +47,9 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 
 == Changelog ==
 
+= 1.0.6 =
+* Add uninstall.php file
+
 = 1.0.5 =
 * Add reCaptcha form ticket support
 * Add reCaptcha form contact

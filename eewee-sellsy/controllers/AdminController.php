@@ -15,21 +15,24 @@ if( !class_exists('AdminController')){
 		 */
 		function eewee_activate()
 		{
-			$i = new InstallController();
+            $i = new InstallController();
 			$i->install();
 		}
-		
+
 		/**
 		 * execute lors de la désactivation du plugin
 		 */
-		function eewee_deactivate() {}
+		function eewee_deactivate()
+        {
+
+        }
                 
         /**
 		 * execute lors de la désinstallation du plugin
 		 */
 		function eewee_uninstall()
 		{
-			$i = new InstallController();
+            $i = new InstallController();
 			$i->delete();
 		}
 		

@@ -139,6 +139,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
         /**
 		 * delete
+         * @deprecated use uninstall.php
 		 */
 		public function delete(){
             //echo "DELETE PLUGIN<br>";
