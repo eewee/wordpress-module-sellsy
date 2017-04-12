@@ -4,22 +4,22 @@ namespace fr\eewee\eewee_sellsy\controllers;
 if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 //if( !class_exists('InstallController')){
-	class InstallController{
-		
-		function __construct(){}
-                
-		/**
-		 * install
-		 */
-		public function install(){
-            global $wpdb;
+class InstallController{
 
-			// CURRENT TIME :
-			// - https://codex.wordpress.org/Function_Reference/current_time
-			// - echo current_time( 'mysql', 1 ).'<br>'; // 0: GMT+1, 1: GMT+0
+    function __construct(){}
 
-            // BO - SETTING
-			$sql[] = "
+    /**
+     * install
+     */
+    public function install(){
+        global $wpdb;
+
+        // CURRENT TIME :
+        // - https://codex.wordpress.org/Function_Reference/current_time
+        // - echo current_time( 'mysql', 1 ).'<br>'; // 0: GMT+1, 1: GMT+0
+
+        // BO - SETTING
+        $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."setting` (
               `setting_id` int(11) NOT NULL AUTO_INCREMENT,
               `setting_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -35,8 +35,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-            // FO - TICKET : stock data form ticket
-            $sql[] = "
+        // FO - TICKET : stock data form ticket
+        $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket` (
               `ticket_id` int(11) NOT NULL AUTO_INCREMENT,
               `ticket_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -49,8 +49,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-            // BO - TICKET : form
-			$sql[] = "
+        // BO - TICKET : form
+        $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form` (
               `ticket_form_id` int(11) NOT NULL AUTO_INCREMENT,
               `ticket_form_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -63,8 +63,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-			// FO - CONTACT : stock data form contact
-			$sql[] = "
+        // FO - CONTACT : stock data form contact
+        $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."contact` (
               `contact_id` int(11) NOT NULL AUTO_INCREMENT,
               `contact_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -74,8 +74,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-			// BO - CONTACT : form
-			$sql[] = "
+        // BO - CONTACT : form
+        $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."contact_form` (
               `contact_form_id` int(11) NOT NULL AUTO_INCREMENT,
               `contact_form_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -83,6 +83,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
               
               `contact_form_setting_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `contact_form_setting_add_what` int(11) NOT NULL,
+              `contact_form_setting_opportunity_source` int(11) NOT NULL,
               `contact_form_setting_opportunity_pipeline` int(11) NOT NULL,
               `contact_form_setting_opportunity_step` int(11) NOT NULL,
               `contact_form_setting_notification_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
@@ -107,8 +108,8 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-            // FO - TICKET : error form
-            $sql[] = "
+        // FO - TICKET : error form
+        $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."error` (
               `error_id` int(11) NOT NULL AUTO_INCREMENT,
               `error_dt_create` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
@@ -122,36 +123,38 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
 
-			$sql[] = "
+        $sql[] = "
 			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."setting` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', '', '', '', '', '', '', '');
 			";
 
-			$sql[] = "
+        $sql[] = "
 			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Ticket support', '[TICKET SUPPORT]', '0', '0');
 			";
 
-			$sql[] = "
-			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."contact_form` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', 'Contact', 0, 0, '".get_bloginfo('admin_email')."', 0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0);
-			";
+        for( $i=1; $i<=25; $i++ ){
+            $sql[] = "
+                INSERT INTO `" . EEWEE_SELLSY_PREFIXE_BDD . "contact_form` VALUES (".$i.", '" . current_time('mysql') . "', '" . current_time('mysql') . "', 'Contact ".$i."', '0', '0', '0', '0', '" . get_bloginfo('admin_email') . "', '1', '1', '1', '1', '0', '0', '0', '1', '1', '1', '0', '0', '0');
+		    ";
+        }
 
-			foreach( $sql as $v ){ $wpdb->query($v); }
-		}
+        foreach( $sql as $v ){ $wpdb->query($v); }
+    }
 
-        /**
-		 * delete
-         * @deprecated use uninstall.php
-		 */
-		public function delete(){
-            //echo "DELETE PLUGIN<br>";
-            global $wpdb;
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."setting`";
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket`";
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form`";
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact`";
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact_form`";
-            $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."error`";
-            foreach( $sql as $v ){ $wpdb->query($v); }
-		}
+    /**
+     * delete
+     * @deprecated use uninstall.php
+     */
+    public function delete(){
+        //echo "DELETE PLUGIN<br>";
+        global $wpdb;
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."setting`";
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket`";
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form`";
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact`";
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact_form`";
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."error`";
+        foreach( $sql as $v ){ $wpdb->query($v); }
+    }
 
-	}//class
+}//class
 //}//if

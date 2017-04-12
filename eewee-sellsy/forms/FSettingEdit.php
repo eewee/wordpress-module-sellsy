@@ -34,6 +34,10 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     <h3 class="hndle"><span><?php _e('Edit Sellsy API', PLUGIN_NOM_LANG); ?></span></h3>
                     <div class="inside">
 
+                        <a href="https://www.sellsy.fr/?_f=prefsApi" target="_blank">
+                            https://www.sellsy.fr/?_f=prefsApi
+                        </a>
+
                         <table class='table1'>
                             <tr>
                                 <th>
@@ -83,7 +87,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
                     <h3 class="hndle"><span><?php _e('Edit reCaptcha', PLUGIN_NOM_LANG); ?></span></h3>
                     <div class="inside">
 
-                        <a href="https://www.google.com/recaptcha/admin#list">
+                        <a href="https://www.google.com/recaptcha/admin#list" target="_blank">
                             https://www.google.com/recaptcha/admin#list
                         </a>
 
