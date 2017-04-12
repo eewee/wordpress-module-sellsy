@@ -47,6 +47,9 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 
 == Changelog ==
 
+= 1.0.8 =
+* FIX reCaptcha
+
 = 1.0.7 =
 * Add 25 contact forms to the installation
 

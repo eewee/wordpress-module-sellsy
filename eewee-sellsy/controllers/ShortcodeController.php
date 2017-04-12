@@ -33,6 +33,7 @@ if( !class_exists('ShortcodeController')){
             $class_ticket_support_name      = '';
             $class_ticket_support_message   = '';
             extract( shortcode_atts(array('id'=>''), $atts ));
+            $class_ticket_support_recaptcha                    = '';
 
             // MODEL
             $t_ticketForm   = new models\TTicketForm();
@@ -41,12 +42,16 @@ if( !class_exists('ShortcodeController')){
             $setting        = $t_setting->getSetting(1);
 
             // reCaptcha
-            $reCaptchaOkOrNot       = false;
-            $reCaptcha['secret']    = $setting[0]->setting_recaptcha_key_secret;
-            $reCaptcha['response']  = $_POST['g-recaptcha-response'];
-            $reCaptcha['remoteip']  = $_SERVER['REMOTE_ADDR'];
-        	$api_url                = "<a href='https://www.google.com/recaptcha/api/siteverify?secret='>https://www.google.com/recaptcha/api/siteverify?secret=".$reCaptcha['secret']."&response=".$reCaptcha['response']."&remoteip=".$reCaptcha['remoteip']."</a>";
-            $decode                 = json_decode(file_get_contents($api_url, true));
+            if (isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'] != NULL) {
+                $reCaptchaOkOrNot       = false;
+                $reCaptcha['secret']    = $setting[0]->setting_recaptcha_key_secret;
+                $reCaptcha['response']  = $_POST['g-recaptcha-response'];
+                $reCaptcha['remoteip']  = $_SERVER['REMOTE_ADDR'];
+
+                $api_url = "https://www.google.com/recaptcha/api/siteverify?secret=".$reCaptcha['secret']."&response=".$reCaptcha['response']."&remoteip=".$reCaptcha['remoteip'];
+                $decode = json_decode(file_get_contents($api_url), true);
+            }
+
             // ok
             if ($decode['success'] == true) {
                 $reCaptchaOkOrNot = true;
@@ -81,7 +86,7 @@ if( !class_exists('ShortcodeController')){
                     $error[] = __('message', PLUGIN_NOM_LANG);
                     $class_ticket_support_message = $styleError;
                 }
-                if ($reCaptchaOkOrNot === false) {
+                if ($reCaptchaOkOrNot === false && $setting[0]->setting_recaptcha_key_status == 0) {
                     $error[] = __('reCAPTCHA', PLUGIN_NOM_LANG);
                     $class_ticket_support_recaptcha = $styleError;
                 }
@@ -223,6 +228,8 @@ if( !class_exists('ShortcodeController')){
                 'mobile'    => '',
                 'position'  => ''
             );
+            // reCaptcha
+            $decode['success'] = false;
             // class
             $tbl_class = '';
             $tbl_class['class_contact_form_contact_name']      = '';
@@ -238,6 +245,7 @@ if( !class_exists('ShortcodeController')){
             $tbl_class['class_contact_form_website']           = '';
             $tbl_class['class_contact_form_note']              = '';
             extract( shortcode_atts(array('id'=>''), $atts ));
+            $class_ticket_support_recaptcha                    = '';
 
             // MODEL
             $t_contactForm  = new models\TContactForm();
@@ -246,12 +254,16 @@ if( !class_exists('ShortcodeController')){
             $setting        = $t_setting->getSetting(1);
 
             // reCaptcha
-            $reCaptchaOkOrNot       = false;
-            $reCaptcha['secret']    = $setting[0]->setting_recaptcha_key_secret;
-            $reCaptcha['response']  = $_POST['g-recaptcha-response'];
-            $reCaptcha['remoteip']  = $_SERVER['REMOTE_ADDR'];
-            $api_url                = "<a href='https://www.google.com/recaptcha/api/siteverify?secret='>https://www.google.com/recaptcha/api/siteverify?secret=".$reCaptcha['secret']."&response=".$reCaptcha['response']."&remoteip=".$reCaptcha['remoteip']."</a>";
-            $decode                 = json_decode(file_get_contents($api_url, true));
+            if (isset($_POST['g-recaptcha-response']) && $_POST['g-recaptcha-response'] != NULL) {
+                $reCaptchaOkOrNot       = false;
+                $reCaptcha['secret']    = $setting[0]->setting_recaptcha_key_secret;
+                $reCaptcha['response']  = $_POST['g-recaptcha-response'];
+                $reCaptcha['remoteip']  = $_SERVER['REMOTE_ADDR'];
+
+                $api_url = "https://www.google.com/recaptcha/api/siteverify?secret=".$reCaptcha['secret']."&response=".$reCaptcha['response']."&remoteip=".$reCaptcha['remoteip'];
+                $decode = json_decode(file_get_contents($api_url), true);
+            }
+
             // ok
             if ($decode['success'] == true) {
                 $reCaptchaOkOrNot = true;
@@ -333,7 +345,7 @@ if( !class_exists('ShortcodeController')){
                     $error[] = __('email', PLUGIN_NOM_LANG);
                     $tbl_class['class_contact_form_contact_email'] = $styleError.' required';
                 }
-                if ($reCaptchaOkOrNot === false) {
+                if ($reCaptchaOkOrNot === false && $setting[0]->setting_recaptcha_key_status == 0) {
                     $error[] = __('reCAPTCHA', PLUGIN_NOM_LANG);
                     $class_ticket_support_recaptcha = $styleError;
                 }
