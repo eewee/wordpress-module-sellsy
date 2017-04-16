@@ -92,6 +92,7 @@ if( !class_exists('TSellsyOpportunities')){
             $name           = (string)$d['name'];
             $funnelid       = (int)$d['funnelid'];
             $stepid         = (int)$d['stepid'];
+            $stickyNote     = (string)$d['stickyNote'];
             $currentIdent   = $this->getCurrentIdent();
 
             $request = array(
@@ -102,14 +103,14 @@ if( !class_exists('TSellsyOpportunities')){
                         'linkedid'  => $linkedid,
                         'ident'     => $currentIdent->response,
                         'sourceid'  => $sourceid,
-                        'dueDate'   => strtotime('+1 month'),       // @todo : BO custom - Ex : 1 week, 1 month
+                        'dueDate'   => strtotime('+1 month'), // @todo : BO custom - Ex : 1 week, 1 month
                         //'creationDate'  => {{creationDate}},
                         'name'      => $name,                       // @todo : BO custom
                         'funnelid'  => $funnelid,
                         'stepid'    => $stepid,
                         'proba'     => 10,                          // @todo : BO custom
                         //'brief'     => {{brief}},                 // @todo : BO custom
-                        //'stickyNote'=> {{stickyNote}},
+                        'stickyNote'=> $stickyNote,
                         'tags'      => 'wordpress',
                         //'staffs'    => {{staffs}},                // @todo : BO custom
                         //'contacts'  => {{contacts}}               // @todo : BO custom

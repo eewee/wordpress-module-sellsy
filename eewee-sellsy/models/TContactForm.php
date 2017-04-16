@@ -86,6 +86,7 @@ if( !class_exists('TContactForm')){
 
                     'contact_form_setting_name'                 => $p['contact_form_setting_name'],
                     'contact_form_setting_add_what'             => $p['contact_form_setting_add_what'],
+                    'contact_form_setting_name_opportunity'     => $p['contact_form_setting_name_opportunity'],
                     'contact_form_setting_opportunity_source'   => $contact_form_setting_opportunity_source,
                     'contact_form_setting_opportunity_pipeline' => $contact_form_setting_opportunity_pipeline,
                     'contact_form_setting_opportunity_step'     => $contact_form_setting_opportunity_step,
@@ -117,6 +118,7 @@ if( !class_exists('TContactForm')){
 
                     '%s',
                     '%d',
+                    '%s',
                     '%d',
                     '%d',
                     '%d',

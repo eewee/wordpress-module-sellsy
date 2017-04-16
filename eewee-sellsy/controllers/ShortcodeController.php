@@ -226,7 +226,11 @@ if( !class_exists('ShortcodeController')){
                 'email'     => '',
                 'tel'       => '',
                 'mobile'    => '',
-                'position'  => ''
+                'position'  => '',
+                'stickyNote'=> ''
+            );
+            $api_opportunity = array(
+                'stickyNote' => ''
             );
             // reCaptcha
             $decode['success'] = false;
@@ -301,16 +305,29 @@ if( !class_exists('ShortcodeController')){
                         $api_third['web'] = esc_url($_POST['contact_form_website']);
                     }
 
+                    // Message on third + setting "prospect"
+                    if (isset($_POST['contact_form_note']) && $contact[0]->contact_form_setting_add_what == 0) {
+                        $api_third['stickyNote'] = esc_textarea($_POST['contact_form_note']);
+                    }
+
                 } else {
                     $api_third['type'] = 'person'; // corporation/person
                     
                     if (isset($_POST['contact_form_contact_lastname'])) {
                         $api_third['name'] = sanitize_text_field($_POST['contact_form_contact_lastname']);
                     }
+
+                    // Message on contact + setting "prospect"
+                    if (isset($_POST['contact_form_note']) && $contact[0]->contact_form_setting_add_what == 0) {
+                        $api_contact['stickyNote'] = esc_textarea($_POST['contact_form_note']);
+                    }
                 }
-                if (isset($_POST['contact_form_note'])) {
-                    $api_third['stickyNote'] = esc_textarea($_POST['contact_form_note']);
+
+                // Message on opportunity + setting "prospect & opportunity"
+                if (isset($_POST['contact_form_note']) && $contact[0]->contact_form_setting_add_what == 1) {
+                    $api_opportunity['stickyNote'] = esc_textarea($_POST['contact_form_note']);
                 }
+
                 $api_third['tags'] = 'wordpress';
 
                 // contact
@@ -359,7 +376,9 @@ if( !class_exists('ShortcodeController')){
 
                     // INIT
                     $tbl_contact = array();
-                    
+
+                    // @todo : create is good, update is better (if exist prospect)
+
                     // INSERT TO SELLSY : prospect
                     $request = array(
                         'method' => 'Prospects.create',
@@ -403,9 +422,10 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             $responseOpp = $t_sellsyOpportunities->create(array(
                                 'linkedid'  => $tbl_contact['linkedid'],
                                 'sourceid'  => $contact[0]->contact_form_setting_opportunity_source,
-                                'name'      => 'website',
+                                'name'      => $contact[0]->contact_form_setting_name_opportunity,
                                 'funnelid'  => $contact[0]->contact_form_setting_opportunity_pipeline,
                                 'stepid'    => $contact[0]->contact_form_setting_opportunity_step,
+                                'stickyNote'=> $api_opportunity['stickyNote']
                             ));
                             // API : success
                             if ($responseOpp->status == 'success') {
@@ -424,9 +444,6 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
 
                             }
                         }
-
-
-                        
 
                         unset($_POST);
                         $api_third = array(

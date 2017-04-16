@@ -99,6 +99,14 @@ if( !class_exists('Form_ContactFormEdit')){
                             </tr>
                             <tr>
                                 <th>
+                                    <?php _e('Name of opportunity', PLUGIN_NOM_LANG); ?> :
+                                </th>
+                                <td>
+                                    <input type="text" name="contact_form_setting_name_opportunity" value="<?php echo $r[0]->contact_form_setting_name_opportunity; ?>" placeholder="<?php _e('Website', PLUGIN_NOM_LANG); ?>" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
                                     <?php _e('Opportunity source', PLUGIN_NOM_LANG); ?> :
                                 </th>
                                 <td>
