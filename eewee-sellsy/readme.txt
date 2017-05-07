@@ -47,6 +47,9 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 
 == Changelog ==
 
+= 1.0.12 =
+* Url http / https
+
 = 1.0.11 =
 * Wording
 

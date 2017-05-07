@@ -157,7 +157,7 @@ if( !class_exists('ShortcodeController')){
                                 $render .= __('A field contains an error.', PLUGIN_NOM_LANG).'<br>';
                                 $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                             } else {
-                                $render .= __('Several fields contain an error', PLUGIN_NOM_LANG).'<br>';
+                                $render .= __('Several fields contain an error.', PLUGIN_NOM_LANG).'<br>';
                                 $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                             }
                         $render .= '
@@ -494,7 +494,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                         $render .= __('A field contains an error.', PLUGIN_NOM_LANG).'<br>';
                         $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                     } else {
-                        $render .= __('Several fields contain an error', PLUGIN_NOM_LANG).'<br>';
+                        $render .= __('Several fields contain an error.', PLUGIN_NOM_LANG).'<br>';
                         $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                     }
                     $render .= '
