@@ -47,6 +47,12 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 
 == Changelog ==
 
+= 1.0.11 =
+* Wording
+
+= 1.0.10 =
+* Fix install
+
 = 1.0.9 =
 * StickyNote on third, contact or opportunity
 * Add setting "name of opportunity"

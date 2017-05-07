@@ -28,6 +28,9 @@ table.table1 th.c{ text-align: center; text-transform: uppercase; /*color: #fff;
 table.table1 td{ padding-right: 10px; }
 table.table1 textarea{ width: 200px; height: 270px; }
 
+/* RECAPTCHA */
+.g-recaptcha{ margin-top:5px; margin-bottom:5px; }
+
 /* DIVERS */
 .f_r{ float: right; }
 .f_l{ float: left; }
@@ -35,3 +38,6 @@ table.table1 textarea{ width: 200px; height: 270px; }
 .eewee-success{ border:1px solid green; }
 .eewee-error{ border:1px solid red; }
 .eewee-required{ color:red; }
+.eewee-success-message{ padding:10px; margin-top:5px; margin-bottom:5px; color:#468847; border:1px solid #468847; background-color:#dff0d8; text-transform:uppercase;
+	text-align:center; }
+.eewee-error-message{ padding:10px; margin-top:5px; margin-bottom:5px; color:#c76d6b; border:1px solid #c76d6b; background-color:#f2dede; text-transform:uppercase; text-align:center; }

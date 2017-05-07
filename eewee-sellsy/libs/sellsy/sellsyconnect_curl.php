@@ -2,8 +2,6 @@
 namespace fr\eewee\eewee_sellsy\libs;
 use fr\eewee\eewee_sellsy\models;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
 class sellsyConnect_curl {
 
     private static $api_url						= "https://apifeed.sellsy.com/0/";

@@ -1,8 +1,6 @@
 <?php
 namespace fr\eewee\eewee_sellsy\libs;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
-
 /**
  * @desc offered dev tools
  */
@@ -64,23 +62,25 @@ class sellsyTools {
 	 * display errors
 	 */
 	public static function showErrors(){
-		if (sellsyTools::storageGet('process_error')){?>
+		if (sellsyTools::storageGet('process_error')){ ?>
 			<div class="alert alert-error">
 				<a class="close" data-dismiss="alert">×</a>
 				<strong>process_error detected in the api response : </strong>
-				<strong>Code</strong> : <? echo sellsyTools::storageGet('process_error')->code ?>
-				<strong>Message</strong> : <? echo sellsyTools::storageGet('process_error')->message ?>
-				<strong>More</strong> : <? echo sellsyTools::storageGet('process_error')->more ?>
+				<strong>Code</strong> : <?php echo sellsyTools::storageGet('process_error')->code ?>
+				<strong>Message</strong> : <?php echo sellsyTools::storageGet('process_error')->message ?>
+				<strong>More</strong> : <?php echo sellsyTools::storageGet('process_error')->more ?>
 			</div> 	
-		<?} 
+		<?php
+		}
 		
-		if (sellsyTools::storageGet('oauth_error')){?>
+		if (sellsyTools::storageGet('oauth_error')){ ?>
 			<div class="alert alert-error">
 				<a class="close" data-dismiss="alert">×</a>
 				<strong>oauth_error detected in the api response : </strong>
-				<strong>Message</strong> : <? echo sellsyTools::storageGet('oauth_error') ?>
+				<strong>Message</strong> : <?php echo sellsyTools::storageGet('oauth_error') ?>
 			</div> 	
-		<?} 
+		<?php
+		}
 		
 		sellsyTools::storageUnset('process_error');
 		sellsyTools::storageUnset('oauth_error');

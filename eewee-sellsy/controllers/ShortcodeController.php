@@ -25,6 +25,7 @@ if( !class_exists('ShortcodeController')){
             $render     = '';
             $error      = array();
             $styleError = 'style="border:1px solid red;"'; // :(
+            $messageForm = '';
             $form_ticket_support_subject    = '';
             $form_ticket_support_email      = '';
             $form_ticket_support_lastname   = '';
@@ -133,7 +134,7 @@ if( !class_exists('ShortcodeController')){
                         $form_ticket_support_email      = '';
                         $form_ticket_support_lastname   = '';
                         $form_ticket_support_message    = '';
-                        echo __('Successful registration.', PLUGIN_NOM_LANG);
+                        $messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).'</div>';
 
                     // API : error
                     } elseif($response->status == 'error') {
@@ -143,28 +144,35 @@ if( !class_exists('ShortcodeController')){
                             'categ'     => 'ticket',
                             'response'  => $response,
                         ));
-                        echo __('Error registration.', PLUGIN_NOM_LANG);
+                        $messageForm = '<div class="eewee-success-message">'.__('Error registration.', PLUGIN_NOM_LANG).'</div>';
 
                     }
 
                 // ERROR : required field(s)
                 } else {
                     $render .= '
-                    <div class="ticket_support ticket_support_'.$ticket[0]->ticket_form_id.'">
+                    <div class="eewee-error-message ticket_support ticket_support_'.$ticket[0]->ticket_form_id.'">
                         <strong>';
                             if (sizeof($error) == 1) {
-                                $render .= __('Required field', PLUGIN_NOM_LANG);
+                                $render .= __('A field contains an error.', PLUGIN_NOM_LANG).'<br>';
+                                $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                             } else {
-                                $render .= __('Required fields', PLUGIN_NOM_LANG);
+                                $render .= __('Several fields contain an error', PLUGIN_NOM_LANG).'<br>';
+                                $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                             }
                         $render .= '
-                         : </strong>'.implode(', ', $error).'.<hr>
+                         : </strong><br>'.implode(', ', $error).'.
                      </div>';
                 }
             }
 
             // FORM (setting = online)
             if( $ticket[0]->ticket_form_status == 0 && !empty($id) ) {
+
+                if (!empty($messageForm)) {
+                    $render .= $messageForm;
+                }
+
                 $render .= '
                 <form method="post" action="" id="form_ticket_support">
                     '.wp_nonce_field("form_nonce_shortcode_ticket_add").'
@@ -211,6 +219,7 @@ if( !class_exists('ShortcodeController')){
             $render     = '';
             $error      = array();
             $styleError = 'style="border:1px solid red;"'; // :(
+            $messageForm = '';
             // form
             $api_third = array(
                 'name'      => '',
@@ -462,7 +471,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'mobile'    => '',
                             'position'  => ''
                         );
-                        echo __('Successful registration.', PLUGIN_NOM_LANG);
+                        $messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).'</div>';
 
                     // API : error
                     } elseif($response->status == 'error') {
@@ -472,28 +481,35 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'categ'     => 'contact',
                             'response'  => $response,
                         ));
-                        echo __('Error registration.', PLUGIN_NOM_LANG);
+                        $messageForm = '<div class="eewee-error-message">'.__('Error registration.', PLUGIN_NOM_LANG).'</div>';
 
                     }
 
                 // ERROR : required field(s)
                 } else {
                     $render .= '
-                    <div class="eewee-contact eewee-contact-'.$contact[0]->contact_form_id.'">
+                    <div class="eewee-error-message eewee-contact eewee-contact-'.$contact[0]->contact_form_id.'">
                         <strong>';
                     if (sizeof($error) == 1) {
-                        $render .= __('Required field', PLUGIN_NOM_LANG);
+                        $render .= __('A field contains an error.', PLUGIN_NOM_LANG).'<br>';
+                        $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                     } else {
-                        $render .= __('Required fields', PLUGIN_NOM_LANG);
+                        $render .= __('Several fields contain an error', PLUGIN_NOM_LANG).'<br>';
+                        $render .= __('Please check and try again', PLUGIN_NOM_LANG);
                     }
                     $render .= '
-                         : </strong>'.implode(', ', $error).'.<hr>
+                         : </strong><br>'.implode(', ', $error).'.
                      </div>';
                 }
             }
 
             // FORM (setting = online)
             if( $contact[0]->contact_form_status == 0 && !empty($id) ) {
+
+                if (!empty($messageForm)) {
+                    $render .= $messageForm;
+                }
+
                 $render .= '
                 <form method="post" action="" id="form_contact">
                     '.wp_nonce_field("form_nonce_shortcode_contact_add");
@@ -577,6 +593,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     $render .= '           
                     <input type="submit" name="btn_contact">
                 </form>';
+
             }
             return $render;
         }
