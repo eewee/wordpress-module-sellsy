@@ -105,6 +105,9 @@ class InstallController{
               `contact_form_note` int(11) NOT NULL,
               
               `contact_form_status` tinyint(1) NOT NULL,
+              
+              `contact_form_custom_fields_quantity` int(11) NOT NULL,
+              `contact_form_custom_fields_value` text NOT NULL,
               PRIMARY KEY (`contact_form_id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
             ";
@@ -134,7 +137,7 @@ class InstallController{
 
         for( $i=1; $i<=25; $i++ ){
             $sql[] = "
-                INSERT INTO `" . EEWEE_SELLSY_PREFIXE_BDD . "contact_form` VALUES (".$i.", '" . current_time('mysql') . "', '" . current_time('mysql') . "', 'Contact ".$i."', '0', 'Website form ".$i."', '0', '0', '0', '" . get_bloginfo('admin_email') . "', '1', '1', '1', '1', '0', '0', '0', '1', '1', '1', '0', '0', '0');
+                INSERT INTO `" . EEWEE_SELLSY_PREFIXE_BDD . "contact_form` VALUES (".$i.", '" . current_time('mysql') . "', '" . current_time('mysql') . "', 'Contact ".$i."', '0', 'Website form ".$i."', '0', '0', '0', '" . get_bloginfo('admin_email') . "', '1', '1', '1', '1', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '');
 		    ";
         }
 

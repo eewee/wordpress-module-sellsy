@@ -1,0 +1,7 @@
+[] BO - check useOn_prospect='Y', useOn_ticket='Y', min, max
+
+[] BO - add cf
+
+[] BO - setting tracking (Y/N)
+[x] BO - add tracking (cookie)
+[x] BO - validate form (save tracking) + clean cookie

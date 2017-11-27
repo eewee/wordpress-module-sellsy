@@ -26,6 +26,14 @@ if( !class_exists('AdminController')){
         {
 
         }
+
+        /**
+         * execute during update plugin
+         */
+//        function eewee_update()
+//        {
+//
+//        }
                 
         /**
 		 * execute lors de la désinstallation du plugin

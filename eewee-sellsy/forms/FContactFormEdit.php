@@ -453,6 +453,69 @@ if( !class_exists('Form_ContactFormEdit')){
                                 </td>
                             </tr>
 
+
+
+
+                            <?php
+                            //------------------------------------------------------------------------------------------
+                            // CUSTOM FIELDS
+                            //------------------------------------------------------------------------------------------
+                            ?>
+                            <tr>
+                                <th colspan="2">
+                                    <div class="title1"><?php _e('Custom fields', PLUGIN_NOM_LANG); ?></div>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php _e('Quantity custom fields', PLUGIN_NOM_LANG); ?> :
+                                </th>
+                                <td>
+                                    <?php
+                                    $qtyCf = 0;
+                                    if (isset($r[0]->contact_form_custom_fields_quantity) && !empty(isset($r[0]->contact_form_custom_fields_quantity))) {
+                                        $qtyCf = $r[0]->contact_form_custom_fields_quantity;
+                                    }
+                                    echo '<input type="text" name="contact_form_custom_fields_quantity" value="'.$qtyCf.'">';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+
+                                </th>
+                                <td>
+                                    <?php
+                                    // Model : get cf
+                                    $t_customFields       = new models\TSellsyCustomFields();
+                                    $responseCustomFields = $t_customFields->getCustomFields();
+
+                                    // Exist (cf in db)
+                                    if (isset($r[0]->contact_form_custom_fields_value) && !empty($r[0]->contact_form_custom_fields_value)) {
+                                        $cfVal = json_decode($r[0]->contact_form_custom_fields_value); // cfid
+                                    } else {
+                                        $cfVal = '';
+                                    }
+
+                                    // CF Value
+                                    foreach ($cfVal as $k=>$v) {
+                                        $tbl_value[$k] = $v;
+                                    }
+
+                                    // Form : select
+                                    for ($i=0; $i<$qtyCf; $i++) {
+                                        helpers\FormHelpers::getCustomFields(array(
+                                            'echo'                  => true,
+                                            'form_name'             => 'contact_form_custom_fields_value_'.$i,
+                                            'form_value'            => $tbl_value[$i],          // cf all
+                                            'responseCustomFields'  => $responseCustomFields,   // use for display cf all
+                                            'useOn_x'               => $r[0]->contact_form_setting_add_what,
+                                        ));
+                                    }
+                                    ?>
+                                </td>
+                            </tr>
+
                         </table>
 
                         <p>* : <?php _e('required', PLUGIN_NOM_LANG); ?></p>

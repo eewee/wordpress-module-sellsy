@@ -42,9 +42,11 @@ if (isset($_POST['update']) && $_POST['update']) {
         $contact_form_setting_opportunity_source    = (int)$_POST['contact_form_setting_opportunity_source'];
         $contact_form_setting_opportunity_pipeline  = (int)$_POST['contact_form_setting_opportunity_pipeline'];
         $contact_form_setting_opportunity_step      = (int)$_POST['contact_form_setting_opportunity_step'];
+        $contact_form_custom_fields_quantity        = (int)$_POST['contact_form_custom_fields_quantity'];
         if (empty($contact_form_setting_opportunity_source)) { unset($_POST['contact_form_setting_opportunity_source']); }
         if (empty($contact_form_setting_opportunity_pipeline)) { unset($_POST['contact_form_setting_opportunity_pipeline']); }
         if (empty($contact_form_setting_opportunity_step)) { unset($_POST['contact_form_setting_opportunity_step']); }
+        if (empty($contact_form_custom_fields_quantity)) { unset($_POST['contact_form_custom_fields_quantity']); }
 
         // UPDATE
         $t_contact_form = new models\TContactForm();

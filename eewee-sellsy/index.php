@@ -3,7 +3,7 @@
 Plugin Name: Eewee Sellsy
 Plugin URI: http://www.eewee.fr
 Description: Simple form for : add support ticket to Sellsy, add prospect to Sellsy.
-Version: 1.0.12
+Version: 1.0.13
 Author: Michael DUMONTET
 Author URI: http://www.eewee.fr/wordpress/
 License: GPLv2 or later
@@ -18,7 +18,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @since 1.0.0
  */
 global $wpdb;
-define( 'EEWEE_VERSION', '1.0.12' );
+define( 'EEWEE_VERSION', '1.0.13' );
 define( 'EEWEE_SELLSY_PLUGIN_DIR', 		WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'EEWEE_SELLSY_PLUGIN_URL', 		WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
 define( 'EEWEE_SELLSY_PREFIXE_BDD',		$wpdb->prefix.'eewee_sellsy_');
@@ -56,6 +56,7 @@ function ajouterScriptsEeweeSellsy(){
             wp_localize_script( PLUGIN_NOM_LANG.'-ajax-script-js', 'ajax_object', $tbl_data );
         }
     }
+    wp_enqueue_script( PLUGIN_NOM_LANG.'-js', plugins_url('eewee-sellsy/js/front.js'), array('jquery'));
 }
 add_action( 'init', 'ajouterScriptsEeweeSellsy' );
 
@@ -77,6 +78,8 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TContactForm.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TError.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyStaffs.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyOpportunities.php' );
+require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyCustomFields.php' );
+require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyTracking.php' );
 
 // HELPERS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/FormHelper.php' );
@@ -88,11 +91,13 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FTicketFormAdd.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FContactFormEdit.php' );
 
 // CONTROLLERS
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/CookieController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AjaxController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/InstallController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ToolsController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ShortcodeController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AdminController.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/SellsyCustomFieldsController.php' );
 
 use fr\eewee\eewee_sellsy\controllers;
 
@@ -100,11 +105,21 @@ $s = new controllers\ShortcodeController();
 $a = new controllers\AjaxController();
 
 /**
- * Instantiate Classe
+ * Instantiate Class
  *
  * @since 1.0.0
  */
 $adminController = new controllers\AdminController();
+
+/**
+ * Instantiate Class
+ *
+ * @since 1.0.0
+ */
+if (!is_admin()) {
+    $cookieController = new controllers\CookieController();
+    $cookieController->exec();
+}
 
 /**
  * Wordpress Activate/Deactivate

@@ -24,7 +24,8 @@ if( !class_exists('ShortcodeController')){
             $id         = '';
             $render     = '';
             $error      = array();
-            $styleError = 'style="border:1px solid red;"'; // :(
+            $classError = 'border-error';
+            $decode     = array("success"=>false);
             $messageForm = '';
             $form_ticket_support_subject    = '';
             $form_ticket_support_email      = '';
@@ -77,19 +78,19 @@ if( !class_exists('ShortcodeController')){
                 // REQUIRED
                 if (empty($form_ticket_support_email)) {
                     $error[] = __('email', PLUGIN_NOM_LANG);
-                    $class_ticket_support_email = $styleError;
+                    $class_ticket_support_email = $classError;
                 }
                 if (empty($form_ticket_support_lastname)) {
                     $error[] = __('name', PLUGIN_NOM_LANG);
-                    $class_ticket_support_name = $styleError;
+                    $class_ticket_support_name = $classError;
                 }
                 if (empty($form_ticket_support_message)) {
                     $error[] = __('message', PLUGIN_NOM_LANG);
-                    $class_ticket_support_message = $styleError;
+                    $class_ticket_support_message = $classError;
                 }
                 if ($reCaptchaOkOrNot === false && $setting[0]->setting_recaptcha_key_status == 0) {
                     $error[] = __('reCAPTCHA', PLUGIN_NOM_LANG);
-                    $class_ticket_support_recaptcha = $styleError;
+                    $class_ticket_support_recaptcha = $classError;
                 }
 
                 // OK
@@ -181,13 +182,16 @@ if( !class_exists('ShortcodeController')){
                     <input type="text" name="form_ticket_support_subject" value="'.$form_ticket_support_subject.'" id="form_ticket_support_subject">  
                     
                     <label>'.__('Email', PLUGIN_NOM_LANG).' *</label>
-                    <input type="email" name="form_ticket_support_email" value="'.$form_ticket_support_email.'" id="form_ticket_support_email" '.$class_ticket_support_email.'>
+                    <input type="email" name="form_ticket_support_email" value="'.$form_ticket_support_email.'" id="form_ticket_support_email" class=
+                     "'.$class_ticket_support_email.'">
                     
                     <label>'.__('Name', PLUGIN_NOM_LANG).' *</label>
-                    <input type="text" name="form_ticket_support_lastname" value="'.$form_ticket_support_lastname.'" id="form_ticket_support_lastname" '.$class_ticket_support_name.'>  
+                    <input type="text" name="form_ticket_support_lastname" value="'.$form_ticket_support_lastname.'" id="form_ticket_support_lastname" class=
+                     "'.$class_ticket_support_name.'">  
                     
                     <label>'.__('Message', PLUGIN_NOM_LANG).' *</label>
-                    <textarea name="form_ticket_support_message" id="form_ticket_support_message" '.$class_ticket_support_message.'>'.$form_ticket_support_message.'</textarea>';
+                    <textarea name="form_ticket_support_message" id="form_ticket_support_message" class=
+                     "'.$class_ticket_support_message.'">'.$form_ticket_support_message.'</textarea>';
 
                     // reCaptcha : cle du site
                     if (
@@ -196,7 +200,8 @@ if( !class_exists('ShortcodeController')){
                         !empty($setting[0]->setting_recaptcha_key_secret)
                     ) {
                         $render .= '
-                        <div class="g-recaptcha" data-sitekey="'.$setting[0]->setting_recaptcha_key_website.'" '.$class_ticket_support_recaptcha.'></div>';
+                        <div class="g-recaptcha" data-sitekey="'.$setting[0]->setting_recaptcha_key_website.'" class=
+                     "'.$class_ticket_support_recaptcha.'"></div>';
                     }
 
                     $render .= '
@@ -214,11 +219,12 @@ if( !class_exists('ShortcodeController')){
          * @param array $atts
          */
         public function contactSellsy( $atts='' )  {
+
             // INIT
             $id         = '';
             $render     = '';
             $error      = array();
-            $styleError = 'style="border:1px solid red;"'; // :(
+            $classError = 'border-error';
             $messageForm = '';
             // form
             $api_third = array(
@@ -321,7 +327,7 @@ if( !class_exists('ShortcodeController')){
 
                 } else {
                     $api_third['type'] = 'person'; // corporation/person
-                    
+
                     if (isset($_POST['contact_form_contact_lastname'])) {
                         $api_third['name'] = sanitize_text_field($_POST['contact_form_contact_lastname']);
                     }
@@ -365,15 +371,15 @@ if( !class_exists('ShortcodeController')){
                 // REQUIRED
                 if (empty($api_contact['name'])) {
                     $error[] = __('lastname', PLUGIN_NOM_LANG);
-                    $tbl_class['class_contact_form_contact_lastname'] = $styleError.' required';
+                    $tbl_class['class_contact_form_contact_lastname'] = $classError;
                 }
                 if (empty($api_contact['email'])) {
                     $error[] = __('email', PLUGIN_NOM_LANG);
-                    $tbl_class['class_contact_form_contact_email'] = $styleError.' required';
+                    $tbl_class['class_contact_form_contact_email'] = $classError;
                 }
                 if ($reCaptchaOkOrNot === false && $setting[0]->setting_recaptcha_key_status == 0) {
                     $error[] = __('reCAPTCHA', PLUGIN_NOM_LANG);
-                    $class_ticket_support_recaptcha = $styleError;
+                    $class_ticket_support_recaptcha = $classError;
                 }
 
 
@@ -439,7 +445,21 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             // API : success
                             if ($responseOpp->status == 'success') {
 
-                                // ...
+                                // CREATE TRACKING
+                                // get
+                                $c = new CookieController();
+                                $cDatas = $c->datasForTracking();
+                                // save
+                                $t = new models\TSellsyTracking();
+                                $t->record(array(
+                                    'thirdid' => $tbl_contact['linkedid'],
+                                    'datas' => $cDatas,
+                                ));
+                                // clean (for next page load). Why : cookie not change in shortcode
+                                echo '
+                                <script type="text/javascript">
+                                    localStorage.setItem("cookieClean", "y");
+                                </script>';
 
                             // API : error
                             } elseif($responseOpp->status == 'error') {
@@ -472,6 +492,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'position'  => ''
                         );
                         $messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).'</div>';
+                        //$messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).' - linkedid:'.$tbl_contact['linkedid'].' - <pre>'.var_export($cDatas, true).'</pre> - '.$responseOpp->status.'</div>';
 
                     // API : error
                     } elseif($response->status == 'error') {
@@ -503,6 +524,9 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                 }
             }
 
+
+
+
             // FORM (setting = online)
             if( $contact[0]->contact_form_status == 0 && !empty($id) ) {
 
@@ -518,67 +542,88 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     if ($contact[0]->contact_form_company_name == 0) {
                         $render .= '
                         <label>'.__('Company name', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_company_name" value="'.$api_third['name'].'" id="contact_form_company_name">';
+                        <input type="text" name="contact_form_company_name" value="'.$api_third['name'].'" id="contact_form_company_name" class="'.$tbl_class['class_contact_form_contact_name'].'">';
                     }
                     if ($contact[0]->contact_form_company_siren == 0) {
                         $render .= '
                         <label>'.__('Siren', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_company_siren" value="'.$api_third['siren'].'" id="contact_form_company_siren">';
+                        <input type="text" name="contact_form_company_siren" value="'.$api_third['siren'].'" id="contact_form_company_siren" class="'.$tbl_class['class_contact_form_contact_siren'].'">';
                     }
                     if ($contact[0]->contact_form_company_siret == 0) {
                         $render .= '
                         <label>'.__('Siret', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_company_siret" value="'.$api_third['siret'].'" id="contact_form_company_siret">';
+                        <input type="text" name="contact_form_company_siret" value="'.$api_third['siret'].'" id="contact_form_company_siret" class="'.$tbl_class['class_contact_form_contact_siret'].'">';
                     }
                     if ($contact[0]->contact_form_company_rcs == 0) {
                         $render .= '
                         <label>'.__('RCS', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_company_rcs" value="'.$api_third['rcs'].'" id="contact_form_company_rcs">';
+                        <input type="text" name="contact_form_company_rcs" value="'.$api_third['rcs'].'" id="contact_form_company_rcs" class="'.$tbl_class['class_contact_form_contact_rcs'].'">';
                     }
 
                     // CONTACT
                     if ($contact[0]->contact_form_contact_lastname == 0) {
                         $render .= '
                         <label>'.__('Lastname', PLUGIN_NOM_LANG).' *</label>
-                        <input type="text" name="contact_form_contact_lastname" value="'.$api_contact['name'].'" id="contact_form_contact_lastname" '.$tbl_class['class_contact_form_contact_lastname'].'>';
+                        <input type="text" name="contact_form_contact_lastname" value="'.$api_contact['name'].'" id="contact_form_contact_lastname" class="'.$tbl_class['class_contact_form_contact_lastname'].'" required>';
                     }
                     if ($contact[0]->contact_form_contact_firstname == 0) {
                         $render .= '
                         <label>'.__('Firstname', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_contact_firstname" value="'.$api_contact['forename'].'" id="contact_form_contact_firstname">';
+                        <input type="text" name="contact_form_contact_firstname" value="'.$api_contact['forename'].'" id="contact_form_contact_firstname" class="'.$tbl_class['class_contact_form_contact_firstname'].'">';
                     }
                     if ($contact[0]->contact_form_contact_email == 0) {
                         $render .= '
                         <label>'.__('Email', PLUGIN_NOM_LANG).' *</label>
-                        <input type="email" name="contact_form_contact_email" value="'.$api_contact['email'].'" id="contact_form_contact_email" '.$tbl_class['class_contact_form_contact_email'].'>';
+                        <input type="email" name="contact_form_contact_email" value="'.$api_contact['email'].'" id="contact_form_contact_email" class="'.$tbl_class['class_contact_form_contact_email'].'" required>';
                     }
                     if ($contact[0]->contact_form_contact_phone_1 == 0) {
                         $render .= '
                         <label>'.__('Phone', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_contact_phone_1" value="'.$api_contact['tel'].'" id="contact_form_contact_phone_1">';
+                        <input type="text" name="contact_form_contact_phone_1" value="'.$api_contact['tel'].'" id="contact_form_contact_phone_1" class="'.$tbl_class['class_contact_form_contact_phone_1'].'">';
                     }
                     if ($contact[0]->contact_form_contact_phone_2 == 0) {
                         $render .= '
                         <label>'.__('Mobile', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_contact_phone_2" value="'.$api_contact['mobile'].'" id="contact_form_contact_phone_2">';
+                        <input type="text" name="contact_form_contact_phone_2" value="'.$api_contact['mobile'].'" id="contact_form_contact_phone_2" class="'.$tbl_class['class_contact_form_contact_phone_2'].'">';
                     }
                     if ($contact[0]->contact_form_contact_function == 0) {
                         $render .= '
                         <label>'.__('Function', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_contact_function" value="'.$api_contact['position'].'" id="contact_form_contact_function">';
+                        <input type="text" name="contact_form_contact_function" value="'.$api_contact['position'].'" id="contact_form_contact_function" class="'.$tbl_class['class_contact_form_contact_function'].'">';
                     }
 
                     // OTHER
                     if ($contact[0]->contact_form_website == 0) {
                         $render .= '
                         <label>'.__('website', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_website" value="'.$api_third['web'].'" id="contact_form_website">';
+                        <input type="text" name="contact_form_website" value="'.$api_third['web'].'" id="contact_form_website" class="'.$tbl_class['class_contact_form_website'].'">';
                     }
                     if ($contact[0]->contact_form_note == 0) {
                         $render .= '
                         <label>'.__('Message', PLUGIN_NOM_LANG).'</label>
-                        <textarea name="contact_form_note" id="contact_form_note">'.$api_third['stickyNote'].'</textarea>';
+                        <textarea name="contact_form_note" id="contact_form_note" class="'.$tbl_class['class_contact_form_note'].'">'.$api_third['stickyNote'].'</textarea>';
                     }
+                    
+                    // CUSTOM FIELD
+                    // models
+                    $t_contactForm  = new models\TContactForm();
+                    $contact        = $t_contactForm->getContactForm($id);
+                    $t_customFields = new models\TSellsyCustomFields();
+                    $c_customFields = new SellsyCustomFieldsController();
+
+                    // init
+                    $contact_form_custom_fields_value = json_decode($contact[0]->contact_form_custom_fields_value);
+                    $cf = '';
+
+                    // cf all
+                    foreach ($contact_form_custom_fields_value as $k=>$v) {
+                        $cf = $t_customFields->getOne(array('id'=>$v));
+                        if ($cf->response->status == 'ok') {
+                            $render .= $c_customFields->getGenerator($cf->response);
+                        }
+                    }
+                    
+                    
 
                     // reCaptcha : cle du site
                     if (
@@ -587,7 +632,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                         !empty($setting[0]->setting_recaptcha_key_secret)
                     ) {
                         $render .= '
-                            <div class="g-recaptcha" data-sitekey="'.$setting[0]->setting_recaptcha_key_website.'" '.$class_ticket_support_recaptcha.'></div>';
+                        <div class="g-recaptcha" data-sitekey="'.$setting[0]->setting_recaptcha_key_website.'" '.$class_ticket_support_recaptcha.'></div>';
                     }
 
                     $render .= '           
