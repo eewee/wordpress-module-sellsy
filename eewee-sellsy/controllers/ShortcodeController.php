@@ -385,6 +385,37 @@ if( !class_exists('ShortcodeController')){
 
 
 
+                // CF
+                if (isset($_POST['form_cf'])) {
+                    foreach ($_POST['form_cf'] as $k=>$v) {
+
+                        // CF : SIMPLETEXT
+                        if (isset($v['simpletext'])) {
+
+                            // DATAS
+                            $d['api']['id'] = $k;
+                            $d['api']['label'] = $v['simpletext']['name'];
+                            $d['api']['default'] = $v['simpletext']['default'];
+                            $d['api']['min'] = $v['simpletext']['min'];
+                            $d['api']['max'] = $v['simpletext']['max'];
+                            $d['api']['useOne_prospect'] = $v['simpletext']['useOn_prospect'];
+                            $d['api']['useOne_opportunity'] = $v['simpletext']['useOn_opportunity'];
+                            $d['form']['value'] = $v['simpletext']['value'];
+
+                            // PROCESSING
+                            $cf_obj     = new SellsyCustomFieldsController();
+                            $checkCf    = $cf_obj->checkSimpleText($d);
+
+                            if (isset($checkCf[0]) && $checkCf[0] == "error") {
+                                $error[] = $d['api']['label'].' ('.$checkCf[1].')';
+                                $tbl_class[$d['api']['id']] = $classError;
+                            }
+                        }
+                    }
+                }
+
+
+
 
                 // OK
                 if (empty($error)) {
@@ -415,6 +446,32 @@ if( !class_exists('ShortcodeController')){
                     // API : success
                     if ($response->status == 'success') {
 
+                        // INSERT TO SELLSY : CF Prospect
+                        $cfSave = new SellsyCustomFieldsController();
+                        $cfSave->dataProcessing($_POST, array("id"=>$linkedid,"type"=>"prospect"));
+
+
+
+
+                        // INSERT TO SELLSY : TRACKING
+                        // get
+                        $c = new CookieController();
+                        $cDatas = $c->datasForTracking();
+                        // save
+                        $t = new models\TSellsyTracking();
+                        $t->record(array(
+                            'thirdid' => $tbl_contact['linkedid'],
+                            'datas'   => $cDatas,
+                        ));
+                        // clean (for next page load). Why : cookie not change in shortcode
+                        echo '
+                        <script type="text/javascript">
+                            localStorage.setItem("cookieClean", "y");
+                        </script>';
+
+
+
+
                         // NOTIFICATION EMAIL
                         if (isset($contact[0]->contact_form_setting_notification_email)) {
                             wp_mail(
@@ -432,7 +489,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
 
                         // OPTION SELECTED : prospect and opportunity
                         if ($contact[0]->contact_form_setting_add_what == 1 && isset($tbl_contact['linkedid'])) {
-                            // CREATE OPPORTUNITY
+                            // INSERT TO SELLSY : OPPORTUNITY
                             $t_sellsyOpportunities = new models\TSellsyOpportunities();
                             $responseOpp = $t_sellsyOpportunities->create(array(
                                 'linkedid'  => $tbl_contact['linkedid'],
@@ -445,21 +502,9 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             // API : success
                             if ($responseOpp->status == 'success') {
 
-                                // CREATE TRACKING
-                                // get
-                                $c = new CookieController();
-                                $cDatas = $c->datasForTracking();
-                                // save
-                                $t = new models\TSellsyTracking();
-                                $t->record(array(
-                                    'thirdid' => $tbl_contact['linkedid'],
-                                    'datas' => $cDatas,
-                                ));
-                                // clean (for next page load). Why : cookie not change in shortcode
-                                echo '
-                                <script type="text/javascript">
-                                    localStorage.setItem("cookieClean", "y");
-                                </script>';
+                                // INSERT TO SELLSY : CF Opportunity
+                                $cfSave = new SellsyCustomFieldsController();
+                                $cfSave->dataProcessing($_POST, array("id"=>$responseOpp->response,"type"=>"opportunity"));
 
                             // API : error
                             } elseif($responseOpp->status == 'error') {
@@ -511,15 +556,15 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     $render .= '
                     <div class="eewee-error-message eewee-contact eewee-contact-'.$contact[0]->contact_form_id.'">
                         <strong>';
-                    if (sizeof($error) == 1) {
-                        $render .= __('A field contains an error.', PLUGIN_NOM_LANG).'<br>';
-                        $render .= __('Please check and try again', PLUGIN_NOM_LANG);
-                    } else {
-                        $render .= __('Several fields contain an error.', PLUGIN_NOM_LANG).'<br>';
-                        $render .= __('Please check and try again', PLUGIN_NOM_LANG);
-                    }
-                    $render .= '
-                         : </strong><br>'.implode(', ', $error).'.
+                        if (sizeof($error) == 1) {
+                            $render .= __('A field contains an error.', PLUGIN_NOM_LANG).'<br>';
+                            $render .= __('Please check and try again', PLUGIN_NOM_LANG);
+                        } else {
+                            $render .= __('Several fields contain an error.', PLUGIN_NOM_LANG).'<br>';
+                            $render .= __('Please check and try again', PLUGIN_NOM_LANG);
+                        }
+                        $render .= '
+                         : </strong><br><ul><li>'.implode('</li><li>', $error).'</li></ul>
                      </div>';
                 }
             }
@@ -619,7 +664,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     foreach ($contact_form_custom_fields_value as $k=>$v) {
                         $cf = $t_customFields->getOne(array('id'=>$v));
                         if ($cf->response->status == 'ok') {
-                            $render .= $c_customFields->getGenerator($cf->response);
+                            $render .= $c_customFields->getGenerator($cf->response, $tbl_class);
                         }
                     }
                     

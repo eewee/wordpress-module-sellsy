@@ -47,6 +47,9 @@ Create a multitude of forms to manage your prospecting. The validation of the fo
 
 == Changelog ==
 
+= 1.0.14 =
+* Add CF SimpleText
+
 = 1.0.13 =
 * Add tracking
 

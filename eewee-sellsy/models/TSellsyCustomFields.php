@@ -25,10 +25,9 @@ if( !class_exists('TSellsyCustomFields')){
                         'nbperpage' => 5000,
                         //'pagenum'   => '',
                     ),
-                    //'search'    => array(
-                    //    'useOn_prospect'     => 'Y',
-                    //    'useOn_opportunity'  => 'Y',
-                    //)
+                    'search'    => array(
+                        'useOn' => array('opportunity', 'prospect')
+                    )
                 )
             );
             
@@ -56,6 +55,33 @@ if( !class_exists('TSellsyCustomFields')){
                 'method' => 'CustomFields.getOne',
                 'params' => array(
                     'id' => $id,
+                )
+            );
+
+            $response = libs\sellsyconnect_curl::load()->requestApi($request);
+            if ($response->error) {
+                $t_error = new TError();
+                $t_error->add(array(
+                    'categ'     => 'customfields',
+                    'response'  => $response,
+                ));
+                return false;
+            }
+            return $response;
+        }
+
+        /**
+         * Add CF
+         * @param $d $d['linkedtype'], $d['linkedid'], $d['datas']
+         */
+        public function recordValues($d)
+        {
+            $request = array(
+                'method' => 'CustomFields.recordValues',
+                'params' => array(
+                    'linkedtype'    => $d['linkedtype'],
+                    'linkedid'      => $d['linkedid'],
+                    'values'        => $d['datas']
                 )
             );
 
