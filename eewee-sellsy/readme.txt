@@ -14,8 +14,14 @@ Generate ticket support form et simple form
 = Generate ticket support form (add ticket support in Sellsy) =
 Create a multitude of forms for managing your support tickets. The form contains the following fields: Subject, E-mail, Name and Message.
 
-= Generate simple form (add prospect in Sellsy) =
-Create a multitude of forms to manage your prospecting. The validation of the form will create a prospect on Sellsy and optionally an opportunity.
+= Generate simple form (add prospect/opportunity in Sellsy) =
+Create a multitude of forms to manage your prospecting.
+The validation of the form will create a prospect on Sellsy and optionally an opportunity.
+(You can use the Sellsy custom fields, such as "simple text", ...)
+
+= Tracking =
+Saves the different pages visited by your prospect.
+Then when validating the prospecting / opportunity form, you can view these pages on Sellsy.
 
 * Question : [eewee.fr](http://www.eewee.fr).
 * See the [Changelog](http://wordpress.org/extend/plugins/eewee-sellsy/changelog/) for what's new.
