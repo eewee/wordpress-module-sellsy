@@ -644,9 +644,20 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                         <input type="text" name="contact_form_website" value="'.$api_third['web'].'" id="contact_form_website" class="'.$tbl_class['class_contact_form_website'].'">';
                     }
                     if ($contact[0]->contact_form_note == 0) {
+
+                        if (isset($api_third['stickyNote']) && !empty($api_third['stickyNote'])) {
+                            $contact_form_note = $api_third['stickyNote'];
+                        } elseif (isset($api_contact['stickyNote']) && !empty($api_contact['stickyNote'])) {
+                            $contact_form_note = $api_contact['stickyNote'];
+                        } elseif (isset($api_opportunity['stickyNote']) && !empty($api_opportunity['stickyNote'])) {
+                            $contact_form_note = $api_opportunity['stickyNote'];
+                        } else {
+                            $contact_form_note = "";
+                        }
+
                         $render .= '
                         <label>'.__('Message', PLUGIN_NOM_LANG).'</label>
-                        <textarea name="contact_form_note" id="contact_form_note" class="'.$tbl_class['class_contact_form_note'].'">'.$api_third['stickyNote'].'</textarea>';
+                        <textarea name="contact_form_note" id="contact_form_note" class="'.$tbl_class['class_contact_form_note'].'">'.$contact_form_note.'</textarea>';
                     }
                     
                     // CUSTOM FIELD

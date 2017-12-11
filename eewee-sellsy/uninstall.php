@@ -5,6 +5,7 @@ if (!defined('WP_UNINSTALL_PLUGIN')) {
 }
 
 global $wpdb;
+$sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_version`";
 $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_setting`";
 $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_ticket`";
 $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_ticket_form`";

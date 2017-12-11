@@ -1,6 +1,6 @@
 [] BO - check useOn_prospect='Y', useOn_ticket='Y', min, max
 
-[] BO - add cf
+[x] BO - add cf simpletext
 
 [] BO - setting tracking (Y/N)
 [x] BO - add tracking (cookie)

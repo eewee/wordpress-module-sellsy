@@ -53,6 +53,9 @@ Then when validating the prospecting / opportunity form, you can view these page
 
 == Changelog ==
 
+= 1.1 =
+* Create table version
+
 = 1.0.14 =
 * Add CF SimpleText
 

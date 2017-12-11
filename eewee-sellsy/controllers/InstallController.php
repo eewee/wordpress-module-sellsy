@@ -18,6 +18,15 @@ class InstallController{
         // - https://codex.wordpress.org/Function_Reference/current_time
         // - echo current_time( 'mysql', 1 ).'<br>'; // 0: GMT+1, 1: GMT+0
 
+        // BO - VERSION
+        $sql[] = "
+            CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."version` (
+              `version_id` int(11) NOT NULL AUTO_INCREMENT,
+              `version_value` float(11) NOT NULL,
+              PRIMARY KEY (`version_id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+            ";
+
         // BO - SETTING
         $sql[] = "
             CREATE TABLE `".EEWEE_SELLSY_PREFIXE_BDD."setting` (
@@ -128,6 +137,10 @@ class InstallController{
             ";
 
         $sql[] = "
+			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."version` VALUES (1, '".EEWEE_VERSION."');
+			";
+
+        $sql[] = "
 			INSERT INTO `".EEWEE_SELLSY_PREFIXE_BDD."setting` VALUES (1, '".current_time('mysql')."', '".current_time('mysql')."', '', '', '', '', '', '', '');
 			";
 
@@ -149,8 +162,8 @@ class InstallController{
      * @deprecated use uninstall.php
      */
     public function delete(){
-        //echo "DELETE PLUGIN<br>";
         global $wpdb;
+        $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."version`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."setting`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."ticket_form`";
