@@ -24,7 +24,7 @@ Saves the different pages visited by your prospect.
 Then when validating the prospecting / opportunity form, you can view these pages on Sellsy.
 
 * Question : [eewee.fr](http://www.eewee.fr).
-* See the [Changelog](http://wordpress.org/extend/plugins/eewee-sellsy/changelog/) for what's new.
+* See the [Changelog](https://wordpress.org/plugins/eewee-sellsy/#developers) for what's new.
 * Other [WordPress Plugins](https://www.eewee.fr/developpement-cms/wordpress/plugins/).
 * Follow Eewee on [Facebook](https://www.facebook.com/eeweefr) & [Twitter](https://www.twitter.com/michaeldumontet).
 
@@ -54,7 +54,7 @@ Then when validating the prospecting / opportunity form, you can view these page
 == Changelog ==
 
 = 1.1 =
-* Create table version
+* Create table version and update version auto
 
 = 1.0.14 =
 * Add CF SimpleText

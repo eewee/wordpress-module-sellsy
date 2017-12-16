@@ -15,7 +15,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 /**
  * Definitions
  *
- * @since 1.0.0
+ * @since 1.0
  */
 global $wpdb;
 define( 'EEWEE_VERSION', '1.1' );
@@ -34,7 +34,7 @@ load_plugin_textdomain(PLUGIN_NOM_LANG, false, dirname( plugin_basename( __FILE_
 /**
  * Required CSS / JS
  *
- * @since 1.0.0
+ * @since 1.0
  */
 function ajouterScriptsEeweeSellsy(){
 	// CSS
@@ -63,7 +63,7 @@ add_action( 'init', 'ajouterScriptsEeweeSellsy' );
 /**
  * Required Files
  *
- * @since 1.0.0
+ * @since 1.0
  */
 // LIBS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/libs/sellsy/sellsytools.php' );
@@ -83,6 +83,7 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyTracking.php' );
 
 // HELPERS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/FormHelper.php' );
+require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/dbUpdate.php' );
 
 // FORMS
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FSettingEdit.php' );
@@ -100,21 +101,29 @@ require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AdminController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/SellsyCustomFieldsController.php' );
 
 use fr\eewee\eewee_sellsy\controllers;
+use fr\eewee\eewee_sellsy\helpers;
 
 $s = new controllers\ShortcodeController();
 $a = new controllers\AjaxController();
 
+// UPDATE DB
+if (is_admin()) {
+    $dbUpdate = new helpers\DbUpdate();
+    $dbVersion = $dbUpdate->getVersion();
+    if (EEWEE_VERSION > $dbVersion) { $dbUpdate->updateDb($dbVersion); }
+}
+
 /**
  * Instantiate Class
  *
- * @since 1.0.0
+ * @since 1.0
  */
 $adminController = new controllers\AdminController();
 
 /**
  * Instantiate Class
  *
- * @since 1.0.0
+ * @since 1.0
  */
 if (!is_admin()) {
     $cookieController = new controllers\CookieController();
@@ -128,7 +137,7 @@ if (!is_admin()) {
  * @uses register_deactivation_hook()
  * @uses register_uninstall_hook()
  *
- * @since 1.0.0
+ * @since 1.0
  */
 register_activation_hook( __FILE__, array( $adminController, 'eewee_activate' ) );
 register_deactivation_hook( __FILE__, array( $adminController, 'eewee_deactivate' ) );
@@ -139,7 +148,7 @@ register_deactivation_hook( __FILE__, array( $adminController, 'eewee_deactivate
  *
  * @uses add_action()
  *
- * @since 1.0.0
+ * @since 1.0
  */
 add_action( 'admin_menu', array( $adminController, 'eewee_adminMenu' ) );
 

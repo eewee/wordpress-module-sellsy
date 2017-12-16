@@ -526,7 +526,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'siret'     => '',
                             'rcs'       => '',
                             'web'       => '',
-                            'stickyNote'=> ''
+                            'stickyNote'=> '',
                         );
                         $api_contact = array(
                             'name'      => '',
@@ -534,8 +534,13 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'email'     => '',
                             'tel'       => '',
                             'mobile'    => '',
-                            'position'  => ''
+                            'position'  => '',
+                            'stickyNote'=> '',
                         );
+                        $api_opportunity = array(
+                            'stickyNote'=> '',
+                        );
+
                         $messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).'</div>';
                         //$messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).' - linkedid:'.$tbl_contact['linkedid'].' - <pre>'.var_export($cDatas, true).'</pre> - '.$responseOpp->status.'</div>';
 
