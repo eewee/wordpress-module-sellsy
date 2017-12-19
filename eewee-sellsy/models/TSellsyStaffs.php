@@ -20,7 +20,11 @@ if( !class_exists('TSellsyStaffs')){
             // GET LIST
             $request = array(
                 'method' => 'Staffs.getList',
-                'params' => array()
+                'params' => array(
+                    'search' => array(
+                        'withBlocked' => 'N',
+                    )
+                )
             );
             $response = libs\sellsyConnect_curl::load()->requestApi($request);
             foreach ($response->response->result as $resultStaff) {

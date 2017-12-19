@@ -497,20 +497,22 @@ if( !class_exists('Form_ContactFormEdit')){
                                         $cfVal = '';
                                     }
 
-                                    // CF Value
-                                    foreach ($cfVal as $k=>$v) {
-                                        $tbl_value[$k] = $v;
-                                    }
+                                    if (isset($cfVal) && !empty($cfVal)) {
+                                        // CF Value
+                                        foreach ($cfVal as $k=>$v) {
+                                            $tbl_value[$k] = $v;
+                                        }
 
-                                    // Form : select
-                                    for ($i=0; $i<$qtyCf; $i++) {
-                                        helpers\FormHelpers::getCustomFields(array(
-                                            'echo'                  => true,
-                                            'form_name'             => 'contact_form_custom_fields_value_'.$i,
-                                            'form_value'            => $tbl_value[$i],          // cf all
-                                            'responseCustomFields'  => $responseCustomFields,   // use for display cf all
-                                            'useOn_x'               => $r[0]->contact_form_setting_add_what,
-                                        ));
+                                        // Form : select
+                                        for ($i=0; $i<$qtyCf; $i++) {
+                                            helpers\FormHelpers::getCustomFields(array(
+                                                'echo'                  => true,
+                                                'form_name'             => 'contact_form_custom_fields_value_'.$i,
+                                                'form_value'            => $tbl_value[$i],          // cf all
+                                                'responseCustomFields'  => $responseCustomFields,   // use for display cf all
+                                                'useOn_x'               => $r[0]->contact_form_setting_add_what,
+                                            ));
+                                        }
                                     }
                                     ?>
                                 </td>
