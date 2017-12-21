@@ -21,14 +21,16 @@ if( !class_exists('TSellsyStaffs')){
             $request = array(
                 'method' => 'Staffs.getList',
                 'params' => array(
-                    'search' => array(
-                        'withBlocked' => 'N',
-                    )
+                	'search' => array(
+                		'withBlocked' => 'N',
+	                )
                 )
             );
             $response = libs\sellsyConnect_curl::load()->requestApi($request);
-            foreach ($response->response->result as $resultStaff) {
-                $d[$resultStaff->linkedid] = ucfirst(strtolower($resultStaff->forename)) . ' ' . strtoupper($resultStaff->name);
+            if (isset($response->response->result) && !empty($response->response->result)) {
+	            foreach ($response->response->result as $resultStaff) {
+	                $d[$resultStaff->linkedid] = ucfirst(strtolower($resultStaff->forename)) . ' ' . strtoupper($resultStaff->name);
+	            }
             }
             if (empty($d)) { return false; }
             return $d;

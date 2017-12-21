@@ -154,7 +154,9 @@ class InstallController{
 		    ";
         }
 
-        foreach( $sql as $v ){ $wpdb->query($v); }
+        if (isset($sql) && !empty($sql)) {
+            foreach( $sql as $v ){ $wpdb->query($v); }
+        }
     }
 
     /**
@@ -170,7 +172,11 @@ class InstallController{
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact_form`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."error`";
-        foreach( $sql as $v ){ $wpdb->query($v); }
+	    if (isset($sql) && !empty($sql)) {
+		    foreach ( $sql as $v ) {
+			    $wpdb->query( $v );
+		    }
+	    }
     }
 
 }//class

@@ -115,21 +115,23 @@ if( !class_exists('Form_ContactFormEdit')){
                                     $optionOppSources   = '';
                                     $t_opportunities    = new models\TSellsyOpportunities();
                                     $responseOppSource  = $t_opportunities->getSources();
-                                    foreach ($responseOppSource->response as $vOppSources) {
-                                        if (isset($vOppSources->status) && $vOppSources->status == 'ok') {
-                                            $selected = '';
-                                            if ($vOppSources->id == $contactForm[0]->contact_form_setting_opportunity_source) {
-                                                $selected = 'selected';
-                                            }
-                                            $optionOppSources .= '<option value="'.$vOppSources->id.'" '.$selected.'>'.$vOppSources->label.'</option>';
-                                        }
-                                    }
+                        	        if (isset($responseOppSource->response) && !empty($responseOppSource->response)) {
+		                                foreach ( $responseOppSource->response as $vOppSources ) {
+			                                if ( isset( $vOppSources->status ) && $vOppSources->status == 'ok' ) {
+				                                $selected = '';
+				                                if ( $vOppSources->id == $contactForm[0]->contact_form_setting_opportunity_source ) {
+					                                $selected = 'selected';
+				                                }
+				                                $optionOppSources .= '<option value="' . $vOppSources->id . '" ' . $selected . '>' . $vOppSources->label . '</option>';
+			                                }
+		                                }
+	                                }
 
                                     // DISPLAY
                                     echo '
                                     <select name="contact_form_setting_opportunity_source" id="contact_form_setting_opportunity_source">
-                                        <option value="0">'.__('---- selection ----', PLUGIN_NOM_LANG).'</option>
-                                        '.$optionOppSources.'
+                                        <option value="0">' . __( '---- selection ----', PLUGIN_NOM_LANG ) . '</option>
+                                        ' . $optionOppSources . '
                                     </select>';
                                     ?>
                                 </td>
@@ -144,15 +146,17 @@ if( !class_exists('Form_ContactFormEdit')){
                                     $optionOppFun       = '';
                                     $t_opportunities    = new models\TSellsyOpportunities();
                                     $responseOppFun     = $t_opportunities->getFunnels();
-                                    foreach ($responseOppFun->response as $vOppFun) {
-                                        if (isset($vOppFun->status) && $vOppFun->status == 'ok') {
-                                            $selected = '';
-                                            if ($vOppFun->id == $contactForm[0]->contact_form_setting_opportunity_pipeline) {
-                                                $selected = 'selected';
-                                            }
-                                            $optionOppFun .= '<option value="'.$vOppFun->id.'" '.$selected.'>'.$vOppFun->name.'</option>';
-                                        }
-                                    }
+                        	        if (isset($responseOppFun->response) && !empty($responseOppFun->response)) {
+		                                foreach ( $responseOppFun->response as $vOppFun ) {
+			                                if ( isset( $vOppFun->status ) && $vOppFun->status == 'ok' ) {
+				                                $selected = '';
+				                                if ( $vOppFun->id == $contactForm[0]->contact_form_setting_opportunity_pipeline ) {
+					                                $selected = 'selected';
+				                                }
+				                                $optionOppFun .= '<option value="' . $vOppFun->id . '" ' . $selected . '>' . $vOppFun->name . '</option>';
+			                                }
+		                                }
+	                                }
 
                                     // STEPS
                                     $optionOppStep       = '';
@@ -161,14 +165,16 @@ if( !class_exists('Form_ContactFormEdit')){
                                         $responseOppStep     = $t_opportunities->getStepsForFunnel(array(
                                             'idPipeline' => $contactForm[0]->contact_form_setting_opportunity_pipeline
                                         ));
-                                        foreach ($responseOppStep->response as $vOppStep) {
-                                            if (isset($vOppStep->status) && $vOppStep->status == 'ok') {
-                                                $selected = '';
-                                                if ($vOppStep->id == $contactForm[0]->contact_form_setting_opportunity_step) {
-                                                    $selected = 'selected';
-                                                }
-                                                $optionOppStep .= '<option value="'.$vOppStep->id.'" '.$selected.'>'.$vOppStep->label.'</option>';
-                                            }
+                                        if (isset($responseOppStep->response) && !empty($responseOppStep->response)) {
+	                                        foreach ( $responseOppStep->response as $vOppStep ) {
+		                                        if ( isset( $vOppStep->status ) && $vOppStep->status == 'ok' ) {
+			                                        $selected = '';
+			                                        if ( $vOppStep->id == $contactForm[0]->contact_form_setting_opportunity_step ) {
+				                                        $selected = 'selected';
+			                                        }
+			                                        $optionOppStep .= '<option value="' . $vOppStep->id . '" ' . $selected . '>' . $vOppStep->label . '</option>';
+		                                        }
+	                                        }
                                         }
                                     }
 
@@ -498,21 +504,25 @@ if( !class_exists('Form_ContactFormEdit')){
                                     }
 
                                     if (isset($cfVal) && !empty($cfVal)) {
-                                        // CF Value
-                                        foreach ($cfVal as $k=>$v) {
-                                            $tbl_value[$k] = $v;
-                                        }
 
-                                        // Form : select
-                                        for ($i=0; $i<$qtyCf; $i++) {
-                                            helpers\FormHelpers::getCustomFields(array(
-                                                'echo'                  => true,
-                                                'form_name'             => 'contact_form_custom_fields_value_'.$i,
-                                                'form_value'            => $tbl_value[$i],          // cf all
-                                                'responseCustomFields'  => $responseCustomFields,   // use for display cf all
-                                                'useOn_x'               => $r[0]->contact_form_setting_add_what,
-                                            ));
-                                        }
+	                                    // CF Value
+	                                    foreach ( $cfVal as $k => $v ) {
+		                                    $tbl_value[ $k ] = $v;
+	                                    }
+
+	                                    // Form : select
+	                                    for ( $i = 0; $i < $qtyCf; $i ++ ) {
+		                                    helpers\FormHelpers::getCustomFields( array(
+			                                    'echo'                 => true,
+			                                    'form_name'            => 'contact_form_custom_fields_value_' . $i,
+			                                    'form_value'           => $tbl_value[ $i ],
+			                                    // cf all
+			                                    'responseCustomFields' => $responseCustomFields,
+			                                    // use for display cf all
+			                                    'useOn_x'              => $r[0]->contact_form_setting_add_what,
+		                                    ) );
+	                                    }
+
                                     }
                                     ?>
                                 </td>

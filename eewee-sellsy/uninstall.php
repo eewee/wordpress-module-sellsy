@@ -12,4 +12,6 @@ $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_ticket_form`";
 $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_contact`";
 $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_contact_form`";
 $sql[] = "DROP TABLE  `".$wpdb->prefix."eewee_sellsy_error`";
-foreach( $sql as $v ){ $wpdb->query($v); }
+if (isset($sql) && !empty($sql)) {
+	foreach( $sql as $v ){ $wpdb->query($v); }
+}

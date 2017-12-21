@@ -43,10 +43,12 @@ class AjaxController {
         ));
 
         // STOCK
-        foreach ($response->response as $v) {
-            if ('ok' == $v->status) {
-                $tbl_steps[$v->id] = $v->label;
-            }
+        if (isset($response->response) && !empty($response->response)) {
+		    foreach ($response->response as $v) {
+	            if ('ok' == $v->status) {
+	                $tbl_steps[$v->id] = $v->label;
+	            }
+	        }
         }
 
         // RETURN

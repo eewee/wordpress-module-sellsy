@@ -303,7 +303,7 @@ if( !class_exists('ShortcodeController')){
                 check_admin_referer('form_nonce_shortcode_contact_add');
 
                 // third
-                if (isset($_POST['contact_form_company_name']) && !empty($_POST['contact_form_company_name'])) {
+	            if (isset($_POST['contact_form_company_name']) && !empty($_POST['contact_form_company_name'])) {
                     $api_third['type'] = 'corporation'; // corporation/person
                     $api_third['name'] = sanitize_text_field($_POST['contact_form_company_name']);
 
@@ -336,6 +336,10 @@ if( !class_exists('ShortcodeController')){
                     if (isset($_POST['contact_form_note']) && $contact[0]->contact_form_setting_add_what == 0) {
                         $api_contact['stickyNote'] = esc_textarea($_POST['contact_form_note']);
                     }
+
+		            if (isset($_POST['contact_form_website'])) {
+			            $api_contact['web'] = esc_url($_POST['contact_form_website']);
+		            }
                 }
 
                 // Message on opportunity + setting "prospect & opportunity"
@@ -364,6 +368,7 @@ if( !class_exists('ShortcodeController')){
                 if (isset($_POST['contact_form_contact_function'])) {
                     $api_contact['position'] = sanitize_text_field($_POST['contact_form_contact_function']);
                 }
+
 
 
 
@@ -526,7 +531,7 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'siret'     => '',
                             'rcs'       => '',
                             'web'       => '',
-                            'stickyNote'=> '',
+                            'stickyNote'=> ''
                         );
                         $api_contact = array(
                             'name'      => '',
@@ -534,13 +539,8 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             'email'     => '',
                             'tel'       => '',
                             'mobile'    => '',
-                            'position'  => '',
-                            'stickyNote'=> '',
+                            'position'  => ''
                         );
-                        $api_opportunity = array(
-                            'stickyNote'=> '',
-                        );
-
                         $messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).'</div>';
                         //$messageForm = '<div class="eewee-success-message">'.__('Thank you for your message, it has been sent.', PLUGIN_NOM_LANG).' - linkedid:'.$tbl_contact['linkedid'].' - <pre>'.var_export($cDatas, true).'</pre> - '.$responseOpp->status.'</div>';
 
@@ -644,9 +644,15 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
 
                     // OTHER
                     if ($contact[0]->contact_form_website == 0) {
+                    	if (isset($api_contact['web']) && !empty($api_contact['web'])) {
+                    		$contact_form_website = $api_contact['web'];
+	                    } elseif (isset($api_third['web']) && !empty($api_third['web'])) {
+		                    $contact_form_website = $api_third['web'];
+	                    }
+
                         $render .= '
                         <label>'.__('website', PLUGIN_NOM_LANG).'</label>
-                        <input type="text" name="contact_form_website" value="'.$api_third['web'].'" id="contact_form_website" class="'.$tbl_class['class_contact_form_website'].'">';
+                        <input type="text" name="contact_form_website" value="'.$contact_form_website.'" id="contact_form_website" class="'.$tbl_class['class_contact_form_website'].'">';
                     }
                     if ($contact[0]->contact_form_note == 0) {
 
@@ -676,12 +682,14 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     $contact_form_custom_fields_value = json_decode($contact[0]->contact_form_custom_fields_value);
                     $cf = '';
 
-                    // cf all
-                    foreach ($contact_form_custom_fields_value as $k=>$v) {
-                        $cf = $t_customFields->getOne(array('id'=>$v));
-                        if ($cf->response->status == 'ok') {
-                            $render .= $c_customFields->getGenerator($cf->response, $tbl_class);
-                        }
+                    if (isset($contact_form_custom_fields_value) && !empty($contact_form_custom_fields_value)) {
+	                    // cf all
+	                    foreach ( $contact_form_custom_fields_value as $k => $v ) {
+		                    $cf = $t_customFields->getOne( array( 'id' => $v ) );
+		                    if ( $cf->response->status == 'ok' ) {
+			                    $render .= $c_customFields->getGenerator( $cf->response, $tbl_class );
+		                    }
+	                    }
                     }
                     
                     

@@ -3,8 +3,6 @@
 1. Add a support form shortcode (Wordpress > Sellsy support/ticket).
 2. Add a contact form shortcode (Wordpress > Sellsy prospect).
 3. Add a contact form shortcode (Wordpress > Sellsy prospect and opportunity).
-4. Tracking page views
-5. You can use the Sellsy custom fields
 
 Form with captcha
 

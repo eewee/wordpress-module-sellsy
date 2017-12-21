@@ -7,6 +7,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 if( !class_exists('DbUpdate')){
 	class DbUpdate
 	{
+
 		/**
 		 * Get data version
 		 * @return float

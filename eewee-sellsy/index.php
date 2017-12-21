@@ -101,17 +101,15 @@ require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AdminController.php' );
 require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/SellsyCustomFieldsController.php' );
 
 use fr\eewee\eewee_sellsy\controllers;
-use fr\eewee\eewee_sellsy\helpers;
 
 $s = new controllers\ShortcodeController();
 $a = new controllers\AjaxController();
 
 // UPDATE DB
-if (is_admin()) {
-    $dbUpdate = new helpers\DbUpdate();
-    $dbVersion = $dbUpdate->getVersion();
-    if (EEWEE_VERSION > $dbVersion) { $dbUpdate->updateDb($dbVersion); }
-}
+use fr\eewee\eewee_sellsy\helpers;
+$dbUpdate = new helpers\DbUpdate();
+$dbVersion = $dbUpdate->getVersion();
+if (EEWEE_VERSION > $dbVersion) { $dbUpdate->updateDb($dbVersion); }
 
 /**
  * Instantiate Class

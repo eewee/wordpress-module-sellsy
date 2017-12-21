@@ -29,34 +29,36 @@ if( !class_exists('FormHelpers')){
             $resultsCustomFields    = $d['responseCustomFields']->response->result;
 
             // CF ALL
-            foreach ($resultsCustomFields as $resultCustomFields) {
+	        if (isset($resultsCustomFields) && !empty($resultsCustomFields)) {
+	            foreach ($resultsCustomFields as $resultCustomFields) {
 
-                if ($resultCustomFields->status == 'ok') {
+	                if ($resultCustomFields->status == 'ok') {
 
-                    // only "simpletext" for the moment
-                    if ($resultCustomFields->type == 'simpletext') {
-                        $disabled = '';
-                    } else {
-                        $disabled = 'disabled';
-                    }
+	                    // only "simpletext" for the moment
+	                    if ($resultCustomFields->type == 'simpletext') {
+	                        $disabled = '';
+	                    } else {
+	                        $disabled = 'disabled';
+	                    }
 
-                    // required
-                    if ($resultCustomFields->isRequired == 'Y') {
-                        $isRequired = '*';
-                    } else {
-                        $isRequired = '';
-                    }
+	                    // required
+	                    if ($resultCustomFields->isRequired == 'Y') {
+	                        $isRequired = '*';
+	                    } else {
+	                        $isRequired = '';
+	                    }
 
-                    // selected
-                    if ($form_value == $resultCustomFields->cfid) {
-                        $selected = 'selected';
-                    } else {
-                        $selected = '';
-                    }
+	                    // selected
+	                    if ($form_value == $resultCustomFields->cfid) {
+	                        $selected = 'selected';
+	                    } else {
+	                        $selected = '';
+	                    }
 
-                    $options[] = '<option value="'.$resultCustomFields->cfid.'" '.$disabled.' '.$selected .'>'.$resultCustomFields->name.' ('.$resultCustomFields->type.') '.$isRequired.'</option>';
-                }
-            }
+	                    $options[] = '<option value="'.$resultCustomFields->cfid.'" '.$disabled.' '.$selected .'>'.$resultCustomFields->name.' ('.$resultCustomFields->type.') '.$isRequired.'</option>';
+	                }
+	            }
+	        }
 
             // SELECT
             $r = '

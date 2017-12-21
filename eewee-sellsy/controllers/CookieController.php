@@ -122,13 +122,15 @@ if( !class_exists('CookieController')){
             }
 
             // STOCK
-            foreach ($cookieDatas as $kC=>$vC) {
-                $cookieTracking[] = array(
-                    'type'		=> "url",
-                    'url'		=> $vC,
-                    'timestamp' => $kC,
-                );
-            }
+	        if (isset($cookieDatas) && !empty($cookieDatas)) {
+	            foreach ($cookieDatas as $kC=>$vC) {
+	                $cookieTracking[] = array(
+	                    'type'		=> "url",
+	                    'url'		=> $vC,
+	                    'timestamp' => $kC,
+	                );
+	            }
+	        }
             return $cookieTracking;
         }
 
