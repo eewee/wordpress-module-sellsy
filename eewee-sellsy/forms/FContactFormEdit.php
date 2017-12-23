@@ -203,8 +203,13 @@ if( !class_exists('Form_ContactFormEdit')){
                                 <td>
                                     <?php
                                     // DEADLINE
+                                    $deadline = 30;
+                                    if (isset($contactForm[0]->contact_form_setting_deadline) && !empty($contactForm[0]->contact_form_setting_deadline)) {
+                                        $deadline = $contactForm[0]->contact_form_setting_deadline;
+                                    }
+
                                     echo '
-                                    <input name="contact_form_setting_deadline" id="contact_form_setting_deadline" value="'.$contactForm[0]->contact_form_setting_deadline.'">
+                                    <input name="contact_form_setting_deadline" id="contact_form_setting_deadline" value="'.$deadline.'">
                                     <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
                                     ?>
                                 </td>

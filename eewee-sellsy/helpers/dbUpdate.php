@@ -69,11 +69,6 @@ if( !class_exists('DbUpdate')){
 		{
 			global $wpdb;
 			$this->updateVersion("1.1");
-
-			$table_name = EEWEE_SELLSY_PREFIXE_BDD . 'contact_form';
-			$sql = "ALTER TABLE `".$table_name."` ADD ` contact_form_setting_deadline` INT(11) NOT NULL DEFAULT '30' AFTER `contact_form_setting_notification_email`;
-            ";
-			$wpdb->query($sql);
 		}
 
 		function upgrade_1_11()
@@ -82,7 +77,7 @@ if( !class_exists('DbUpdate')){
             $this->updateVersion("1.11");
 
             $table_name = EEWEE_SELLSY_PREFIXE_BDD . 'contact_form';
-            $sql = "ALTER TABLE `".$table_name."` ADD ` contact_form_setting_deadline` INT(11) NOT NULL DEFAULT '30' AFTER `contact_form_setting_notification_email`;
+            $sql = "ALTER TABLE `".$table_name."` ADD `contact_form_setting_deadline` INT(11) NOT NULL DEFAULT '30' AFTER `contact_form_setting_notification_email`;
             ";
             $wpdb->query($sql);
 		}
