@@ -502,7 +502,8 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                                 'name'      => $contact[0]->contact_form_setting_name_opportunity,
                                 'funnelid'  => $contact[0]->contact_form_setting_opportunity_pipeline,
                                 'stepid'    => $contact[0]->contact_form_setting_opportunity_step,
-                                'stickyNote'=> $api_opportunity['stickyNote']
+                                'deadline'  => $contact[0]->contact_form_setting_deadline,
+                                'stickyNote'=> $api_opportunity['stickyNote'],
                             ));
                             // API : success
                             if ($responseOpp->status == 'success') {
@@ -652,7 +653,9 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                     		$contact_form_website = $api_contact['web'];
 	                    } elseif (isset($api_third['web']) && !empty($api_third['web'])) {
 		                    $contact_form_website = $api_third['web'];
-	                    }
+	                    } else {
+                            $contact_form_website = "";
+                        }
 
                         $render .= '
                         <label>'.__('website', PLUGIN_NOM_LANG).'</label>

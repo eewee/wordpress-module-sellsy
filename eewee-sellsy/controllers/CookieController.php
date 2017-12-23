@@ -45,9 +45,9 @@ if( !class_exists('CookieController')){
          */
         public function get()
         {
-            $cookie = stripslashes($_COOKIE[$this->_name]);
+            if (!isset($_COOKIE[$this->_name])) { return false; }
 
-            if (!isset($cookie)) { return false; }
+            $cookie = stripslashes($_COOKIE[$this->_name]);
 
             // check cookie isn't json, delete
             if (!ToolsControllers::isJson($cookie)) {

@@ -77,12 +77,17 @@ if( !class_exists('TContactForm')){
             $contact_form_setting_opportunity_source    = (int)$p['contact_form_setting_opportunity_source'];
             $contact_form_setting_opportunity_pipeline  = (int)$p['contact_form_setting_opportunity_pipeline'];
             $contact_form_setting_opportunity_step      = (int)$p['contact_form_setting_opportunity_step'];
-            $contact_form_custom_fields_quantity        = (int)$p['contact_form_custom_fields_quantity'];
-            $contact_form_custom_fields_value           = array();
-            for ($i=0; $i<$contact_form_custom_fields_quantity; $i++) {
-                $contact_form_custom_fields_value[] = (int)$p['contact_form_custom_fields_value_'.$i];
+            $contact_form_custom_fields_quantity        = 0;
+            $contact_form_custom_fields_value_json      = "";
+
+            if (isset($p['contact_form_custom_fields_quantity']) && !empty($p['contact_form_custom_fields_quantity'])) {
+                $contact_form_custom_fields_quantity = (int)$p['contact_form_custom_fields_quantity'];
+                $contact_form_custom_fields_value = array();
+                for ($i=0; $i<$contact_form_custom_fields_quantity; $i++) {
+                    $contact_form_custom_fields_value[] = (int)$p['contact_form_custom_fields_value_'.$i];
+                }
+                $contact_form_custom_fields_value_json = json_encode($contact_form_custom_fields_value, JSON_FORCE_OBJECT);
             }
-            $contact_form_custom_fields_value_json = json_encode($contact_form_custom_fields_value, JSON_FORCE_OBJECT);
 
             $r = $wpdb->update(
                 $this->_table,
@@ -97,6 +102,7 @@ if( !class_exists('TContactForm')){
                     'contact_form_setting_opportunity_pipeline' => $contact_form_setting_opportunity_pipeline,
                     'contact_form_setting_opportunity_step'     => $contact_form_setting_opportunity_step,
                     'contact_form_setting_notification_email'   => $p['contact_form_setting_notification_email'],
+                    'contact_form_setting_deadline'             => $p['contact_form_setting_deadline'],
 
                     'contact_form_company_name'                 => $p['contact_form_company_name'],
                     'contact_form_company_siren'                => $p['contact_form_company_siren'],
@@ -132,6 +138,7 @@ if( !class_exists('TContactForm')){
                     '%d',
                     '%d',
                     '%s',
+                    '%d',
 
                     '%d',
                     '%d',

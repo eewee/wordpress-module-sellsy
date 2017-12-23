@@ -97,6 +97,7 @@ class InstallController{
               `contact_form_setting_opportunity_pipeline` int(11) NOT NULL,
               `contact_form_setting_opportunity_step` int(11) NOT NULL,
               `contact_form_setting_notification_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+              `contact_form_setting_deadline` int(11) NOT NULL DEFAULT '30',
 
               `contact_form_company_name` int(11) NOT NULL,
               `contact_form_company_siren` int(11) NOT NULL,

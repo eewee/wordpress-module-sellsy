@@ -54,7 +54,7 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
             <?php
             echo '<u>'.__('Default setting', PLUGIN_NOM_LANG).' : </u><br>
             - '.__('Prospect', PLUGIN_NOM_LANG).'<br>
-            - '.__('Deadline: +1 month', PLUGIN_NOM_LANG).'<br>
+            - '.__('Deadline: +30 days', PLUGIN_NOM_LANG).'<br>
             - '.__('Name: website', PLUGIN_NOM_LANG).'<br>
             - '.__('Probability: 10%', PLUGIN_NOM_LANG).'<br>
             - '.__('Tag: wordpress', PLUGIN_NOM_LANG).'<br>

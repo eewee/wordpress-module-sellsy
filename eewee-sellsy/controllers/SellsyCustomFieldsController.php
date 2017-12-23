@@ -218,6 +218,5 @@ if( !class_exists('SellsyCustomFieldsController')){
 
         }
 
-
     }//fin class
 }//fin if

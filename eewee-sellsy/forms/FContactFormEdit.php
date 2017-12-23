@@ -146,7 +146,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                     $optionOppFun       = '';
                                     $t_opportunities    = new models\TSellsyOpportunities();
                                     $responseOppFun     = $t_opportunities->getFunnels();
-                        	        if (isset($responseOppFun->response) && !empty($responseOppFun->response)) {
+                                    if (isset($responseOppFun->response) && !empty($responseOppFun->response)) {
 		                                foreach ( $responseOppFun->response as $vOppFun ) {
 			                                if ( isset( $vOppFun->status ) && $vOppFun->status == 'ok' ) {
 				                                $selected = '';
@@ -192,6 +192,19 @@ if( !class_exists('Form_ContactFormEdit')){
                                         '.$optionOppStep.'
                                     </select>
                                     
+                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php _e('Deadline (in days)', PLUGIN_NOM_LANG); ?> :
+                                </th>
+                                <td>
+                                    <?php
+                                    // DEADLINE
+                                    echo '
+                                    <input name="contact_form_setting_deadline" id="contact_form_setting_deadline" value="'.$contactForm[0]->contact_form_setting_deadline.'">
                                     <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
                                     ?>
                                 </td>

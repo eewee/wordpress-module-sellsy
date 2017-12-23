@@ -53,8 +53,11 @@ Then when validating the prospecting / opportunity form, you can view these page
 
 == Changelog ==
 
+= 1.11 =
+* Add deadline on opportunity
+
 = 1.1 =
-* Create table version
+* Create table version and update auto sql
 
 = 1.0.14 =
 * Add CF SimpleText
