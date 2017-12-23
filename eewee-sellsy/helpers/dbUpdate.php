@@ -36,10 +36,10 @@ if( !class_exists('DbUpdate')){
 				$this->upgrade_1_1();
 				$dbVersion=1.1;
 			}
-			if ( $dbVersion < 1.2 ) {
+			if ( $dbVersion < 1.11 ) {
 				if ($dbVersion==EEWEE_VERSION) { return EEWEE_VERSION; }
-				$this->upgrade_1_2();
-				$dbVersion=1.2;
+				$this->upgrade_1_11();
+				$dbVersion=1.11;
 			}
 		}
 
@@ -62,14 +62,12 @@ if( !class_exists('DbUpdate')){
 		function upgrade_1_0()
 		{
 			global $wpdb;
-
 			$this->updateVersion("1.0");
 		}
 
 		function upgrade_1_1()
 		{
 			global $wpdb;
-
 			$this->updateVersion("1.1");
 
 			$table_name = EEWEE_SELLSY_PREFIXE_BDD . 'contact_form';
@@ -78,15 +76,15 @@ if( !class_exists('DbUpdate')){
 			$wpdb->query($sql);
 		}
 
-		function upgrade_1_2()
+		function upgrade_1_11()
 		{
 			global $wpdb;
+            $this->updateVersion("1.11");
 
-			$this->updateVersion("1.2");
-
-			//$table_name = EEWEE_SELLSY_PREFIXE_BDD . 'version';
-			//$sql = "ALTER TABLE `".$table_name."` DROP `test`";
-			//$wpdb->query($sql);
+            $table_name = EEWEE_SELLSY_PREFIXE_BDD . 'contact_form';
+            $sql = "ALTER TABLE `".$table_name."` ADD ` contact_form_setting_deadline` INT(11) NOT NULL DEFAULT '30' AFTER `contact_form_setting_notification_email`;
+            ";
+            $wpdb->query($sql);
 		}
 
 	}//fin class
