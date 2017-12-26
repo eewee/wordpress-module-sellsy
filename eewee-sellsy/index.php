@@ -18,18 +18,19 @@ if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
  * @since 1.0
  */
 global $wpdb;
-define( 'EEWEE_VERSION', '1.11' );
-define( 'EEWEE_SELLSY_PLUGIN_DIR', 		WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
-define( 'EEWEE_SELLSY_PLUGIN_URL', 		WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
-define( 'EEWEE_SELLSY_PREFIXE_BDD',		$wpdb->prefix.'eewee_sellsy_');
-define( 'PLUGIN_NOM_LANG',              "eewee-sellsy");
-define( 'EEWEE_SELLSY_DEBUG',           false);
+define('EEWEE_VERSION', '1.11' );
+define('EEWEE_SELLSY_PLUGIN_DIR', 		WP_PLUGIN_DIR . '/' . dirname( plugin_basename( __FILE__ ) ) );
+define('EEWEE_SELLSY_PLUGIN_URL', 		WP_PLUGIN_URL . '/' . dirname( plugin_basename( __FILE__ ) ) );
+define('EEWEE_SELLSY_PREFIXE_BDD',		$wpdb->prefix.'eewee_sellsy_');
+define('PLUGIN_NOM_LANG',              "eewee-sellsy");
+define('EEWEE_SELLSY_DEBUG',           false);
 for( $i=1 ; $i<=3 ; $i++ ) {
     define( 'EEWEE_SELLSY_URL_SOUS_MENU_'.$i,      admin_url().'admin.php?page=idSousMenu'.$i);
     define( 'EEWEE_SELLSY_URL_BACK_SOUS_MENU_'.$i, admin_url().'admin.php?page=idSousMenu'.$i);
 }
 
 load_plugin_textdomain(PLUGIN_NOM_LANG, false, dirname( plugin_basename( __FILE__ ) ) . '/lang');
+define('EEWEE_DEADLINE', 30);
 
 /**
  * Required CSS / JS

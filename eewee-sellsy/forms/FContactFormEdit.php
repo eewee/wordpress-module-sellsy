@@ -203,7 +203,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                 <td>
                                     <?php
                                     // DEADLINE
-                                    $deadline = 30;
+                                    $deadline = EEWEE_DEADLINE;
                                     if (isset($contactForm[0]->contact_form_setting_deadline) && !empty($contactForm[0]->contact_form_setting_deadline)) {
                                         $deadline = $contactForm[0]->contact_form_setting_deadline;
                                     }

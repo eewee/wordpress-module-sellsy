@@ -12,12 +12,7 @@
 /* TABLE */
 table th.c, table td.c{ text-align: center; }
 table.init-table td{ border: 0; }
-table.eewee-table tr th {
-	background: #7c7c7c;
-	color: #fff;
-	font-size: 1.2em;
-	padding: 5px 10px;
-}
+table.eewee-table tr th { background: #7c7c7c; color: #fff; font-size: 1.2em; padding: 5px 10px; }
 
 table.eewee-table tr:hover,table.eewee-table tr:nth-child(2n):hover { background: #7c7c7c; color: #fff; }
 table.eewee-table tr:hover a,table.eewee-table tr:hover a:hover { color: #fff; }
@@ -39,7 +34,6 @@ table.table1 textarea{ width: 200px; height: 270px; }
 .eewee-success{ border:1px solid green; }
 .eewee-error{ border:1px solid red !important; }
 .eewee-required{ color:red; }
-.eewee-success-message{ padding:10px; margin-top:5px; margin-bottom:5px; color:#468847; border:1px solid #468847; background-color:#dff0d8; text-transform:uppercase;
-	text-align:center; }
+.eewee-success-message{ padding:10px; margin-top:5px; margin-bottom:5px; color:#468847; border:1px solid #468847; background-color:#dff0d8; text-transform:uppercase; text-align:center; }
 .eewee-error-message{ padding:10px; margin-top:5px; margin-bottom:5px; color:#c76d6b; border:1px solid #c76d6b; background-color:#f2dede; text-transform:uppercase; }
 .eewee-error-message li{ margin-left:1em; }
