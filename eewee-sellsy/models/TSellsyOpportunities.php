@@ -93,8 +93,10 @@ if( !class_exists('TSellsyOpportunities')){
             $funnelid       = (int)$d['funnelid'];
             $stepid         = (int)$d['stepid'];
             $deadline       = (int)$d['deadline'];
+	        $probability    = (int)$d['probability'];
             $stickyNote     = (string)$d['stickyNote'];
             $currentIdent   = $this->getCurrentIdent();
+	        $staffId        = (int)$d['staffId'];
 
             $request = array(
                 'method' => 'Opportunities.create',
@@ -109,11 +111,11 @@ if( !class_exists('TSellsyOpportunities')){
                         'name'      => $name,                       // @todo : BO custom
                         'funnelid'  => $funnelid,
                         'stepid'    => $stepid,
-                        'proba'     => 10,                          // @todo : BO custom
+                        'proba'     => $probability,
                         //'brief'     => {{brief}},                 // @todo : BO custom
                         'stickyNote'=> $stickyNote,
                         'tags'      => 'wordpress',
-                        //'staffs'    => {{staffs}},                // @todo : BO custom
+                        'staffs'    => array($staffId),
                         //'contacts'  => {{contacts}}               // @todo : BO custom
                     )
                 )

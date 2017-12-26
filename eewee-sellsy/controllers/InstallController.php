@@ -98,6 +98,8 @@ class InstallController{
               `contact_form_setting_opportunity_step` int(11) NOT NULL,
               `contact_form_setting_notification_email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
               `contact_form_setting_deadline` int(11) NOT NULL DEFAULT '".EEWEE_DEADLINE."',
+              `contact_form_setting_probability` int(11) NOT NULL DEFAULT '".EEWEE_PROBABILITY."',              
+              `contact_form_setting_linkedid` int(11) NOT NULL,
 
               `contact_form_company_name` int(11) NOT NULL,
               `contact_form_company_siren` int(11) NOT NULL,
@@ -151,7 +153,7 @@ class InstallController{
 
         for ($i=1 ; $i<=25 ; $i++) {
             $sql[] = "
-                INSERT INTO `" . EEWEE_SELLSY_PREFIXE_BDD . "contact_form` VALUES (".$i.", '" . current_time('mysql') . "', '" . current_time('mysql') . "', 'Contact ".$i."', '0', 'Website form ".$i."', '0', '0', '0', '" . get_bloginfo('admin_email') . "', ".EEWEE_DEADLINE.", '1', '1', '1', '1', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '');
+                INSERT INTO `" . EEWEE_SELLSY_PREFIXE_BDD . "contact_form` VALUES (".$i.", '" . current_time('mysql') . "', '" . current_time('mysql') . "', 'Contact ".$i."', '0', 'Website form ".$i."', '0', '0', '0', '" . get_bloginfo('admin_email') . "', ".EEWEE_DEADLINE.", ".EEWEE_PROBABILITY.", '0', '1', '1', '1', '1', '0', '0', '0', '1', '1', '1', '0', '0', '0', '0', '');
 		    ";
         }
 

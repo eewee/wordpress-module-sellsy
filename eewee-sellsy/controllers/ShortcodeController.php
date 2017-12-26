@@ -497,13 +497,15 @@ https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospe
                             // INSERT TO SELLSY : OPPORTUNITY
                             $t_sellsyOpportunities = new models\TSellsyOpportunities();
                             $responseOpp = $t_sellsyOpportunities->create(array(
-                                'linkedid'  => $tbl_contact['linkedid'],
-                                'sourceid'  => $contact[0]->contact_form_setting_opportunity_source,
-                                'name'      => $contact[0]->contact_form_setting_name_opportunity,
-                                'funnelid'  => $contact[0]->contact_form_setting_opportunity_pipeline,
-                                'stepid'    => $contact[0]->contact_form_setting_opportunity_step,
-                                'deadline'  => $contact[0]->contact_form_setting_deadline,
-                                'stickyNote'=> $api_opportunity['stickyNote'],
+                                'linkedid'    => $tbl_contact['linkedid'],
+                                'sourceid'    => $contact[0]->contact_form_setting_opportunity_source,
+                                'name'        => $contact[0]->contact_form_setting_name_opportunity,
+                                'funnelid'    => $contact[0]->contact_form_setting_opportunity_pipeline,
+                                'stepid'      => $contact[0]->contact_form_setting_opportunity_step,
+                                'deadline'    => $contact[0]->contact_form_setting_deadline,
+                                'probability' => $contact[0]->contact_form_setting_probability,
+                                'staffId'     => $contact[0]->contact_form_setting_linkedid,
+                                'stickyNote'  => $api_opportunity['stickyNote'],
                             ));
                             // API : success
                             if ($responseOpp->status == 'success') {

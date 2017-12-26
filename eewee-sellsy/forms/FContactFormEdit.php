@@ -214,6 +214,48 @@ if( !class_exists('Form_ContactFormEdit')){
                                     ?>
                                 </td>
                             </tr>
+                            <tr>
+                                <th>
+			                        <?php _e('Probability', PLUGIN_NOM_LANG); ?> :
+                                </th>
+                                <td>
+			                        <?php
+			                        // PROBABILITY
+			                        $probability = 0;
+			                        if (isset($contactForm[0]->contact_form_setting_probability) && !empty($contactForm[0]->contact_form_setting_deadline)) {
+				                        $probability = $contactForm[0]->contact_form_setting_probability;
+			                        }
+
+			                        echo '
+                                    <input name="contact_form_setting_probability" id="contact_form_setting_probability" value="'.$probability.'">
+                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
+			                        ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+			                        <?php _e('Assigned to', PLUGIN_NOM_LANG); ?> :
+                                </th>
+                                <td>
+			                        <?php
+			                        $t_sellsyStaffs = new models\TSellsyStaffs();
+			                        $staffsList = $t_sellsyStaffs->getStaffsList();
+			                        if ($staffsList) {
+				                        echo '
+                                        <select name="contact_form_setting_linkedid">
+                                            <option value="0">---- '.__('Nobody', PLUGIN_NOM_LANG).' ----</option>';
+                                            foreach ($staffsList as $k => $v) {
+                                                $selected = '';
+                                                if ($k == $r[0]->contact_form_setting_linkedid) { $selected = 'selected'; }
+                                                echo '<option value="'.$k.'" '.$selected.'>'.$v.'</option>';
+                                            }
+				                        echo '
+                                        </select>
+                                        <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
+			                        }
+			                        ?>
+                                </td>
+                            </tr>
 
 
 

@@ -103,6 +103,8 @@ if( !class_exists('TContactForm')){
                     'contact_form_setting_opportunity_step'     => $contact_form_setting_opportunity_step,
                     'contact_form_setting_notification_email'   => $p['contact_form_setting_notification_email'],
                     'contact_form_setting_deadline'             => $p['contact_form_setting_deadline'],
+                    'contact_form_setting_linkedid'             => $p['contact_form_setting_linkedid'],
+                    'contact_form_setting_probability'          => $p['contact_form_setting_probability'],
 
                     'contact_form_company_name'                 => $p['contact_form_company_name'],
                     'contact_form_company_siren'                => $p['contact_form_company_siren'],
@@ -138,9 +140,11 @@ if( !class_exists('TContactForm')){
                     '%d',
                     '%d',
                     '%s',
-                    '%d',
+	                '%d',
+	                '%d',
+	                '%d',
 
-                    '%d',
+	                '%d',
                     '%d',
                     '%d',
                     '%d',
