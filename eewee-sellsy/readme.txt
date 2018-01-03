@@ -1,7 +1,7 @@
 ﻿=== eewee sellsy ===
 Contributors: eewee
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 Tags: api, crm
 Requires at least: 3.1
 Tested up to: 4.9

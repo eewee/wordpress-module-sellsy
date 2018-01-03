@@ -6,8 +6,8 @@ Description: Simple form for : add support ticket to Sellsy, add prospect to Sel
 Version: 1.12
 Author: Michael DUMONTET
 Author URI: http://www.eewee.fr/wordpress/
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 */
 
 if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
