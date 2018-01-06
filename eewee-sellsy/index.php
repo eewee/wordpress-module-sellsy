@@ -108,13 +108,6 @@ use fr\eewee\eewee_sellsy\helpers;
 $s = new controllers\ShortcodeController();
 $a = new controllers\AjaxController();
 
-// UPDATE DB
-if (is_admin()) {
-    $dbUpdate = new helpers\DbUpdate();
-    $dbVersion = $dbUpdate->getVersion();
-    if (EEWEE_VERSION > $dbVersion) { $dbUpdate->updateDb($dbVersion); }
-}
-
 /**
  * Instantiate Class
  *
@@ -153,6 +146,15 @@ register_deactivation_hook( __FILE__, array( $adminController, 'eewee_deactivate
  * @since 1.0
  */
 add_action( 'admin_menu', array( $adminController, 'eewee_adminMenu' ) );
+
+/**
+ * UPDATE DB
+ */
+if (is_admin()) {
+    $dbUpdate = new helpers\DbUpdate();
+    $dbVersion = $dbUpdate->getVersion();
+    if (EEWEE_VERSION > $dbVersion && $dbVersion !== false) { $dbUpdate->updateDb($dbVersion); die("coucou"); }
+}
 
 /**
  * Debug

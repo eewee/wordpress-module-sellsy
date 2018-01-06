@@ -15,8 +15,28 @@ if( !class_exists('DbUpdate')){
 		public function getVersion()
 		{
 			global $wpdb;
-			$result = $wpdb->get_results( 'SELECT * FROM '.EEWEE_SELLSY_PREFIXE_BDD.'version WHERE version_id=1', OBJECT );
-			return $result[0]->version_value;
+
+            // Table not in database. Create new table
+            $table_name = EEWEE_SELLSY_PREFIXE_BDD."version";
+            if($wpdb->get_var("SHOW TABLES LIKE '".$table_name."'") != $table_name) {
+                //$charset_collate = $wpdb->get_charset_collate();
+
+//                $sql = "CREATE TABLE  (
+//                `version_id` int(11) NOT NULL AUTO_INCREMENT,
+//                `version_value` float(11) NOT NULL,
+//                PRIMARY KEY (`version_id`)
+//                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;";
+//
+//                require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+//                dbDelta( $sql );
+
+                return false;
+
+            // Table in db
+            } else {
+                $result = $wpdb->get_results( 'SELECT * FROM '.EEWEE_SELLSY_PREFIXE_BDD.'version WHERE version_id=1', OBJECT );
+                return $result[0]->version_value;
+            }
 		}
 
 		/**
