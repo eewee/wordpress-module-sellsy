@@ -19,6 +19,7 @@ if( !class_exists('TSellsyOpportunities')){
                 'params' => array()
             );
             $response = libs\sellsyconnect_curl::load()->requestApi($request);
+            if (is_null($response)) { return false; }
             if ($response->error) {
                 $t_error	= new TError();
                 $t_error->add(array(
@@ -45,6 +46,7 @@ if( !class_exists('TSellsyOpportunities')){
                     )
                 );
                 $response = libs\sellsyconnect_curl::load()->requestApi($request);
+                if (is_null($response)) { return false; }
                 if ($response->error) {
                     $t_error	= new TError();
                     $t_error->add(array(
@@ -69,6 +71,7 @@ if( !class_exists('TSellsyOpportunities')){
                 'params' => array()
             );
             $response = libs\sellsyconnect_curl::load()->requestApi($request);
+            if (is_null($response)) { return false; }
             if ($response->error) {
                 $t_error	= new TError();
                 $t_error->add(array(
@@ -121,7 +124,7 @@ if( !class_exists('TSellsyOpportunities')){
                 )
             );
             $response = libs\sellsyconnect_curl::load()->requestApi($request);
-            
+            if (is_null($response)) { return false; }
             if ($response->error) {
                 $t_error	= new TError();
                 $t_error->add(array(
@@ -144,6 +147,7 @@ if( !class_exists('TSellsyOpportunities')){
                 'params' => array()
             );
             $response = libs\sellsyconnect_curl::load()->requestApi($request);
+            if (is_null($response)) { return false; }
             if ($response->error) {
                 $t_error	= new TError();
                 $t_error->add(array(
