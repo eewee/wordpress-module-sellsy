@@ -1,0 +1,20 @@
+{
+    "name": "michael/phpunit",
+    "require-dev": {
+        "phpunit/phpunit": "^6.5",
+        "phpunit/dbunit": "^3.0"
+    },
+    "authors": [
+        {
+            "name": "Michael",
+            "email": "contact@eewee.fr"
+        }
+    ],
+    "require": {},
+    "autoload-dev": {
+        "psr-4": {
+            "Eewee\\": "src/",
+            "fr\\eewee\\eewee_sellsy\\controllers\\": "controllers/"
+        }
+    }
+}

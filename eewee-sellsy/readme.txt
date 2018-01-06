@@ -54,7 +54,7 @@ Then when validating the prospecting / opportunity form, you can view these page
 == Changelog ==
 
 = 1.12 =
-* Add "assigned to" and "probability" on opportunity
+* Add "assigned to", "probability" on opportunity and PHPUNIT
 
 = 1.11 =
 * Add deadline on opportunity

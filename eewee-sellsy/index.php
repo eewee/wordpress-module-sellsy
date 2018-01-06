@@ -84,7 +84,7 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyCustomFields.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/models/TSellsyTracking.php' );
 
 // HELPERS
-require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/FormHelper.php' );
+require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/FormHelpers.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/helpers/dbUpdate.php' );
 
 // FORMS
@@ -94,13 +94,13 @@ require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FTicketFormAdd.php' );
 require_once ( EEWEE_SELLSY_PLUGIN_DIR . '/forms/FContactFormEdit.php' );
 
 // CONTROLLERS
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/CookieController.php' );
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AjaxController.php' );
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/InstallController.php' );
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ToolsController.php' );
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ShortcodeController.php' );
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AdminController.php' );
-require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/SellsyCustomFieldsController.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/CookieControllers.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AjaxControllers.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/InstallControllers.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ToolsControllers.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/ShortcodeControllers.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/AdminControllers.php' );
+require_once( EEWEE_SELLSY_PLUGIN_DIR . '/controllers/SellsyCustomFieldsControllers.php' );
 
 use fr\eewee\eewee_sellsy\controllers;
 use fr\eewee\eewee_sellsy\helpers;
