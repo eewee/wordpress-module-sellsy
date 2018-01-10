@@ -13,10 +13,7 @@
     </testsuite>
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-            <exclude>
-                <file suffix=".php">./tests/MathTest.php</file>
-            </exclude>
+            <directory suffix=".php">./controllers</directory>
         </whitelist>
     </filter>
     <php>

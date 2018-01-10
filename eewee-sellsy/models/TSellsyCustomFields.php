@@ -98,5 +98,34 @@ if( !class_exists('TSellsyCustomFields')){
             return $response;
         }
 
+        /**
+         * Return nb required CF field by default.
+         * Return array with name required CF field, if $d['cfByName']=true.
+         *
+         * @param $d
+         *
+         * @return bool false nothing required CF field|int nb required CF field|array name required CF field
+         */
+        public function countTotalRequiredField($d)
+        {
+            $resultsCustomFields    = $d['response'];
+            $res                    = "";
+            $iRequired              = 0;
+
+            if (isset($resultsCustomFields) && !empty($resultsCustomFields)) {
+                foreach ( $resultsCustomFields->response->result as $resultCustomFields ) {
+                    if ( $resultCustomFields->status == 'ok' && $resultCustomFields->isRequired == 'Y' ) {
+                        if ($d['cfByName'] === true) {
+                            $res[] = $resultCustomFields->name;
+                        } else {
+                            $res = $iRequired++;
+                        }
+                    }
+                }
+                return $res;
+            }
+            return false;
+        }
+
     }
 }

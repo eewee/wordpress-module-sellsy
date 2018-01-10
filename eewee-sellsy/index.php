@@ -153,7 +153,7 @@ add_action( 'admin_menu', array( $adminController, 'eewee_adminMenu' ) );
 if (is_admin()) {
     $dbUpdate = new helpers\DbUpdate();
     $dbVersion = $dbUpdate->getVersion();
-    if (EEWEE_VERSION > $dbVersion && $dbVersion !== false) { $dbUpdate->updateDb($dbVersion); }
+    if (EEWEE_VERSION > $dbVersion && $dbVersion !== false) { $dbUpdate->updateDb($dbVersion); die("coucou"); }
 }
 
 /**

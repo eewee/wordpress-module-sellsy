@@ -583,6 +583,17 @@ if( !class_exists('Form_ContactFormEdit')){
 		                                    ) );
 	                                    }
 
+                                        $requiredCF = $t_customFields->countTotalRequiredField(array(
+                                            "response" => $responseCustomFields,
+                                            "cfByName" => true,
+                                        ));
+	                                    if (sizeof($requiredCF)>1) {
+                                            echo _e('Required fields', PLUGIN_NOM_LANG);
+                                        } else {
+                                            echo _e('Required field', PLUGIN_NOM_LANG);
+                                        }
+                                        echo " : <br><ul><li>".implode("</li><li>", $requiredCF)."</li></ul>";
+
                                     }
                                     ?>
                                 </td>

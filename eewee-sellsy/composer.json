@@ -1,8 +1,7 @@
 {
     "name": "michael/phpunit",
     "require-dev": {
-        "phpunit/phpunit": "^6.5",
-        "phpunit/dbunit": "^3.0"
+        "phpunit/phpunit": "^6.5.2"
     },
     "authors": [
         {
@@ -10,7 +9,9 @@
             "email": "contact@eewee.fr"
         }
     ],
-    "require": {},
+    "require": {
+        "phpunit/php-code-coverage": "5.2.3"
+    },
     "autoload-dev": {
         "psr-4": {
             "Eewee\\": "src/",
