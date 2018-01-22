@@ -3,8 +3,8 @@ namespace fr\eewee\eewee_sellsy\controllers;
 
 if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if( !class_exists('ToolsControllers')){
-	class ToolsControllers {
+if( !class_exists('ToolsController')){
+	class ToolsController {
 
 		function __construct(){}
 

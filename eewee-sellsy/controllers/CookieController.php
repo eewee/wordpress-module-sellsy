@@ -50,7 +50,7 @@ if( !class_exists('CookieController')){
             $cookie = stripslashes($_COOKIE[$this->_name]);
 
             // check cookie isn't json, delete
-            if (!ToolsControllers::isJson($cookie)) {
+            if (!ToolsController::isJson($cookie)) {
                 $this->delete();
                 return false;
             }
@@ -67,11 +67,11 @@ if( !class_exists('CookieController')){
         public function update()
         {
             // INIT
-            $url = ToolsControllers::getUrl();
+            $url = ToolsController::getUrl();
             $dateTime = new \DateTime();
 
             // check cookie isn't json, delete
-            if (isset($_COOKIE[$this->_name]) && !ToolsControllers::isJson($_COOKIE[$this->_name])) {
+            if (isset($_COOKIE[$this->_name]) && !ToolsController::isJson($_COOKIE[$this->_name])) {
                 $this->delete();
                 return false;
             }

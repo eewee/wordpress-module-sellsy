@@ -19,7 +19,7 @@ if( isset($_GET['type']) && $_GET['type'] == "status" ) {
     $t_contact_form = new models\TContactForm();
     $r = $t_contact_form->updateStatus($_GET);
 
-    $tools = new controllers\ToolsControllers();
+    $tools = new controllers\ToolsController();
     $display = $tools->verifMaj( $r );
     echo $display;
 }//if

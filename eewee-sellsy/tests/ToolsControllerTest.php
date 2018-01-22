@@ -6,23 +6,23 @@ use PHPUnit\Framework\TestCase;
 // Pour passer le "defined" :
 define( 'ABSPATH', dirname( dirname( __FILE__ ) ) . '/' );
 
-class ToolsControllersTest extends TestCase
+class ToolsControllerTest extends TestCase
 {
 	/**
-	 * @covers \fr\eewee\eewee_sellsy\controllers\ToolsControllers::isJson
+	 * @covers \fr\eewee\eewee_sellsy\controllers\ToolsController::isJson
 	 */
 	public function testIsJsonTrue()
 	{
 		$a = '{ "name":"John", "age":30, "car":null }';
-		$this->assertTrue(\fr\eewee\eewee_sellsy\controllers\ToolsControllers::isJson($a));
+		$this->assertTrue(\fr\eewee\eewee_sellsy\controllers\ToolsController::isJson($a));
 	}
 
 	/**
-	 * @covers \fr\eewee\eewee_sellsy\controllers\ToolsControllers::isJson
+	 * @covers \fr\eewee\eewee_sellsy\controllers\ToolsController::isJson
 	 */
 	public function testIsJsonFalse()
 	{
 		$a = "lorem ipsum";
-		$this->assertFalse(\fr\eewee\eewee_sellsy\controllers\ToolsControllers::isJson($a));
+		$this->assertFalse(\fr\eewee\eewee_sellsy\controlles\ToolsController::isJson($a));
 	}
 }

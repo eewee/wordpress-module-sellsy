@@ -26,7 +26,7 @@ if (isset($_POST['update']) && $_POST['update']) {
         $t_ticket_form = new models\TTicketForm();
         $r = $t_ticket_form->update($_POST);
 
-        $tools = new controllers\ToolsControllers();
+        $tools = new controllers\ToolsController();
         $display = $tools->verifMaj($r);
         echo $display;
 
@@ -39,7 +39,7 @@ if (isset($_POST['update']) && $_POST['update']) {
             $mess .= __('Required fields : ', PLUGIN_NOM_LANG);
         }
         $mess .= '</strong>'.implode(', ', $errors).'.';
-        echo controllers\ToolsControllers::error($mess);
+        echo controllers\ToolsController::error($mess);
     }
 
 }//if

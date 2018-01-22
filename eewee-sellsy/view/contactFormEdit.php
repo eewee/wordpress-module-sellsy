@@ -53,7 +53,7 @@ if (isset($_POST['update']) && $_POST['update']) {
         $r = $t_contact_form->update($_POST);
 
         // DISPLAY
-        $tools = new controllers\ToolsControllers();
+        $tools = new controllers\ToolsController();
         $display = $tools->verifMaj($r);
         echo $display;
 
@@ -97,7 +97,7 @@ if (isset($_POST['update']) && $_POST['update']) {
         }
         
         $errors_render = implode('<br>', $mess);
-        echo controllers\ToolsControllers::error($errors_render);
+        echo controllers\ToolsController::error($errors_render);
     }
 
 }//if
