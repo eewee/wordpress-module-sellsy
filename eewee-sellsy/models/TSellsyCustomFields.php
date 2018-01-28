@@ -1,13 +1,14 @@
 <?php
+
 namespace fr\eewee\eewee_sellsy\models;
+
 use fr\eewee\eewee_sellsy\libs;
 
 if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-if( !class_exists('TSellsyCustomFields')){
-    class TSellsyCustomFields extends \WP_Query {
-        function __construct() {}
-
+if (!class_exists('TSellsyCustomFields')) {
+    class TSellsyCustomFields extends \WP_Query
+    {
         /**
          * Get custom fields
          * retourn rows

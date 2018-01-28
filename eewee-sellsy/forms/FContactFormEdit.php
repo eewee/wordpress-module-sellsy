@@ -1,18 +1,21 @@
 <?php
 namespace fr\eewee\eewee_sellsy\forms;
+
 use fr\eewee\eewee_sellsy\helpers;
 use fr\eewee\eewee_sellsy\libs;
 use fr\eewee\eewee_sellsy\models;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+} // Exit if accessed directly
 
-if( !class_exists('Form_ContactFormEdit')){
-    class Form_ContactFormEdit extends \WP_Query{
-
+if (!class_exists('Form_ContactFormEdit')) {
+    class Form_ContactFormEdit extends \WP_Query
+    {
         private $_action;
         private $_returnUrl;
 
-        function __construct()
+        public function __construct()
         {
             $this->_action      = $_SERVER["REQUEST_URI"];
             $this->_returnUrl   = EEWEE_SELLSY_URL_BACK_SOUS_MENU_2;
@@ -22,15 +25,16 @@ if( !class_exists('Form_ContactFormEdit')){
          * retourn form
          * @param array $r
          */
-        public function contactFormEdit( $r )
+        public function contactFormEdit($r)
         {
             // INIT
             $contact_form_status = '';
-            if (isset($r[0]->contact_form_status)) { $contact_form_status = $r[0]->contact_form_status; }
+            if (isset($r[0]->contact_form_status)) {
+                $contact_form_status = $r[0]->contact_form_status;
+            }
             // DATA
             $t_contactForm = new models\TContactForm();
-            $contactForm = $t_contactForm->getContactForm($r[0]->contact_form_id);
-            ?>
+            $contactForm = $t_contactForm->getContactForm($r[0]->contact_form_id); ?>
 
             <form method="post" action="<?php echo $this->_action; ?>">
                 <?php wp_nonce_field('form_nonce_contact_edit'); ?>
@@ -93,8 +97,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                     <select name="contact_form_setting_add_what">
                                         <option value="0" '.$contact_form_setting_add_what_selected_0.'>'.__('Prospect', PLUGIN_NOM_LANG).'</option>
                                         <option value="1" '.$contact_form_setting_add_what_selected_1.'>'.__('Prospect and opportunity', PLUGIN_NOM_LANG).'</option>
-                                    </select>';
-                                    ?>
+                                    </select>'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -115,25 +118,24 @@ if( !class_exists('Form_ContactFormEdit')){
                                     $optionOppSources   = '';
                                     $t_opportunities    = new models\TSellsyOpportunities();
                                     $responseOppSource  = $t_opportunities->getSources();
-                        	        if (isset($responseOppSource->response) && !empty($responseOppSource->response)) {
-		                                foreach ( $responseOppSource->response as $vOppSources ) {
-			                                if ( isset( $vOppSources->status ) && $vOppSources->status == 'ok' ) {
-				                                $selected = '';
-				                                if ( $vOppSources->id == $contactForm[0]->contact_form_setting_opportunity_source ) {
-					                                $selected = 'selected';
-				                                }
-				                                $optionOppSources .= '<option value="' . $vOppSources->id . '" ' . $selected . '>' . $vOppSources->label . '</option>';
-			                                }
-		                                }
-	                                }
+                                    if (isset($responseOppSource->response) && !empty($responseOppSource->response)) {
+                                        foreach ($responseOppSource->response as $vOppSources) {
+                                            if (isset($vOppSources->status) && $vOppSources->status == 'ok') {
+                                                $selected = '';
+                                                if ($vOppSources->id == $contactForm[0]->contact_form_setting_opportunity_source) {
+                                                    $selected = 'selected';
+                                                }
+                                                $optionOppSources .= '<option value="' . $vOppSources->id . '" ' . $selected . '>' . $vOppSources->label . '</option>';
+                                            }
+                                        }
+                                    }
 
                                     // DISPLAY
                                     echo '
                                     <select name="contact_form_setting_opportunity_source" id="contact_form_setting_opportunity_source">
-                                        <option value="0">' . __( '---- selection ----', PLUGIN_NOM_LANG ) . '</option>
+                                        <option value="0">' . __('---- selection ----', PLUGIN_NOM_LANG) . '</option>
                                         ' . $optionOppSources . '
-                                    </select>';
-                                    ?>
+                                    </select>'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -147,34 +149,34 @@ if( !class_exists('Form_ContactFormEdit')){
                                     $t_opportunities    = new models\TSellsyOpportunities();
                                     $responseOppFun     = $t_opportunities->getFunnels();
                                     if (isset($responseOppFun->response) && !empty($responseOppFun->response)) {
-		                                foreach ( $responseOppFun->response as $vOppFun ) {
-			                                if ( isset( $vOppFun->status ) && $vOppFun->status == 'ok' ) {
-				                                $selected = '';
-				                                if ( $vOppFun->id == $contactForm[0]->contact_form_setting_opportunity_pipeline ) {
-					                                $selected = 'selected';
-				                                }
-				                                $optionOppFun .= '<option value="' . $vOppFun->id . '" ' . $selected . '>' . $vOppFun->name . '</option>';
-			                                }
-		                                }
-	                                }
+                                        foreach ($responseOppFun->response as $vOppFun) {
+                                            if (isset($vOppFun->status) && $vOppFun->status == 'ok') {
+                                                $selected = '';
+                                                if ($vOppFun->id == $contactForm[0]->contact_form_setting_opportunity_pipeline) {
+                                                    $selected = 'selected';
+                                                }
+                                                $optionOppFun .= '<option value="' . $vOppFun->id . '" ' . $selected . '>' . $vOppFun->name . '</option>';
+                                            }
+                                        }
+                                    }
 
                                     // STEPS
                                     $optionOppStep       = '';
                                     if (isset($contactForm[0]->contact_form_setting_opportunity_pipeline) && !empty($contactForm[0]->contact_form_setting_opportunity_pipeline)) {
                                         $t_opportunities    = new models\TSellsyOpportunities();
                                         $responseOppStep     = $t_opportunities->getStepsForFunnel(array(
-                                            'idPipeline' => $contactForm[0]->contact_form_setting_opportunity_pipeline
-                                        ));
+                                                                    'idPipeline' => $contactForm[0]->contact_form_setting_opportunity_pipeline
+                                                                ));
                                         if (isset($responseOppStep->response) && !empty($responseOppStep->response)) {
-	                                        foreach ( $responseOppStep->response as $vOppStep ) {
-		                                        if ( isset( $vOppStep->status ) && $vOppStep->status == 'ok' ) {
-			                                        $selected = '';
-			                                        if ( $vOppStep->id == $contactForm[0]->contact_form_setting_opportunity_step ) {
-				                                        $selected = 'selected';
-			                                        }
-			                                        $optionOppStep .= '<option value="' . $vOppStep->id . '" ' . $selected . '>' . $vOppStep->label . '</option>';
-		                                        }
-	                                        }
+                                            foreach ($responseOppStep->response as $vOppStep) {
+                                                if (isset($vOppStep->status) && $vOppStep->status == 'ok') {
+                                                    $selected = '';
+                                                    if ($vOppStep->id == $contactForm[0]->contact_form_setting_opportunity_step) {
+                                                        $selected = 'selected';
+                                                    }
+                                                    $optionOppStep .= '<option value="' . $vOppStep->id . '" ' . $selected . '>' . $vOppStep->label . '</option>';
+                                                }
+                                            }
                                         }
                                     }
 
@@ -185,15 +187,14 @@ if( !class_exists('Form_ContactFormEdit')){
                                         '.$optionOppFun.'
                                     </select>';
 
-                                    // STEPS
+                                // STEPS
                                     echo '
                                     <select name="contact_form_setting_opportunity_step" id="contact_form_setting_opportunity_step">
                                         <option value="0">'.__('---- selection ----', PLUGIN_NOM_LANG).'</option>
                                         '.$optionOppStep.'
                                     </select>
                                     
-                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
-                                    ?>
+                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -210,8 +211,7 @@ if( !class_exists('Form_ContactFormEdit')){
 
                                     echo '
                                     <input name="contact_form_setting_deadline" id="contact_form_setting_deadline" value="'.$deadline.'">
-                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
-                                    ?>
+                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -220,16 +220,15 @@ if( !class_exists('Form_ContactFormEdit')){
                                 </th>
                                 <td>
 			                        <?php
-			                        // PROBABILITY
-			                        $probability = 0;
-			                        if (isset($contactForm[0]->contact_form_setting_probability) && !empty($contactForm[0]->contact_form_setting_deadline)) {
-				                        $probability = $contactForm[0]->contact_form_setting_probability;
-			                        }
+                                    // PROBABILITY
+                                    $probability = 0;
+                                    if (isset($contactForm[0]->contact_form_setting_probability) && !empty($contactForm[0]->contact_form_setting_deadline)) {
+                                        $probability = $contactForm[0]->contact_form_setting_probability;
+                                    }
 
-			                        echo '
+                                    echo '
                                     <input name="contact_form_setting_probability" id="contact_form_setting_probability" value="'.$probability.'">
-                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
-			                        ?>
+                                    <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -238,22 +237,23 @@ if( !class_exists('Form_ContactFormEdit')){
                                 </th>
                                 <td>
 			                        <?php
-			                        $t_sellsyStaffs = new models\TSellsyStaffs();
-			                        $staffsList = $t_sellsyStaffs->getStaffsList();
-			                        if ($staffsList) {
-				                        echo '
-                                        <select name="contact_form_setting_linkedid">
-                                            <option value="0">---- '.__('Nobody', PLUGIN_NOM_LANG).' ----</option>';
-                                            foreach ($staffsList as $k => $v) {
-                                                $selected = '';
-                                                if ($k == $r[0]->contact_form_setting_linkedid) { $selected = 'selected'; }
-                                                echo '<option value="'.$k.'" '.$selected.'>'.$v.'</option>';
+                                    $t_sellsyStaffs = new models\TSellsyStaffs();
+                                    $staffsList = $t_sellsyStaffs->getStaffsList();
+                                    if ($staffsList) {
+                                        echo '
+                                                                <select name="contact_form_setting_linkedid">
+                                                                    <option value="0">---- '.__('Nobody', PLUGIN_NOM_LANG).' ----</option>';
+                                        foreach ($staffsList as $k => $v) {
+                                            $selected = '';
+                                            if ($k == $r[0]->contact_form_setting_linkedid) {
+                                                $selected = 'selected';
                                             }
-				                        echo '
+                                            echo '<option value="'.$k.'" '.$selected.'>'.$v.'</option>';
+                                        }
+                                        echo '
                                         </select>
                                         <p class="description">'.__('Only if you use the option "add prospect and opportunity"', PLUGIN_NOM_LANG).'</p>';
-			                        }
-			                        ?>
+                                    } ?>
                                 </td>
                             </tr>
 
@@ -274,8 +274,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                     <p class="description"><?php
                                         _e('Receive an email with the form information submitted on your website', PLUGIN_NOM_LANG);
                                         echo '<br>';
-                                        _e('(Empty = no notification)', PLUGIN_NOM_LANG);
-                                    ?></p>
+                                        _e('(Empty = no notification)', PLUGIN_NOM_LANG); ?></p>
                                 </td>
                             </tr>
                             <tr>
@@ -285,8 +284,10 @@ if( !class_exists('Form_ContactFormEdit')){
                                 <td>
                                     <?php
                                     $status_on = $status_off = '';
-                                    if( $contact_form_status == 0 ){ $status_on  = "checked";
-                                    }else{			                 $status_off = "checked";
+                                    if ($contact_form_status == 0) {
+                                        $status_on  = "checked";
+                                    } else {
+                                        $status_off = "checked";
                                     } ?>
 
                                     <input type="radio" id="status_on" name="form_status" value="0" <?php echo $status_on; ?> />
@@ -316,7 +317,7 @@ if( !class_exists('Form_ContactFormEdit')){
                             </tr>
                             <tr>
                                 <th>
-                                    <?php _e('Name', PLUGIN_NOM_LANG); // raison sociale ?> :
+                                    <?php _e('Name', PLUGIN_NOM_LANG); // raison sociale?> :
                                 </th>
                                 <td>
                                     <?php
@@ -324,8 +325,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_company_name',
                                         'form_value'=> $r[0]->contact_form_company_name,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -338,8 +338,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_company_siren',
                                         'form_value'=> $r[0]->contact_form_company_siren,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -352,8 +351,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_company_siret',
                                         'form_value'=> $r[0]->contact_form_company_siret,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -366,8 +364,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_company_rcs',
                                         'form_value'=> $r[0]->contact_form_company_rcs,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
 
@@ -412,8 +409,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_contact_firstname',
                                         'form_value'=> $r[0]->contact_form_contact_firstname,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -444,8 +440,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_contact_phone_1',
                                         'form_value'=> $r[0]->contact_form_contact_phone_1,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -458,8 +453,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_contact_phone_2',
                                         'form_value'=> $r[0]->contact_form_contact_phone_2,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -472,8 +466,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_contact_function',
                                         'form_value'=> $r[0]->contact_form_contact_function,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
 
@@ -500,8 +493,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_website',
                                         'form_value'=> $r[0]->contact_form_website,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
                             <tr>
@@ -514,8 +506,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                         'echo'      => true,
                                         'form_name' => 'contact_form_note',
                                         'form_value'=> $r[0]->contact_form_note,
-                                    ));
-                                    ?>
+                                    )); ?>
                                 </td>
                             </tr>
 
@@ -542,8 +533,7 @@ if( !class_exists('Form_ContactFormEdit')){
                                     if (isset($r[0]->contact_form_custom_fields_quantity) && !empty(isset($r[0]->contact_form_custom_fields_quantity))) {
                                         $qtyCf = $r[0]->contact_form_custom_fields_quantity;
                                     }
-                                    echo '<input type="text" name="contact_form_custom_fields_quantity" value="'.$qtyCf.'">';
-                                    ?>
+                                    echo '<input type="text" name="contact_form_custom_fields_quantity" value="'.$qtyCf.'">'; ?>
                                 </td>
                             </tr>
                             <tr>
@@ -565,37 +555,35 @@ if( !class_exists('Form_ContactFormEdit')){
 
                                     if (isset($cfVal) && !empty($cfVal)) {
 
-	                                    // CF Value
-	                                    foreach ( $cfVal as $k => $v ) {
-		                                    $tbl_value[ $k ] = $v;
-	                                    }
+                                        // CF Value
+                                        foreach ($cfVal as $k => $v) {
+                                            $tbl_value[ $k ] = $v;
+                                        }
 
-	                                    // Form : select
-	                                    for ( $i = 0; $i < $qtyCf; $i ++ ) {
-		                                    helpers\FormHelpers::getCustomFields( array(
-			                                    'echo'                 => true,
-			                                    'form_name'            => 'contact_form_custom_fields_value_' . $i,
-			                                    'form_value'           => $tbl_value[ $i ],
-			                                    // cf all
-			                                    'responseCustomFields' => $responseCustomFields,
-			                                    // use for display cf all
-			                                    'useOn_x'              => $r[0]->contact_form_setting_add_what,
-		                                    ) );
-	                                    }
+                                        // Form : select
+                                        for ($i = 0; $i < $qtyCf; $i++) {
+                                            helpers\FormHelpers::getCustomFields(array(
+                                                'echo'                 => true,
+                                                'form_name'            => 'contact_form_custom_fields_value_' . $i,
+                                                'form_value'           => $tbl_value[$i],
+                                                // cf all
+                                                'responseCustomFields' => $responseCustomFields,
+                                                // use for display cf all
+                                                'useOn_x'              => $r[0]->contact_form_setting_add_what,
+                                            ));
+                                        }
 
                                         $requiredCF = $t_customFields->countTotalRequiredField(array(
                                             "response" => $responseCustomFields,
                                             "cfByName" => true,
                                         ));
-	                                    if (sizeof($requiredCF)>1) {
+                                        if (sizeof($requiredCF)>1) {
                                             echo _e('Required fields', PLUGIN_NOM_LANG);
                                         } else {
                                             echo _e('Required field', PLUGIN_NOM_LANG);
                                         }
                                         echo " : <br><ul><li>".implode("</li><li>", $requiredCF)."</li></ul>";
-
-                                    }
-                                    ?>
+                                    } ?>
                                 </td>
                             </tr>
 
@@ -604,7 +592,7 @@ if( !class_exists('Form_ContactFormEdit')){
                         <p>* : <?php _e('required', PLUGIN_NOM_LANG); ?></p>
 
                     </div>
-                </div><?php //postbox ?>
+                </div><?php //postbox?>
 
                 <div class="submit">
                     <input type="submit" name="update" value="<?php _e('Save', PLUGIN_NOM_LANG); ?>" class="button button-primary" />
@@ -614,6 +602,5 @@ if( !class_exists('Form_ContactFormEdit')){
             </form>
             <?php
         }
-
     }
 }

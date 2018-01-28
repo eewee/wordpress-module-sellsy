@@ -23,6 +23,6 @@ class ToolsControllerTest extends TestCase
 	public function testIsJsonFalse()
 	{
 		$a = "lorem ipsum";
-		$this->assertFalse(\fr\eewee\eewee_sellsy\controlles\ToolsController::isJson($a));
+		$this->assertFalse(\fr\eewee\eewee_sellsy\controllers\ToolsController::isJson($a));
 	}
 }

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: eewee-sellsy\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-05-07 12:34+0200\n"
-"PO-Revision-Date: 2017-05-07 12:36+0200\n"
+"POT-Creation-Date: 2018-01-28 20:08+0100\n"
+"PO-Revision-Date: 2018-01-28 20:08+0100\n"
 "Last-Translator: NEXI <trad@nexi.fr>\n"
 "Language-Team: Michael <contact@eewee.fr>\n"
 "Language: fr_FR\n"
@@ -14,265 +14,312 @@ msgstr ""
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=n>1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Generator: Poedit 2.0.1\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: controllers/ShortcodeController.php:79
-#: controllers/ShortcodeController.php:371
+#: controllers/AdminController.php:57 view/ticketForm.php:13
+msgid "Ticket support"
+msgstr "Ticket support"
+
+#: controllers/AdminController.php:58 view/contactForm.php:13
+#: view/contactFormEdit.php:112 view/manuel.php:23 view/manuel.php:47
+msgid "Contact"
+msgstr "Contact"
+
+#: controllers/AdminController.php:59
+msgid "Settings"
+msgstr "Configurations"
+
+#: controllers/ShortcodeController.php:83
+#: controllers/ShortcodeController.php:382
 msgid "email"
 msgstr "email"
 
-#: controllers/ShortcodeController.php:83
+#: controllers/ShortcodeController.php:87
 msgid "name"
 msgstr "nom"
 
-#: controllers/ShortcodeController.php:87
+#: controllers/ShortcodeController.php:91
 msgid "message"
 msgstr "message"
 
-#: controllers/ShortcodeController.php:91
-#: controllers/ShortcodeController.php:375
+#: controllers/ShortcodeController.php:95
+#: controllers/ShortcodeController.php:386
 msgid "reCAPTCHA"
 msgstr "reCAPTCHA"
 
-#: controllers/ShortcodeController.php:104
-#: controllers/ShortcodeController.php:111
+#: controllers/ShortcodeController.php:108
+#: controllers/ShortcodeController.php:115
 msgid "Consumer"
 msgstr "Consumer"
 
-#: controllers/ShortcodeController.php:104
-#: controllers/ShortcodeController.php:111
-#: controllers/ShortcodeController.php:189
-#: controllers/ShortcodeController.php:579
+#: controllers/ShortcodeController.php:108
+#: controllers/ShortcodeController.php:115
+#: controllers/ShortcodeController.php:192
+#: controllers/ShortcodeController.php:709
 msgid "Message"
 msgstr "Message"
 
-#: controllers/ShortcodeController.php:137
-#: controllers/ShortcodeController.php:474
+#: controllers/ShortcodeController.php:141
+#: controllers/ShortcodeController.php:585
 msgid "Thank you for your message, it has been sent."
 msgstr "Merci pour votre message, il a bien été envoyé."
 
-#: controllers/ShortcodeController.php:147
-#: controllers/ShortcodeController.php:452
-#: controllers/ShortcodeController.php:484
+#: controllers/ShortcodeController.php:150
+#: controllers/ShortcodeController.php:560
+#: controllers/ShortcodeController.php:595
 msgid "Error registration."
 msgstr "Erreur d'enregistrement."
 
-#: controllers/ShortcodeController.php:157
-#: controllers/ShortcodeController.php:494
+#: controllers/ShortcodeController.php:159
+#: controllers/ShortcodeController.php:604
 msgid "A field contains an error."
 msgstr "Un champ contient une erreur."
 
-#: controllers/ShortcodeController.php:158
-#: controllers/ShortcodeController.php:161
-#: controllers/ShortcodeController.php:495
-#: controllers/ShortcodeController.php:498
+#: controllers/ShortcodeController.php:160
+#: controllers/ShortcodeController.php:163
+#: controllers/ShortcodeController.php:605
+#: controllers/ShortcodeController.php:608
 msgid "Please check and try again"
 msgstr "Veuillez vérifier et essayer à nouveau"
 
-#: controllers/ShortcodeController.php:160
-#: controllers/ShortcodeController.php:497
+#: controllers/ShortcodeController.php:162
+#: controllers/ShortcodeController.php:607
 msgid "Several fields contain an error."
 msgstr "Plusieurs champs contiennent une erreur."
 
-#: controllers/ShortcodeController.php:180
+#: controllers/ShortcodeController.php:181
 msgid "Subject"
 msgstr "Sujet"
 
-#: controllers/ShortcodeController.php:183
-#: controllers/ShortcodeController.php:419
-#: controllers/ShortcodeController.php:552 forms/FContactFormEdit.php:355
+#: controllers/ShortcodeController.php:184
+#: controllers/ShortcodeController.php:523
+#: controllers/ShortcodeController.php:664 forms/FContactFormEdit.php:417
 #: view/contactFormEdit.php:20
 msgid "Email"
 msgstr "Email"
 
-#: controllers/ShortcodeController.php:186
-#: controllers/ShortcodeController.php:420 forms/FContactFormEdit.php:73
-#: forms/FContactFormEdit.php:253 forms/FTicketFormAdd.php:54
+#: controllers/ShortcodeController.php:188
+#: controllers/ShortcodeController.php:524 forms/FContactFormEdit.php:77
+#: forms/FContactFormEdit.php:320 forms/FTicketFormAdd.php:54
 #: forms/FTicketFormEdit.php:52 view/contactForm.php:44 view/ticketForm.php:44
 #: view/ticketFormAdd.php:18 view/ticketFormEdit.php:18
 msgid "Name"
 msgstr "Nom"
 
-#: controllers/ShortcodeController.php:367
+#: controllers/ShortcodeController.php:378
 msgid "lastname"
 msgstr "nom"
 
-#: controllers/ShortcodeController.php:416
+#: controllers/ShortcodeController.php:520
 msgid "[PROSPECT] - sellsy"
 msgstr "[PROSPECT] - sellsy"
 
-#: controllers/ShortcodeController.php:417
+#: controllers/ShortcodeController.php:521
 msgid "Request for a new prospect :"
 msgstr "Requête pour un nouveau prospect :"
 
-#: controllers/ShortcodeController.php:520
+#: controllers/ShortcodeController.php:632
 msgid "Company name"
 msgstr "Société"
 
-#: controllers/ShortcodeController.php:525 forms/FContactFormEdit.php:267
+#: controllers/ShortcodeController.php:637 forms/FContactFormEdit.php:333
 msgid "Siren"
 msgstr "Siren"
 
-#: controllers/ShortcodeController.php:530 forms/FContactFormEdit.php:281
+#: controllers/ShortcodeController.php:642 forms/FContactFormEdit.php:346
 msgid "Siret"
 msgstr "Siret"
 
-#: controllers/ShortcodeController.php:535 forms/FContactFormEdit.php:295
+#: controllers/ShortcodeController.php:647 forms/FContactFormEdit.php:359
 msgid "RCS"
 msgstr "RCS"
 
-#: controllers/ShortcodeController.php:542 forms/FContactFormEdit.php:323
+#: controllers/ShortcodeController.php:654 forms/FContactFormEdit.php:386
 #: view/contactFormEdit.php:19
 msgid "Lastname"
 msgstr "Nom"
 
-#: controllers/ShortcodeController.php:547 forms/FContactFormEdit.php:341
+#: controllers/ShortcodeController.php:659 forms/FContactFormEdit.php:404
 msgid "Firstname"
 msgstr "Prénom"
 
-#: controllers/ShortcodeController.php:557 forms/FContactFormEdit.php:373
+#: controllers/ShortcodeController.php:669 forms/FContactFormEdit.php:435
 msgid "Phone"
 msgstr "Téléphone"
 
-#: controllers/ShortcodeController.php:562 forms/FContactFormEdit.php:387
+#: controllers/ShortcodeController.php:674 forms/FContactFormEdit.php:448
 msgid "Mobile"
 msgstr "Mobile"
 
-#: controllers/ShortcodeController.php:567 forms/FContactFormEdit.php:401
+#: controllers/ShortcodeController.php:679 forms/FContactFormEdit.php:461
 msgid "Function"
 msgstr "Fonction"
 
-#: controllers/ShortcodeController.php:574
+#: controllers/ShortcodeController.php:694
 msgid "website"
 msgstr "site web"
 
-#: controllers/ToolsController.php:45
+#: controllers/ToolsController.php:50
 msgid "Options recorded."
 msgstr "Options enregistrées."
 
-#: controllers/ToolsController.php:48
+#: controllers/ToolsController.php:53
 msgid "ERROR"
 msgstr "ERREUR"
 
-#: controllers/ToolsController.php:48
+#: controllers/ToolsController.php:53
 msgid "Update unrealized"
 msgstr "Mise à jour non réalisée"
 
-#: forms/FContactFormEdit.php:40 forms/FContactFormEdit.php:464
+#: forms/FContactFormEdit.php:44 forms/FContactFormEdit.php:598
 #: forms/FTicketFormAdd.php:40 forms/FTicketFormAdd.php:117
 msgid "Save"
 msgstr "Enregistrer"
 
-#: forms/FContactFormEdit.php:41 forms/FContactFormEdit.php:465
+#: forms/FContactFormEdit.php:45 forms/FContactFormEdit.php:599
 #: forms/FSettingEdit.php:30 forms/FSettingEdit.php:143
 #: forms/FTicketFormAdd.php:41 forms/FTicketFormAdd.php:118
 #: forms/FTicketFormEdit.php:31 forms/FTicketFormEdit.php:120
 msgid "Back"
 msgstr "Retour"
 
-#: forms/FContactFormEdit.php:46 forms/FTicketFormEdit.php:36
-#: view/contactForm.php:53 view/contactForm.php:86 view/ticketForm.php:53
-#: view/ticketForm.php:86
+#: forms/FContactFormEdit.php:50 forms/FTicketFormEdit.php:36
+#: view/contactForm.php:53 view/contactForm.php:87 view/ticketForm.php:53
+#: view/ticketForm.php:87
 msgid "Edit"
 msgstr "Editer"
 
-#: forms/FContactFormEdit.php:47 forms/FTicketFormAdd.php:47
+#: forms/FContactFormEdit.php:51 forms/FTicketFormAdd.php:47
 #: forms/FTicketFormEdit.php:37
 msgid "Help"
 msgstr "Aide"
 
-#: forms/FContactFormEdit.php:60 view/settingEdit.php:29
+#: forms/FContactFormEdit.php:64 view/settingEdit.php:29
 msgid "Setting"
 msgstr "Configuration"
 
-#: forms/FContactFormEdit.php:65 view/contactForm.php:47 view/ticketForm.php:47
+#: forms/FContactFormEdit.php:69 view/contactForm.php:47 view/ticketForm.php:47
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: forms/FContactFormEdit.php:77 forms/FTicketFormAdd.php:58
+#: forms/FContactFormEdit.php:81 forms/FTicketFormAdd.php:58
 #: forms/FTicketFormEdit.php:56
 msgid "Name for your back-office"
 msgstr "Nom pour votre back-office"
 
-#: forms/FContactFormEdit.php:82
+#: forms/FContactFormEdit.php:86
 msgid "Add on Sellsy"
 msgstr "Ajouter sur Sellsy"
 
-#: forms/FContactFormEdit.php:94 view/manuel.php:56
+#: forms/FContactFormEdit.php:98 view/manuel.php:56
 msgid "Prospect"
 msgstr "Prospect"
 
-#: forms/FContactFormEdit.php:95
+#: forms/FContactFormEdit.php:99
 msgid "Prospect and opportunity"
 msgstr "Prospect et opportunité"
 
-#: forms/FContactFormEdit.php:102
+#: forms/FContactFormEdit.php:105
 msgid "Name of opportunity"
 msgstr "Nom de l'opportunité"
 
-#: forms/FContactFormEdit.php:105 forms/FContactFormEdit.php:429
+#: forms/FContactFormEdit.php:108 forms/FContactFormEdit.php:488
 msgid "Website"
 msgstr "Site web"
 
-#: forms/FContactFormEdit.php:110
+#: forms/FContactFormEdit.php:113
 msgid "Opportunity source"
 msgstr "Source d'opportunité"
 
-#: forms/FContactFormEdit.php:131 forms/FContactFormEdit.php:178
-#: forms/FContactFormEdit.php:185
+#: forms/FContactFormEdit.php:136 forms/FContactFormEdit.php:186
+#: forms/FContactFormEdit.php:193
 msgid "---- selection ----"
 msgstr "---- selection ----"
 
-#: forms/FContactFormEdit.php:139
+#: forms/FContactFormEdit.php:143
 msgid "Pipeline"
 msgstr "Pipeline"
 
-#: forms/FContactFormEdit.php:189
+#: forms/FContactFormEdit.php:197 forms/FContactFormEdit.php:214
+#: forms/FContactFormEdit.php:231 forms/FContactFormEdit.php:255
 msgid "Only if you use the option \"add prospect and opportunity\""
 msgstr ""
 "Seulement si vous utilisez l'option \"Ajouter prospect et opportunité\""
 
-#: forms/FContactFormEdit.php:204
+#: forms/FContactFormEdit.php:202
+msgid "Deadline (in days)"
+msgstr "Deadline (en jours)"
+
+#: forms/FContactFormEdit.php:219
+msgid "Probability"
+msgstr "Probabilité"
+
+#: forms/FContactFormEdit.php:236 forms/FTicketFormAdd.php:72
+#: forms/FTicketFormEdit.php:70
+msgid "Assigned to"
+msgstr "Assigné à"
+
+#: forms/FContactFormEdit.php:245 forms/FTicketFormEdit.php:79
+msgid "Nobody"
+msgstr "Personne"
+
+#: forms/FContactFormEdit.php:270
 msgid "Notification"
 msgstr "Notification"
 
-#: forms/FContactFormEdit.php:207
+#: forms/FContactFormEdit.php:273
 msgid "your email"
 msgstr "votre email"
 
-#: forms/FContactFormEdit.php:209
+#: forms/FContactFormEdit.php:275
 msgid "Receive an email with the form information submitted on your website"
 msgstr ""
 "Recevoir un email avec les informations du formulaire validé sur votre site "
 "web"
 
-#: forms/FContactFormEdit.php:211
+#: forms/FContactFormEdit.php:277
 msgid "(Empty = no notification)"
 msgstr "(Vide = pas de notification)"
 
-#: forms/FContactFormEdit.php:217 forms/FSettingEdit.php:113
+#: forms/FContactFormEdit.php:282 forms/FSettingEdit.php:113
 #: forms/FTicketFormAdd.php:92 forms/FTicketFormEdit.php:93
 msgid "Status"
 msgstr "Etat"
 
-#: forms/FContactFormEdit.php:248
+#: forms/FContactFormEdit.php:315
 msgid "Company information"
 msgstr "Information société"
 
-#: forms/FContactFormEdit.php:318
+#: forms/FContactFormEdit.php:381
 msgid "Contact information"
 msgstr "Information contact"
 
-#: forms/FContactFormEdit.php:424
+#: forms/FContactFormEdit.php:483
 msgid "Other"
 msgstr "Autre"
 
-#: forms/FContactFormEdit.php:443
+#: forms/FContactFormEdit.php:501
 msgid "Note"
 msgstr "Note"
 
-#: forms/FContactFormEdit.php:458
+#: forms/FContactFormEdit.php:523
+msgid "Custom fields"
+msgstr "Champs personnalisés"
+
+#: forms/FContactFormEdit.php:528
+msgid "Quantity custom fields"
+msgstr "Quantité de champs personnalisés"
+
+#: forms/FContactFormEdit.php:581
+msgid "Required fields"
+msgstr "Champs requis"
+
+#: forms/FContactFormEdit.php:583
+msgid "Required field"
+msgstr "Champ requis"
+
+#: forms/FContactFormEdit.php:592
 msgid "required"
 msgstr "obligatoire"
 
@@ -327,22 +374,9 @@ msgstr "Sujet préfixe"
 msgid "Ex : [TICKET SUPPORT]"
 msgstr "Ex : [TICKET SUPPORT]"
 
-#: forms/FTicketFormAdd.php:72 forms/FTicketFormEdit.php:70
-msgid "Assigned to"
-msgstr "Assigné à"
-
 #: forms/FTicketFormEdit.php:44
 msgid "ID"
 msgstr "ID"
-
-#: forms/FTicketFormEdit.php:79
-msgid "Nobody"
-msgstr "Personne"
-
-#: view/contactForm.php:13 view/contactFormEdit.php:110 view/manuel.php:23
-#: view/manuel.php:47
-msgid "Contact"
-msgstr "Contact"
 
 #: view/contactForm.php:41 view/ticketForm.php:41
 msgid "id"
@@ -352,35 +386,35 @@ msgstr "id"
 msgid "State"
 msgstr "Etat"
 
-#: view/contactFormEdit.php:64
+#: view/contactFormEdit.php:66
 msgid "Required field for \"setting\" section : "
 msgstr "Champ obligatoire pour la section \"configuration\" : "
 
-#: view/contactFormEdit.php:66
+#: view/contactFormEdit.php:68
 msgid "Required fields for \"setting\" section : "
 msgstr "Champs obligatoires pour la section\" configuration\" : "
 
-#: view/contactFormEdit.php:73
+#: view/contactFormEdit.php:75
 msgid "Required field for \"company information\" section : "
 msgstr "Champ obligatoire pour la section \"information société\" : "
 
-#: view/contactFormEdit.php:75
+#: view/contactFormEdit.php:77
 msgid "Required fields for \"company information\" section : "
 msgstr "Champs obligatoires pour la section \"information société\" : "
 
-#: view/contactFormEdit.php:82
+#: view/contactFormEdit.php:84
 msgid "Required field for \"contact information\" section : "
 msgstr "Champ obligatoire pour la section \"information contact\" : "
 
-#: view/contactFormEdit.php:84
+#: view/contactFormEdit.php:86
 msgid "Required fields for \"contact information\" section : "
 msgstr "Champs obligatoires pour la section \"information contact\" : "
 
-#: view/contactFormEdit.php:91
+#: view/contactFormEdit.php:93
 msgid "Required field for \"other\" section : "
 msgstr "Champ obligatoire pour la section \"autre\" : "
 
-#: view/contactFormEdit.php:93
+#: view/contactFormEdit.php:95
 msgid "Required fields for \"other\" section : "
 msgstr "Champs obligatoires pour la section \"autre\" : "
 
@@ -434,16 +468,16 @@ msgid "Default setting"
 msgstr "Configuration par défaut"
 
 #: view/manuel.php:57
-msgid "Deadline: +1 month"
-msgstr "Deadline : +1 mois"
+msgid "Deadline (days):"
+msgstr "Deadline (jours) :"
 
 #: view/manuel.php:58
 msgid "Name: website"
 msgstr "Nom : siteWeb"
 
 #: view/manuel.php:59
-msgid "Probability: 10%"
-msgstr "Probabilité : 10%"
+msgid "Probability (%): "
+msgstr "Probabilité (%) : "
 
 #: view/manuel.php:60
 msgid "Tag: wordpress"
@@ -457,10 +491,6 @@ msgstr "Créer un accès"
 msgid "Information about captcha"
 msgstr "Information a propos du captcha"
 
-#: view/ticketForm.php:13
-msgid "Ticket support"
-msgstr "Ticket support"
-
 #: view/ticketFormAdd.php:42 view/ticketFormEdit.php:37
 msgid "Required field : "
 msgstr "Champ requis : "
@@ -473,14 +503,14 @@ msgstr "Champs requis : "
 msgid "Support ticket"
 msgstr "Ticket support"
 
+#~ msgid "Deadline: +1 month"
+#~ msgstr "Deadline : +1 mois"
+
+#~ msgid "Probability: 10%"
+#~ msgstr "Probabilité : 10%"
+
 #~ msgid "Successful registration."
 #~ msgstr "Enregistrement fait."
-
-#~ msgid "Required field"
-#~ msgstr "Champ requis"
-
-#~ msgid "Required fields"
-#~ msgstr "Champs requis"
 
 #~ msgid "Search"
 #~ msgstr "Recherche"
@@ -574,9 +604,6 @@ msgstr "Ticket support"
 
 #~ msgid "Summary"
 #~ msgstr "Sommaire"
-
-#~ msgid "Settings"
-#~ msgstr "Configuration"
 
 #~ msgid "More information"
 #~ msgstr "Plus d'information"

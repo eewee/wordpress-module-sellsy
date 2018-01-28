@@ -1,22 +1,26 @@
 <?php
 namespace fr\eewee\eewee_sellsy\models;
+
 namespace fr\eewee\eewee_sellsy\helpers;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+} // Exit if accessed directly
 
-if( !class_exists('FormHelpers')){
+if (!class_exists('FormHelpers')) {
     class FormHelpers
     {
-
         /**
          * BACK (ADMIN)
          * Render form : custom fields
          * @param $d
          * @return mixed
          */
-        public static function getCustomFields( $d )
+        public static function getCustomFields($d)
         {
-            if (!isset($d['form_name']) /*|| !isset($d['form_value'])*/ || !isset($d['responseCustomFields'])) { return false; }
+            if (!isset($d['form_name']) /*|| !isset($d['form_value'])*/ || !isset($d['responseCustomFields'])) {
+                return false;
+            }
 
             // INIT
             $options                = array();
@@ -29,36 +33,35 @@ if( !class_exists('FormHelpers')){
             $resultsCustomFields    = $d['responseCustomFields']->response->result;
 
             // CF ALL
-	        if (isset($resultsCustomFields) && !empty($resultsCustomFields)) {
-	            foreach ($resultsCustomFields as $resultCustomFields) {
+            if (isset($resultsCustomFields) && !empty($resultsCustomFields)) {
+                foreach ($resultsCustomFields as $resultCustomFields) {
+                    if ($resultCustomFields->status == 'ok') {
 
-	                if ($resultCustomFields->status == 'ok') {
+                        // only "simpletext" or "richtext" for the moment
+                        if ($resultCustomFields->type == 'simpletext' || $resultCustomFields->type == 'richtext') {
+                            $disabled = '';
+                        } else {
+                            $disabled = 'disabled';
+                        }
 
-	                    // only "simpletext" for the moment
-	                    if ($resultCustomFields->type == 'simpletext') {
-	                        $disabled = '';
-	                    } else {
-	                        $disabled = 'disabled';
-	                    }
+                        // required
+                        if ($resultCustomFields->isRequired == 'Y') {
+                            $isRequired = '*';
+                        } else {
+                            $isRequired = '';
+                        }
 
-	                    // required
-	                    if ($resultCustomFields->isRequired == 'Y') {
-	                        $isRequired = '*';
-	                    } else {
-	                        $isRequired = '';
-	                    }
+                        // selected
+                        if ($form_value == $resultCustomFields->cfid) {
+                            $selected = 'selected';
+                        } else {
+                            $selected = '';
+                        }
 
-	                    // selected
-	                    if ($form_value == $resultCustomFields->cfid) {
-	                        $selected = 'selected';
-	                    } else {
-	                        $selected = '';
-	                    }
-
-	                    $options[] = '<option value="'.$resultCustomFields->cfid.'" '.$disabled.' '.$selected .'>'.$resultCustomFields->name.' ('.$resultCustomFields->type.') '.$isRequired.'</option>';
-	                }
-	            }
-	        }
+                        $options[] = '<option value="'.$resultCustomFields->cfid.'" '.$disabled.' '.$selected .'>'.$resultCustomFields->name.' ('.$resultCustomFields->type.') '.$isRequired.'</option>';
+                    }
+                }
+            }
 
             // SELECT
             $r = '
@@ -81,25 +84,25 @@ if( !class_exists('FormHelpers')){
          * @param $id (cfid)
          * @return mixed
          */
-        public static function getCustomFieldsFront( $id )
+        public static function getCustomFieldsFront($id)
         {
-
         }
 
-
-            /**
+        /**
          * Render form : radio
          * @param $d
          * @return mixed
          */
-        public static function radio( $d )
+        public static function radio($d)
         {
-            if (!isset($d['form_name']) || !isset($d['form_value'])) { return false; }
+            if (!isset($d['form_name']) || !isset($d['form_value'])) {
+                return false;
+            }
 
             $echo       = $d['echo'];
             $form_name  = $d['form_name'];
             $on = $off = '';
-            if( $d['form_value'] == 0 ){
+            if ($d['form_value'] == 0) {
                 $on = 'checked="checked"';
             } else {
                 $off = 'checked="checked"';
@@ -122,6 +125,5 @@ if( !class_exists('FormHelpers')){
                 return $r;
             }
         }
-
     }//fin class
 }//fin if

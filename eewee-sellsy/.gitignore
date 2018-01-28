@@ -1,0 +1,7 @@
+# Folder
+coverage/
+vendor/
+
+# File
+.vscode
+composer.lock

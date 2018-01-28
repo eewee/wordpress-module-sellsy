@@ -1,17 +1,22 @@
 <?php
 namespace fr\eewee\eewee_sellsy\controllers;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+} // Exit if accessed directly
 
 //if( !class_exists('InstallController')){
-class InstallController{
-
-    function __construct(){}
+class InstallController
+{
+    public function __construct()
+    {
+    }
 
     /**
      * install
      */
-    public function install(){
+    public function install()
+    {
         global $wpdb;
 
         // CURRENT TIME :
@@ -158,7 +163,9 @@ class InstallController{
         }
 
         if (isset($sql) && !empty($sql)) {
-            foreach( $sql as $v ){ $wpdb->query($v); }
+            foreach ($sql as $v) {
+                $wpdb->query($v);
+            }
         }
     }
 
@@ -166,7 +173,8 @@ class InstallController{
      * delete
      * @deprecated use uninstall.php
      */
-    public function delete(){
+    public function delete()
+    {
         global $wpdb;
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."version`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."setting`";
@@ -175,12 +183,11 @@ class InstallController{
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."contact_form`";
         $sql[] = "DROP TABLE  `".EEWEE_SELLSY_PREFIXE_BDD."error`";
-	    if (isset($sql) && !empty($sql)) {
-		    foreach ( $sql as $v ) {
-			    $wpdb->query( $v );
-		    }
-	    }
+        if (isset($sql) && !empty($sql)) {
+            foreach ($sql as $v) {
+                $wpdb->query($v);
+            }
+        }
     }
-
 }//class
 //}//if

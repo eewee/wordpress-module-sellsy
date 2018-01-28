@@ -1,12 +1,15 @@
 <?php
 namespace fr\eewee\eewee_sellsy\controllers;
+
 use fr\eewee\eewee_sellsy\models;
 
-if ( !defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
+if (!defined('ABSPATH')) {
+    exit;
+} // Exit if accessed directly
 
-if( !class_exists('CookieController')){
-    class CookieController{
-
+if (!class_exists('CookieController')) {
+    class CookieController
+    {
         private $_name;
         private $_delay;
 
@@ -33,7 +36,7 @@ if( !class_exists('CookieController')){
          */
         public function add()
         {
-            if (setcookie( $this->_name, "", $this->_delay, "/" )) {
+            if (setcookie($this->_name, "", $this->_delay, "/")) {
                 return true;
             }
             return false;
@@ -45,7 +48,9 @@ if( !class_exists('CookieController')){
          */
         public function get()
         {
-            if (!isset($_COOKIE[$this->_name])) { return false; }
+            if (!isset($_COOKIE[$this->_name])) {
+                return false;
+            }
 
             $cookie = stripslashes($_COOKIE[$this->_name]);
 
@@ -87,7 +92,7 @@ if( !class_exists('CookieController')){
             $res_encode = json_encode($res_decode);
 
             // save
-            if (setcookie( $this->_name, $res_encode, $this->_delay, "/" )) {
+            if (setcookie($this->_name, $res_encode, $this->_delay, "/")) {
                 return true;
             }
         }
@@ -98,8 +103,8 @@ if( !class_exists('CookieController')){
          */
         public function delete()
         {
-            unset( $_COOKIE[$this->_name] );
-            if (setcookie( $this->_name, "", time() - 3600, "/" )) {
+            unset($_COOKIE[$this->_name]);
+            if (setcookie($this->_name, "", time() - 3600, "/")) {
                 return true;
             }
             return false;
@@ -122,17 +127,16 @@ if( !class_exists('CookieController')){
             }
 
             // STOCK
-	        if (isset($cookieDatas) && !empty($cookieDatas)) {
-	            foreach ($cookieDatas as $kC=>$vC) {
-	                $cookieTracking[] = array(
-	                    'type'		=> "url",
-	                    'url'		=> $vC,
-	                    'timestamp' => $kC,
-	                );
-	            }
-	        }
+            if (isset($cookieDatas) && !empty($cookieDatas)) {
+                foreach ($cookieDatas as $kC=>$vC) {
+                    $cookieTracking[] = array(
+                        'type'		=> "url",
+                        'url'		=> $vC,
+                        'timestamp' => $kC,
+                    );
+                }
+            }
             return $cookieTracking;
         }
-
     }//fin class
 }//fin if
