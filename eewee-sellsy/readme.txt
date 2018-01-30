@@ -52,6 +52,8 @@ Then when validating the prospecting / opportunity form, you can view these page
 * ...
 
 == Changelog ==
+= 1.13 =
+* Add CF RichText + Add message in content email notification
 
 = 1.12 =
 * Add "assigned to", "probability" on opportunity and PHPUNIT

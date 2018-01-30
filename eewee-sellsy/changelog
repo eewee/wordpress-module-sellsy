@@ -1,3 +1,6 @@
+= 1.13 =
+* Add CF RichText + Add message in content email notification
+
 = 1.12 =
 * Add "assigned to", "probability" on opportunity and PHPUNIT
 

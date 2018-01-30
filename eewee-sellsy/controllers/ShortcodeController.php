@@ -220,7 +220,6 @@ if (!class_exists('ShortcodeController')) {
          */
         public function contactSellsy($atts='')
         {
-
             // INIT
             $id         = '';
             $render     = '';
@@ -521,7 +520,8 @@ if (!class_exists('ShortcodeController')) {
                                 __('Request for a new prospect :', PLUGIN_NOM_LANG).'
 https://www.sellsy.fr/?_f=third&thirdid='.$response->response.'&thirdtype=prospect
 '.__('Email', PLUGIN_NOM_LANG).' : '.$api_contact['email'].'
-'.__('Name', PLUGIN_NOM_LANG).' : '.$api_contact['name']
+'.__('Name', PLUGIN_NOM_LANG).' : '.$api_contact['name'].'
+'.__('Message', PLUGIN_NOM_LANG).' : '.$api_opportunity['stickyNote']
                             );
                         }
 
